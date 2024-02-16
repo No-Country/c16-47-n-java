@@ -7,4 +7,5 @@ import java.io.IOException;
 public interface ImageDataService {
 
     ImageData uploadImageData(MultipartFile file) throws IOException;
+    void deleteImageData(Long id);
 }

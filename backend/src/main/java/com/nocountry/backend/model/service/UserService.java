@@ -16,4 +16,7 @@ public interface UserService {
     UserDTO updateById(NewUserRequest request, Long id);
     void deleteById(Long id);
     UserDTO findById(Long id) throws UserNotFoundException;
+    UserDTO updateUsername(Long id, String username);
+    UserDTO updateEmail(Long id, String email);
+    UserDTO updatePassword(Long id, String password);
 }

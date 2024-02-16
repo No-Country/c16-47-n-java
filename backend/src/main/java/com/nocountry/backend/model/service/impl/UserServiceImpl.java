@@ -22,7 +22,8 @@ public class UserServiceImpl implements UserService {
     private final ImageDataServiceImpl imageDataService;
     private final ModelMapper modelMapper;
 
-    public UserServiceImpl(UserRepository userRepository, ImageDataServiceImpl imageDataService, ModelMapper modelMapper) {
+    public UserServiceImpl(UserRepository userRepository, ImageDataServiceImpl imageDataService,
+            ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.imageDataService = imageDataService;
         this.modelMapper = modelMapper;
@@ -56,12 +57,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO updateById(NewUserRequest request, Long id) {
+        Optional<UserEntity> res = userRepository.findById(id);
+        if (res.isPresent()) {
+            UserEntity user = UserEntity.builder()
+                    .username(request.getUsername())
+                    .email(request.getEmail())
+                    .password(request.getPassword())
+                    .build();
+            UserEntity userDB = userRepository.save(user);
+            return modelMapper.map(userDB, UserDTO.class);
+        }
         return null;
     }
 
     @Override
     public void deleteById(Long id) {
-
+        Optional<UserEntity> res = userRepository.findById(id);
+        if (res.isPresent()) {
+            UserEntity user = res.get();
+            userRepository.delete(user);
+        }
     }
 
     // id image not found
@@ -72,5 +87,41 @@ public class UserServiceImpl implements UserService {
             throw new UserNotFoundException("user not found with id : " + id);
         }
         return modelMapper.map(userDB.get(), UserDTO.class);
+    }
+
+    @Override
+    public UserDTO updateUsername(Long id, String username) {
+        Optional<UserEntity> res = userRepository.findById(id);
+        if(res.isPresent()){
+            UserEntity user = res.get();
+            user.setUsername(username);
+            UserEntity userDB = userRepository.save(user);
+            return modelMapper.map(userDB, UserDTO.class);
+        }
+        return null;
+    }
+
+    @Override
+    public UserDTO updateEmail(Long id, String email) {
+        Optional<UserEntity> res = userRepository.findById(id);
+        if(res.isPresent()){
+            UserEntity user = res.get();
+            user.setEmail(email);
+            UserEntity userDB = userRepository.save(user);
+            return modelMapper.map(userDB, UserDTO.class);
+        }
+        return null;
+    }
+
+    @Override
+    public UserDTO updatePassword(Long id, String password) {
+        Optional<UserEntity> res = userRepository.findById(id);
+        if(res.isPresent()){
+            UserEntity user = res.get();
+            user.setPassword(password);
+            UserEntity userDB = userRepository.save(user);
+            return modelMapper.map(userDB, UserDTO.class);
+        }
+        return null;
     }
 }

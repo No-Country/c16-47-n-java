@@ -52,7 +52,7 @@ public class UserController {
                         "user saved successfully",
                         userService.saveUser(newUserRequest, file
                         ))
-                , HttpStatus.CREATED);
+                , HttpStatus.CREATED).ok().body(null);
     }
 
 }
