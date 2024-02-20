@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import HeaderBanner from "./components/shared/HeaderBanner";
 import Productos from "./components/shared/Productos";
-// import Hero from "./components/shared/Hero";
 import Contacto from "./components/shared/Contacto";
 
 function App() {
