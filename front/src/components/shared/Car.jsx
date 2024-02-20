@@ -7,46 +7,35 @@ const Card = (props) => {
 
   const agregarAlCarrito = (producto) => {
     setProductosEnCarrito([...productosEnCarrito, producto]);
-    console.log(`Se agregó ${producto.descripcion} al carrito.`);
+    console.log(`Se agregó ${producto.nombre} al carrito.`);
   };
 
   return (
     <div
-      className={`lg:col-span-2 absolute top-0 bg-[#1F1D2B] w-full lg:w-96 lg:h-auto lg:right-0 h-full transition-all z-50 ${
+      className={`lg:col-span-2 absolute top-0 bg-[#a6d47c] w-full lg:w-96 lg:h-auto lg:right-0 h-full transition-all z-50 ${
         showOrder ? "right-0" : "-right-full"
       }`}
     >
       {/* Orders */}
-      <div className="relative pt-16 lg:pt-8 text-gray-300 p-8 h-full">
+      <div className="relative pt-16 lg:pt-8 text-black-300 p-8 h-full">
         <RiCloseLine
           onClick={() => setShowOrder(false)}
           className="lg:hidden absolute left-4 top-4 p-3 box-content text-gray-300 bg-[#262837] rounded-full text-xl"
         />
         <h1 className="text-2xl my-4">Pedido</h1>
-        {/* Pills */}
-        <div className="flex items-center gap-4 flex-wrap mb-8">
-          <button className="bg-[#06d6a0] text-white py-2 px-4 rounded-xl">
-            Boton1
-          </button>
-          <button className="text-[#06d6a0] py-2 px-4 rounded-xl border border-gray-500">
-            Boton2
-          </button>
-          <button className="text-[#06d6a0] py-2 px-4 rounded-xl border border-gray-500">
-            Boton3
-          </button>
-        </div>
+    
         {/* Car */}
         
         <div>
           <div className="grid grid-cols-6 mb-4 p-4">
             <h5 className="col-span-4">Item</h5>
-            <h5>Qty</h5>
-            <h5>Price</h5>
+            <h5>Cant.</h5>
+            <h5>Precio</h5>
           </div>
           {/* Products */}
           <div className="h-[400px] md:h-[700px] lg:h-[540px] overflow-scroll">
             {productosEnCarrito.map((producto, index) => (
-              <div key={index} className="bg-[#262837] p-4 rounded-xl mb-4">
+              <div key={index} className="bg-[#a6d47c] p-4 rounded-xl mb-4">
                 <div className="grid grid-cols-6 mb-4">
                   {/* Product description */}
                   <div className="col-span-4 flex items-center gap-3">
@@ -55,7 +44,7 @@ const Card = (props) => {
                       className="w-10 h-10 object-cover"
                     />
                     <div>
-                      <h5 className="text-sm">{producto.descripcion}</h5>
+                      <h5 className="text-sm">{producto.nombre}</h5>
                       <p className="text-xs text-gray-500">
                         ${producto.precio}
                       </p>
@@ -91,10 +80,6 @@ const Card = (props) => {
         </div>
         {/* Submit payment */}
         <div className="bg-[#262837] relative w-full bottom-0 left-0 p-4">
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-gray-400">Discount</span>
-            <span>$0</span>
-          </div>
           <div className="flex items-center justify-between mb-6">
             <span className="text-gray-400">Subtotal</span>
             <span>
@@ -106,7 +91,7 @@ const Card = (props) => {
           </div>
           <div>
             <button className="bg-[#06d6a0] w-full py-2 px-4 rounded-lg">
-              Continue to payment
+              PAGAR
             </button>
           </div>
         </div>
