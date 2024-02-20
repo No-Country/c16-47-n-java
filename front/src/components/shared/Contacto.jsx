@@ -48,8 +48,8 @@ function Contacto() {
           <label htmlFor="message" className="block mb-2">Mensaje</label>
           <textarea id="message" name="message" value={formData.message} onChange={handleChange} className="border p-2 w-full" style={{ borderRadius: '8px' }} rows="5" required></textarea>
         </div>
-        <div className="flex justify-end"> 
-          <button type="submit" className="text-[#00a77b] text-sm py-3 px-6 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#00a77b] hover:text-white hover:scale-110">Enviar</button> {/* Aumento del tamaño del botón */}
+        <div className="flex justify-center"> 
+          <button type="submit" className="text-[#00a77b] text-sm py-3 px-12 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#00a77b] hover:text-white hover:scale-110">Enviar</button> {/* Aumento del tamaño del botón */}
         </div>
       </form>
     </div>
