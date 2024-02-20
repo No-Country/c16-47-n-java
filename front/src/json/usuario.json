@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "username": "usuario1",
+    "email": "email1@gmail.com",
+    "password": "123456",
+    "imagen": {
+      "id": 1,
+      "url": "/src/assets/img/perfil1.jpg"
+    }
+  },
+  {
+    "id": 2,
+    "username": "usuario2",
+    "email": "email2@gmail.com",
+    "password": "123456",
+    "imagen": {
+      "id": 2,
+      "url": "/src/assets/img/perfil2.jpg"
+    }
+  }
+]
