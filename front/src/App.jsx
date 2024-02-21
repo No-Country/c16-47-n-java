@@ -34,7 +34,7 @@ function App() {
             <Route
               path="/"
               element={
-                <div className="flex justify-center mt-8">
+                <div className="flex justify-center bg-cover" style={{backgroundImage: 'url("src/assets/img/fondo-productos.jpg")'}}>
                   <Productos />
                 </div>
               }
