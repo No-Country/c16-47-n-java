@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import UserProfile from "./UserProfile";
 
 const HeaderBanner = () => {
@@ -20,7 +20,6 @@ const HeaderBanner = () => {
   };
 
   const handleFileChange = (file) => {
-
     console.log("Archivo seleccionado:", file);
   };
 
@@ -33,7 +32,7 @@ const HeaderBanner = () => {
           className="h-20 ml-8"
         />
       </div>
-      <div className="flex items-center mr-4">
+      <div className="flex items-center mr-4 z-20">
         {/* User profile photo to trigger profile visibility */}
         <UserProfile
           userData={userData}

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { FaPen, FaCamera } from "react-icons/fa"; // Importa los íconos de lápiz y cámara
+import { useState } from "react";
+import PropTypes from "prop-types";
+import { FaCamera } from "react-icons/fa"; // Importa los íconos de
 
 const UserProfile = ({
   userData,
@@ -38,7 +39,7 @@ const UserProfile = ({
     <div className="relative">
       {/* User profile photo to trigger profile visibility */}
       <div
-        className="h-16 w-16 rounded-full cursor-pointer overflow-hidden"
+        className="h-20 w-20 rounded-full cursor-pointer overflow-hidden"
         onClick={toggleProfile}
       >
         <img
@@ -50,82 +51,119 @@ const UserProfile = ({
 
       {/* UserProfile component */}
       {showProfile && (
-        <div className="absolute right-0 mt-20 bg-black bg-opacity-75 w-48 p-4 rounded-lg shadow-lg">
-          <div
-            className={`h-16 w-16 rounded-full cursor-pointer overflow-hidden mb-2 ${
-              editing ? "" : "pointer-events-none"
-            }`}
-            onClick={() => {
-              if (editing) {
-                document.getElementById("fileInput").click();
-              }
-            }}
-            style={{ position: "relative" }}
-          >
-            <input
-              type="file"
-              id="fileInput"
-              accept="image/*"
-              className="hidden"
-              onChange={handleFileChange}
-            />
-            {editing && (
-              <FaCamera className="absolute bottom-0 right-1 transform -translate-x-1/2 -translate-y-1/2 text-teal-500 text-1xl" />
-            )}
-            <label htmlFor="fileInput">
-              <img
-                src={profileImage} // Usa la imagen de perfil del estado
-                alt={username}
-                className="h-full w-full rounded-full object-cover border-none"
-              />
-            </label>
-          </div>
-          <div className="flex items-center mb-2">
-            {editing ? (
-              <input
-                type="text"
-                value={usernameInput}
-                onChange={(e) => setUsernameInput(e.target.value)}
-                className="text-gray-800 font-semibold w-32 border border-gray-400 rounded p-1"
-              />
-            ) : (
-              <span className="text-white-800 font-semibold">{username}</span>
-            )}
-          </div>
-          <div className="text-white-600 mb-2">
-            {editing ? (
-              <input
-                type="text"
-                value={emailInput}
-                onChange={(e) => setEmailInput(e.target.value)}
-                className="w-32 border border-gray-400 rounded p-1"
-              />
-            ) : (
-              `Email: ${email}`
-            )}
-          </div>
-          <div>
-            {editing ? (
+        <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 flex justify-center items-center">
+          <div className="bg-white p-4 rounded-lg w-full max-w-md">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-semibold">Editar Usuario</h2>
               <button
-                className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
-                onClick={handleSave}
+                className="text-gray-600 hover:text-gray-800"
+                onClick={toggleProfile}
               >
-                Guardar
+                X
               </button>
-            ) : (
-              <button
-                className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
-                onClick={handleEdit}
-              >
-                <FaPen /> Editar
-              </button>
-            )}
+            </div>
+            <div className="mb-4">
+              <div className="flex justify-center mb-2">
+                <div
+                  className={`h-32 w-32 rounded-full cursor-pointer overflow-hidden ${
+                    editing ? "" : "pointer-events-none"
+                  }`}
+                  onClick={() => {
+                    if (editing) {
+                      document.getElementById("fileInput").click();
+                    }
+                  }}
+                  style={{ position: "relative" }}
+                >
+                  <input
+                    type="file"
+                    id="fileInput"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={handleFileChange}
+                  />
+                  {editing && (
+                    <FaCamera className="absolute bottom-0.5 right-2.5 transform -translate-x-1/2 -translate-y-1/2 text-green-500 text-2xl" />
+                  )}
+                  <label htmlFor="fileInput">
+                    <img
+                      src={profileImage} // Usa la imagen de perfil del estado
+                      alt={username}
+                      className="h-full w-full rounded-full object-cover border-none"
+                    />
+                  </label>
+                </div>
+              </div>
+              <div className="text-center mb-2">
+                {editing ? (
+                  <input
+                    type="text"
+                    value={usernameInput}
+                    onChange={(e) => setUsernameInput(e.target.value)}
+                    className="text-gray-500 font-semibold w-full border border-gray-400 rounded p-2"
+                  />
+                ) : (
+                  <span className="text-gray-800 font-semibold">
+                    {username}
+                  </span>
+                )}
+              </div>
+              <div className="text-center mb-4">
+                {editing ? (
+                  <input
+                    type="text"
+                    value={emailInput}
+                    onChange={(e) => setEmailInput(e.target.value)}
+                    className="text-gray-500 font-semibold w-full border border-gray-400 rounded p-2"
+                  />
+                ) : (
+                  <span className="text-gray-800">{email}</span>
+                )}
+              </div>
+              <div className="flex justify-center">
+                {editing ? (
+                  <button
+                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
+                    onClick={handleSave}
+                  >
+                    Guardar
+                  </button>
+                ) : (
+                  <button
+                    className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-2"
+                    onClick={handleEdit}
+                  >
+                    Editar
+                  </button>
+                )}
+                <button
+                  className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+                  onClick={toggleProfile}
+                >
+                  Cancelar
+                </button>
+              </div>
+            </div>
           </div>
-          
         </div>
       )}
     </div>
   );
+};
+
+UserProfile.propTypes = {
+  userData: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    username: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    imagen: PropTypes.shape({
+      url: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+  showProfile: PropTypes.bool.isRequired,
+  toggleProfile: PropTypes.func.isRequired,
+  onFileChange: PropTypes.func.isRequired,
+  onSaveUser: PropTypes.func.isRequired,
 };
 
 export default UserProfile;
