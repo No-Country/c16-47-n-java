@@ -34,7 +34,7 @@ function Contacto() {
 
   return (
     <div
-      className="mt-5 max-w-md mx-auto text-black p-6 font-roboto relative border-t-2 border-r-2 border-b-2 border-l-2 border-[#af1a42] border-t-[#a6d47c] border-r-[#00a77b] border-b-[#af1a42]"
+      className="mt-5 max-w-md mx-auto text-black p-6 font-roboto relative border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36]"
       style={{
         borderRadius: "15px",
         boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.5)",
