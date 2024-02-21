@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.HashMap;
 import java.util.Map;
 
+// Capturador de errores en nuestro rest, asi evitamos usar try catch
 @RestControllerAdvice
 public class ApplicationExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
