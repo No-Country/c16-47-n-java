@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import HeaderBanner from "./components/shared/HeaderBanner";
 import Productos from "./components/shared/Productos";
@@ -18,15 +18,13 @@ function App() {
         <HeaderBanner showProfile={showProfile} toggleProfile={toggleProfile} />
         <nav className="flex justify-end pr-8 shadow-md">
           <ul className="flex mb-4">
-            <li className="mr-4">
-              <Link to="/">Home</Link>
-            </li>
-            <li className="mr-4">
-              <Link to="/contacto">Contacto</Link>
-            </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
+            <Link className="mr-4" to="/">
+              Home
+            </Link>
+            <Link className="mr-4" to="/contacto">
+              Contacto
+            </Link>
+            <Link to="/login">Login</Link>
           </ul>
         </nav>
         <div>
