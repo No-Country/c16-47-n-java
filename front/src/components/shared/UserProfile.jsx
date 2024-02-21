@@ -54,7 +54,6 @@ const UserProfile = ({
         <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 flex justify-center items-center">
           <div className="bg-white p-4 rounded-lg w-full max-w-md">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold">Editar Usuario</h2>
               <button
                 className="text-gray-600 hover:text-gray-800"
                 onClick={toggleProfile}
@@ -80,7 +79,7 @@ const UserProfile = ({
                     id="fileInput"
                     accept="image/*"
                     className="hidden"
-                    onChange={handleFileChange}
+                    onChange={(event) => handleFileChange(event.target.value)}
                   />
                   {editing && (
                     <FaCamera className="absolute bottom-0.5 right-2.5 transform -translate-x-1/2 -translate-y-1/2 text-green-500 text-2xl" />
@@ -97,6 +96,7 @@ const UserProfile = ({
               <div className="text-center mb-2">
                 {editing ? (
                   <input
+                    required
                     type="text"
                     value={usernameInput}
                     onChange={(e) => setUsernameInput(e.target.value)}
@@ -111,7 +111,8 @@ const UserProfile = ({
               <div className="text-center mb-4">
                 {editing ? (
                   <input
-                    type="text"
+                    required
+                    type="email"
                     value={emailInput}
                     onChange={(e) => setEmailInput(e.target.value)}
                     className="text-gray-500 font-semibold w-full border border-gray-400 rounded p-2"
