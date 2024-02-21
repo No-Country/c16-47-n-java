@@ -15,7 +15,7 @@ function App() {
     <Router>
       <div className="bg-white w-full min-h-screen">
         <HeaderBanner showProfile={showProfile} toggleProfile={toggleProfile} />
-        <nav className="flex justify-end pr-8 shadow-md mb-4">
+        <nav className="flex justify-end pr-8 shadow-md">
           <ul className="flex mb-4">
             <li className="mr-4">
               <Link to="/">Home</Link>
@@ -28,7 +28,7 @@ function App() {
         <div>
           <Routes>
             <Route path="/contacto" element={<Contacto />} />
-            <Route path="/" element={<div className="flex justify-center mt-8"><Productos /></div>}>
+            <Route path="/" element={<div className="flex justify-center bg-cover" style={{backgroundImage: 'url("src/assets/img/fondo-productos.jpg")'}}><Productos /></div>}>
               {/* <Route index element={<div className="flex justify-center mt-8"><Hero /></div>} /> */}
             </Route>
           </Routes>

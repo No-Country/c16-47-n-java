@@ -39,11 +39,14 @@ const Card = (props) => {
   return (
     <div className="bg-white p-8 rounded-xl flex flex-col items-center gap-2 text-center text-black font-roboto relative border-t-2 border-r-2 border-b-2 border-l-2 border-[#af1a42] border-t-[#a6d47c] border-r-[#00a77b] border-b-[#af1a42]" style={{ boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.5)' }}>
       <div className="w-40 h-40 overflow-hidden rounded-lg relative">
+        <div className="border">
         <img
           src={imagen.url}
           className="object-cover w-full h-full"
           alt="Product"
         />
+        </div>
+
         <div onClick={manejarFavorito} style={{ cursor: "pointer", position: "absolute", right: "5px", bottom: "5px", zIndex: "1", fontSize: "20px" }}>
           {favorito ? "❤️" : "🤍"}
         </div>

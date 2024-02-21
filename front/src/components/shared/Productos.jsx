@@ -21,7 +21,7 @@ function Productos() {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 p-8">
       {productos.length > 0 ? (
         productos.map((producto) => (
           <Card key={producto.id} producto={producto} />
