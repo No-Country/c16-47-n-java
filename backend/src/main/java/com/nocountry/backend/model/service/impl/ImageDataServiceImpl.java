@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @Service
 public class ImageDataServiceImpl implements ImageDataService {
@@ -30,5 +31,14 @@ public class ImageDataServiceImpl implements ImageDataService {
 //            return "file uploaded successfully : " + file.getOriginalFilename();
 //        }
         return imageData;
+    }
+
+    @Override
+    public void deleteImageData(Long id) {
+        Optional<ImageData> res = imageRepository.findById(id);
+        if(res.isPresent()){
+            ImageData img = res.get();
+            imageRepository.delete(img);
+        }
     }
 }

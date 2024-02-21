@@ -1,0 +1,104 @@
+[
+  {
+    "id": 1,
+    "nombre": "Zanahorias",
+    "categoria": {
+      "id": 1,
+      "nombre": "verduleria"
+    },
+    "descripcion": "Origen:\n\nCultivadas en las fértiles tierras de.. \n\n",
+    "precio": 10,
+    "imagen": {
+      "id": 2,
+      "url": "/src/assets/img/producto1.jpg"
+    },
+    "calificacion": 4.5,
+    "favoritos": true,
+    "stock": 10
+  },
+  {
+    "id": 2,
+    "nombre": "Papas",
+    "categoria": {
+      "id": 1,
+      "nombre": "verduleria"
+    },
+    "descripcion": "Son papas",
+    "precio": 5,
+    "imagen": {
+      "id": 3,
+      "url": "/src/assets/img/producto2.jpg"
+    },
+    "calificacion": 4.0,
+    "favoritos": false,
+    "stock": 50
+  },
+  {
+    "id": 3,
+    "nombre": "Zanahorias",
+    "categoria": {
+      "id": 1,
+      "nombre": "verduleria"
+    },
+    "descripcion": "Origen:\n\nCultivadas en las fértiles tierras de \n\n",
+    "precio": 10,
+    "imagen": {
+      "id": 2,
+      "url": "/src/assets/img/producto1.jpg"
+    },
+    "calificacion": 4.5,
+    "favoritos": true,
+    "stock": 10
+  },
+  {
+    "id": 4,
+    "nombre": "Papas",
+    "categoria": {
+      "id": 1,
+      "nombre": "verduleria"
+    },
+    "descripcion": "Son papas",
+    "precio": 5,
+    "imagen": {
+      "id": 3,
+      "url": "/src/assets/img/producto2.jpg"
+    },
+    "calificacion": 4.0,
+    "favoritos": false,
+    "stock": 50
+  },
+  {
+    "id": 5,
+    "nombre": "Zanahorias",
+    "categoria": {
+      "id": 1,
+      "nombre": "verduleria"
+    },
+    "descripcion": "Origen:\n\nCultivadas en las fértiles tierras de \n\n",
+    "precio": 10,
+    "imagen": {
+      "id": 2,
+      "url": "/src/assets/img/producto1.jpg"
+    },
+    "calificacion": 4.5,
+    "favoritos": false,
+    "stock": 10
+  },
+  {
+    "id": 6,
+    "nombre": "Papas",
+    "categoria": {
+      "id": 1,
+      "nombre": "verduleria"
+    },
+    "descripcion": "Son papas",
+    "precio": 5,
+    "imagen": {
+      "id": 3,
+      "url": "/src/assets/img/producto2.jpg"
+    },
+    "calificacion": 4.0,
+    "favoritos": false,
+    "stock": 50
+  }
+]
