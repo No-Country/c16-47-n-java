@@ -53,7 +53,7 @@ const Card = (props) => {
       </div>
       <p className="text-xl">{nombre}</p>
       {!mostrarCompleto && (
-        <button className="text-[#00a77b] text-sm py-2 px-4 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#00a77b] hover:text-white" onClick={mostrarCardCompleta}>Ver más</button>
+        <button className="text-[#a1bb23] text-sm py-2 px-4 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white" onClick={mostrarCardCompleta}>Ver más</button>
       )}
       {mostrarCompleto && (
         <>
@@ -61,7 +61,7 @@ const Card = (props) => {
           <p className="text-gray-500">{descripcion}</p>
           <div className="flex items-center">
             <div className="text-xl text-black mr-2 font-bold">${precio}</div>
-            <button className="text-[#00a77b] text-sm py-2 px-4 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#00a77b] hover:text-white" onClick={handleAgregarAlCarrito}>AGREGAR</button>
+            <button className="text-[#a1bb23] text-sm py-2 px-4 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white" onClick={handleAgregarAlCarrito}>AGREGAR</button>
           </div>
           <p className="text-gray-600">{stock} disponibles</p>
 
