@@ -1,0 +1,23 @@
+.border-form {
+  border-radius: "15px";
+  box-shadow: "0px 2px 4px rgba(0, 0, 0, 0.5)";
+}
+
+.movimiento {
+    animation: mov 5s infinite linear;
+}
+
+@keyframes mov {
+    0%{
+        transform: translateZ(0%);
+        width: 100px;
+    }
+    50%{
+        transform: translateZ(100%);
+        width: 500px;
+    }
+    100%{
+        transform: translateZ(0%);
+        width: 100px;
+    }
+}

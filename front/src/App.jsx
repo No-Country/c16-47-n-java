@@ -4,6 +4,7 @@ import HeaderBanner from "./components/shared/HeaderBanner";
 import Productos from "./components/shared/Productos";
 import Contacto from "./components/shared/Contacto";
 import Login from "./components/shared/Login";
+import './App.css'
 
 function App() {
   const [showProfile, setShowProfile] = useState(false);
@@ -34,7 +35,7 @@ function App() {
             <Route
               path="/"
               element={
-                <div className="flex justify-center bg-cover" style={{backgroundImage: 'url("src/assets/img/fondo-productos.jpg")'}}>
+                <div id="productos" className="flex justify-center bg-cover" style={{backgroundImage: 'url("src/assets/img/fondo-productos.jpg")'}}>
                   <Productos />
                 </div>
               }
