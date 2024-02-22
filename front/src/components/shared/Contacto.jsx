@@ -90,11 +90,10 @@ function Contacto() {
         <div className="flex justify-center">
           <button
             type="submit"
-            className="text-[#00a77b] text-sm py-3 px-12 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#00a77b] hover:text-white hover:scale-110"
+            className="text-[#a1bb23] text-sm py-3 px-12 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white hover:scale-110"
           >
             Enviar
-          </button>{" "}
-          {/* Aumento del tamaño del botón */}
+          </button>
         </div>
       </form>
     </div>
