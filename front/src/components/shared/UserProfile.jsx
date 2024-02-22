@@ -36,19 +36,19 @@ const UserProfile = ({
   };
 
   return (
-    <div className="relative">
-      {/* User profile photo to trigger profile visibility */}
-      <div
-        className="h-20 w-20 rounded-full cursor-pointer overflow-hidden"
-        onClick={toggleProfile}
-      >
-        <img
-          src={profileImage} // Usa la imagen de perfil del estado
-          alt={username}
-          className="h-full w-full rounded-full object-cover border-none"
-        />
+    <div>
+      <div className="w-20 h-20 flex items-center justify-center">
+        <div
+          className="h-10 w-10 rounded-full cursor-pointer overflow-hidden"
+          onClick={toggleProfile}
+        >
+          <img
+            src={profileImage} // Usa la imagen de perfil del estado
+            alt={username}
+            className="h-10 w-10 rounded-full object-cover border-none"
+          />
+        </div>
       </div>
-
       {/* UserProfile component */}
       {showProfile && (
         <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 flex justify-center items-center">
