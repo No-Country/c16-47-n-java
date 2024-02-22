@@ -1,5 +1,8 @@
 package com.nocountry.backend.model.dto;
 
+import com.nocountry.backend.model.enums.ERole;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -32,4 +35,7 @@ public class UserDTO {
     @NotNull(message = "El nro de celular no puede ser nulo")
     @NotBlank(message = "El nro de celular no puede estar en blanco")
     private String cellphone;
+
+    @Enumerated(EnumType.STRING)
+    private ERole eRole;
 }
