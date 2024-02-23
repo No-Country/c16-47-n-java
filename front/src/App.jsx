@@ -30,7 +30,7 @@ function App() {
         </nav>
         <div>
           <Routes>
-            <Route path="/contacto" element={<Contacto />} />
+            <Route path="/contacto" element={<div className="bg-[#fafafa] p-6"  ><Contacto /></div>} />
             <Route path="/login" element={<Login />} />
             <Route
               path="/"
@@ -40,7 +40,6 @@ function App() {
                 </div>
               }
             >
-              {/* <Route index element={<div className="flex justify-center mt-8"><Hero /></div>} /> */}
             </Route>
           </Routes>
         </div>
