@@ -53,7 +53,7 @@ function Contacto() {
       <form id="myform" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="name" className="block mb-2">
-            Nombre
+            Nombre Completo
           </label>
           <input
             type="text"
@@ -76,7 +76,7 @@ function Contacto() {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className={`border p-2 w-full ${isEmailValid ? '' : 'border-red-500'}`}
+            className={`border p-2 w-full ${isEmailValid ? '' : 'border-grey'}`}
             style={{ borderRadius: "8px" }}
             required
           />
