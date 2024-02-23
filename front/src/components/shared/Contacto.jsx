@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 
 function Contacto() {
@@ -31,6 +32,14 @@ function Contacto() {
       console.error("Hubo un error al enviar los datos", error);
     }
   };
+
+  const validateEmail = (email) => {
+    // Expresión regular para validar el formato de un correo electrónico
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  };
+
+  const isEmailValid = validateEmail(formData.email);
 
   return (
     <div
@@ -67,10 +76,11 @@ function Contacto() {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="border p-2 w-full"
+            className={`border p-2 w-full ${isEmailValid ? '' : 'border-red-500'}`}
             style={{ borderRadius: "8px" }}
             required
           />
+          {!isEmailValid && <p className="text-red-500">Por favor, ingresa un correo electrónico válido.</p>}
         </div>
         <div className="mb-4">
           <label htmlFor="message" className="block mb-2">
