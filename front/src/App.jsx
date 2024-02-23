@@ -30,7 +30,7 @@ function App() {
         </nav>
         <div>
           <Routes>
-            <Route path="/contacto" element={<div className="bg-[#fafafa] p-6"  ><Contacto /></div>} />
+            <Route path="/contacto" element={<div className="bg-[#e4e9ec] p-6"  ><Contacto /></div>} />
             <Route path="/login" element={<Login />} />
             <Route
               path="/"
