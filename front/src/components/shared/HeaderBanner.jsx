@@ -25,7 +25,12 @@ const HeaderBanner = () => {
   return (
     <div className="bg-white text-white py-4 flex justify-between items-center w-full">
       <div className="flex items-center">
-        <img src="/src/assets/img/Logo.png" alt="Logo" className="h-20 ml-8" />
+        <img
+          src="/src/assets/img/Loguito-removebg.png"
+          alt="Logo"
+          className="h-20 ml-8"
+        />
+        <span>EcoBite</span>
       </div>
       <div className="flex items-center mr-4 z-20">
         <UserProfile

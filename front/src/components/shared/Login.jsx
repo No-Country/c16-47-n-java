@@ -16,14 +16,14 @@ const LoginForm = () => {
   }
 
   return (
-    <section className="bg-[#fafafa] flex w-full h-screen">
+    <section className="flex-center m-6 grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2">
       {/* Lado izquierdo */}
-      <div className="flex-1 flex justify-center items-center bg-[#f1f1f1]">
+      <div className="flex-1 flex justify-center items-center">
         <div className="max-w-xl">
           {showRegisterForm ? (
             <img
               src="src/assets/img/Loguito-removebg.png"
-              className="animate-bounce h-60 w-60"
+              className="animate-bounce h-60 w-60 hidden sm:block"
             />
           ) : (
             <div className="bg-white px-10 py-10 rounded-3xl border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36] border-form">
@@ -86,12 +86,12 @@ const LoginForm = () => {
       </div>
 
       {/* Lado derecho */}
-      <div className="flex-1 flex justify-center items-center bg-[#f1f1f1]">
+      <div className="flex-1 flex justify-center items-center">
         <div className="max-w-xl">
           {!showRegisterForm && (
             <img
               src="src/assets/img/Loguito-removebg.png"
-              className="animate-bounce h-60 w-60"
+              className="animate-bounce h-60 w-60 hidden sm:block"
             />
           )}
           {showRegisterForm && (

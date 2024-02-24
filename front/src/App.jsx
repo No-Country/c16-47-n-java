@@ -4,7 +4,7 @@ import HeaderBanner from "./components/shared/HeaderBanner";
 import Productos from "./components/shared/Productos";
 import Contacto from "./components/shared/Contacto";
 import Login from "./components/shared/Login";
-import './App.css'
+import "./App.css";
 
 function App() {
   const [showProfile, setShowProfile] = useState(false);
@@ -30,17 +30,30 @@ function App() {
         </nav>
         <div>
           <Routes>
-            <Route path="/contacto" element={<div className="bg-[#e4e9ec] p-6"  ><Contacto /></div>} />
+            <Route
+              path="/contacto"
+              element={
+                <div className="bg-[#e4e9ec] p-6">
+                  <Contacto />
+                </div>
+              }
+            />
             <Route path="/login" element={<Login />} />
             <Route
               path="/"
               element={
-                <div id="productos" className="flex justify-center bg-cover" style={{backgroundImage: 'url("src/assets/img/fondo-productos.jpg")'}}>
+                <div
+                  id="productos"
+                  className="flex justify-center bg-cover"
+                  style={{
+                    backgroundImage:
+                      'url("src/assets/img/fondo-productos.jpg")',
+                  }}
+                >
                   <Productos />
                 </div>
               }
-            >
-            </Route>
+            ></Route>
           </Routes>
         </div>
       </div>
