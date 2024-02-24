@@ -1,12 +1,12 @@
 package com.nocountry.backend.model.service;
 
 import com.nocountry.backend.model.dto.UserDTO;
-import com.nocountry.backend.model.entity.UserEntity;
+import com.nocountry.backend.model.dto.Request.UsernameDTO;
 import java.util.List;
 
 public interface UserService {
     List<UserDTO> findAll();
-    UserEntity findByUsername(String username);
-    UserEntity findByEmail(String email);
-
+    UserDTO findByUsername(String username);
+    UserDTO findByEmail(String email);
+    void updateUsername(UsernameDTO request);
 }

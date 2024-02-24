@@ -38,25 +38,23 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override // ADMIN
-    public UserEntity findByUsername(String username) {
-        return UR.findByUsername(username);
+    public UserDTO findByUsername(String username) {
+        UserEntity userDB = UR.findByUsername(username);
+        return modelMapper.map(userDB, UserDTO.class);
     }
 
     @Override // ADMIN
-    public UserEntity findByEmail(String email) {
-        return UR.findByEmail(email);
+    public UserDTO findByEmail(String email) {
+        UserEntity userDB = UR.findByEmail(email);
+        return modelMapper.map(userDB, UserDTO.class);
     }
 
     // actualizar datos del usuario
+    @Override
     @Transactional // USER
-    public void updateUsername(UsernameDTO request) throws MyException {
+    public void updateUsername(UsernameDTO request)  {
         UserDetails user = JWTS.getCurrentUser();
         UserEntity usuario = UR.findById(request.getId()).orElseThrow();
-
-        if (request.getUsername().equals(user.getUsername())) {
-            throw new MyException("El nombre de usuario ya existe");
-        }
-
         usuario.setUsername(request.getUsername());
         UR.save(usuario);
     }

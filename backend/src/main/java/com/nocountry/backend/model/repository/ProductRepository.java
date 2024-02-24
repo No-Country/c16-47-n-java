@@ -6,4 +6,5 @@ import com.nocountry.backend.model.entity.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product,Long>{
+    Product fyndByName(String name);
 }
