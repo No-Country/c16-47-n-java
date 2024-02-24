@@ -28,7 +28,7 @@ const LoginForm = () => {
           ) : (
             <div className="bg-white px-10 py-10 rounded-3xl border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36] border-form">
               <h1 className="text-5xl font-semibold">
-                {showRegisterForm ? "Crear cuenta" : "Login"}
+                {showRegisterForm ? "Crear cuenta" : "Bienvenido/a de nuevo"}
               </h1>
               {!showRegisterForm && (
                 <>
