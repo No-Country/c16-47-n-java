@@ -8,7 +8,6 @@ const HeaderBanner = () => {
     setShowUserProfile(!showUserProfile);
   };
 
-  // Datos del usuario
   const [userData, setUserData] = useState({
     id: 1,
     username: "usuario1",
@@ -29,7 +28,6 @@ const HeaderBanner = () => {
         <img src="/src/assets/img/Logo.png" alt="Logo" className="h-20 ml-8" />
       </div>
       <div className="flex items-center mr-4 z-20">
-        {/* User profile photo to trigger profile visibility */}
         <UserProfile
           userData={userData}
           showProfile={showUserProfile}

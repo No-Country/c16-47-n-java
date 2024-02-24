@@ -139,7 +139,6 @@ const LoginForm = () => {
                     onClick={(e) => Logear(e)}
                     type="submit"
                     className="active:scale-[.98] hover:scale-[1.01] py-2 rounded-xl bg-[#74BB23] text-white text-lg font-bold"
-                    // onClick={} // Manejador para el botón "Registrar"
                   >
                     Registrar
                   </button>
