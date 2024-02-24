@@ -1,4 +1,4 @@
-package com.nocountry.backend.configurations;
+package com.nocountry.backend.common.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import com.nocountry.backend.model.jwt.JwtAuthFilter;
+import com.nocountry.backend.common.security.jwt.JwtAuthFilter;
 import lombok.RequiredArgsConstructor;
 
 @Configuration

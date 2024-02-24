@@ -1,4 +1,4 @@
-package com.nocountry.backend.configurations;
+package com.nocountry.backend.common.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 
 @Configuration
 @RequiredArgsConstructor
-public class AppConfing {
+public class AppConfig {
 
     private final UserRepository UR;
 

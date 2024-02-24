@@ -1,4 +1,4 @@
-package com.nocountry.backend.model.jwt;
+package com.nocountry.backend.common.security.jwt;
 
 import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
