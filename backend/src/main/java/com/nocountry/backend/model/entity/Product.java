@@ -24,14 +24,14 @@ public class Product {
     private double price;
     private int stock;
 
-    @OneToMany(mappedBy = "product")
-    private List<Calification> califications;
+    @Enumerated(EnumType.STRING)
+    private ECategory category;
 
     @Column(name = "image_url")
     private String imageUrl;
 
-    @Enumerated(EnumType.STRING)
-    private ECategory category;
+    @OneToMany(mappedBy = "product")
+    private List<Calification> califications;
 
     @OneToMany(mappedBy = "product")
     private List<Favorite> favorites;

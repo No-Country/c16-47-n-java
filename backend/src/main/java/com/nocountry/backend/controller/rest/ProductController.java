@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping(value = "/product")
 @RequiredArgsConstructor
 public class ProductController {
-    private final ProductService productService;
+private final ProductService productService;
 
 // Listar productos
     @GetMapping(value = "/findall")
