@@ -6,9 +6,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.nocountry.backend.model.entity.UserEntity;
-import com.nocountry.backend.model.dto.Request.AuthResponse;
-import com.nocountry.backend.model.dto.Request.LoginDTO;
-import com.nocountry.backend.model.dto.Request.RegisterDTO;
+import com.nocountry.backend.model.dto.Request.LoginRequest;
+import com.nocountry.backend.model.dto.Request.RegisterRequest;
+import com.nocountry.backend.model.dto.Response.AuthResponse;
 import com.nocountry.backend.model.enums.ERole;
 import com.nocountry.backend.model.repository.UserRepository;
 import com.nocountry.backend.model.service.AuthService;
@@ -23,7 +23,7 @@ public class AuthServiceImpl implements AuthService{
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authManager;
 
-    public AuthResponse login(LoginDTO request) {
+    public AuthResponse login(LoginRequest request) {
         authManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         UserDetails user = UR.findByUsername(request.getUsername());
         String token = JWTS.getToken(user);
@@ -32,7 +32,7 @@ public class AuthServiceImpl implements AuthService{
                 .build();
     }
 
-    public AuthResponse register(RegisterDTO request) {
+    public AuthResponse register(RegisterRequest request) {
         UserEntity usuario = UserEntity.builder()
                 .username(request.getUsername())
                 .email(request.getEmail())

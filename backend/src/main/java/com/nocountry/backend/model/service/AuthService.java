@@ -1,10 +1,10 @@
 package com.nocountry.backend.model.service;
 
-import com.nocountry.backend.model.dto.Request.AuthResponse;
-import com.nocountry.backend.model.dto.Request.LoginDTO;
-import com.nocountry.backend.model.dto.Request.RegisterDTO;
+import com.nocountry.backend.model.dto.Request.LoginRequest;
+import com.nocountry.backend.model.dto.Request.RegisterRequest;
+import com.nocountry.backend.model.dto.Response.AuthResponse;
 
 public interface AuthService {
-    AuthResponse login(LoginDTO request);
-    AuthResponse register(RegisterDTO request);
+    AuthResponse login(LoginRequest request);
+    AuthResponse register(RegisterRequest request);
 }
