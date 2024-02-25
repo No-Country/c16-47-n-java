@@ -1,4 +1,4 @@
-package com.nocountry.backend.model.dto.Request;
+package com.nocountry.backend.model.dto.Response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class EmailDTO {
-    private Long id;
-    private String email;
+@NoArgsConstructor
+public class AuthResponse {
+    String token;
 }

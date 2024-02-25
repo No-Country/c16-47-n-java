@@ -5,11 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Builder
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
-public class AddressDTO {
+@NoArgsConstructor
+public class CellphoneRequest {
     private Long id;
-    private String address;
+    private String cellphone;
 }
