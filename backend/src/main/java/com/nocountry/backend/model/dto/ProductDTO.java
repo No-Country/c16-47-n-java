@@ -2,14 +2,13 @@ package com.nocountry.backend.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.Positive;
+import lombok.*;
 import org.hibernate.validator.constraints.URL;
+
+import java.util.List;
 
 //Validaciones
 @Data
@@ -30,14 +29,18 @@ public class ProductDTO {
 
     @NotNull(message = "El precio del producto no puede ser nulo")
     @NotBlank(message = "El precio del producto no puede estar en blanco")
-    @Min(value = 0, message = "El precio del producto no puede ser negativo")
+    @Positive(message = "El precio del producto debe ser positivo")
     private double price;
 
     @NotNull(message = "El stock del producto no puede ser nulo")
-    @Min(value = 0, message = "El stock no puede ser negativo")
+    @Positive(message = "El stock del producto debe ser positivo")
     private int stock;
 
     @URL(message = "La url de la imagen no es valida")
     private String imageUrl;
+
+    //TODO: hacer que muestren la suma de las calificaciones y la cantidad de favoritos y no los objetos
+    private List<CalificationDTO> califications;
+    private List<FavoriteDTO> favorites;
 }
 
