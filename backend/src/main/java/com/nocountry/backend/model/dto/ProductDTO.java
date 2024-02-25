@@ -1,5 +1,7 @@
 package com.nocountry.backend.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.nocountry.backend.model.entity.Calification;
 import com.nocountry.backend.model.entity.Favorite;
 import jakarta.validation.constraints.Min;
@@ -18,6 +20,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class ProductDTO {
     private Long id;
 
@@ -38,17 +41,7 @@ public class ProductDTO {
     @Min(value = 0, message = "El stock no puede ser negativo")
     private int stock;
 
-    @NotNull(message = "La lista de calificaciones no puede ser nula")
-    @NotBlank(message = "La lista de calificaciones no puede estar en blanco")
-    @Min(value = 0, message = "La calificacion no puede ser negativa")
-    private List<Calification> califications;
-
     @URL(message = "La url de la imagen no es valida")
     private String imageUrl;
-
-// No se requiere validación adicional para ECategory, ya que es un Enum.
-
-    @NotNull(message = "La lista de favoritos no puede ser nula")
-    private List<Favorite> favorites;
 }
 
