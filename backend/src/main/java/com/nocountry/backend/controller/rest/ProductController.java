@@ -1,7 +1,7 @@
 package com.nocountry.backend.controller.rest;
 
 import com.nocountry.backend.model.enums.ECategory;
-import com.nocountry.backend.model.service.ProductService;
+import com.nocountry.backend.model.service.impl.ProductServiceImpl;
 import com.nocountry.backend.model.dto.ProductDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequestMapping(value = "/product")
 @RequiredArgsConstructor
 public class ProductController {
-private final ProductService productService;
+private final ProductServiceImpl productService;
 
 // Listar productos
     @GetMapping(value = "/findall")

@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
         return productsDB.stream().map(product -> modelMapper.map(product, ProductDTO.class)).toList();
     }
 
-    @Override
+    
     public List<ProductDTO> findByPrice(double price) {
         List<Product> productsDB = productRepository.findByPrice(price);
         return productsDB.stream().map(product -> modelMapper.map(product, ProductDTO.class)).toList();

@@ -12,7 +12,7 @@ public interface ProductRepository extends JpaRepository<Product,Long>{
     Product findByName(String name);
     List<Product> findByCategory(ECategory category);
     List<Product> findByPrice(double price);
-    List<Product> findByPriceGreaterThan(double price);
+    List<Product> findBy Price GreaterThan(double price);
     List<Product> findByPriceLessThan(double price);
     List<Product> findByPriceBetween(double price1, double price2);
 }
