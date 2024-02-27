@@ -3,10 +3,10 @@ import logo from "/src/assets/img/Loguito-removebg.png";
 import { Link } from "react-router-dom";
 
 function Footer() {
-  const [date, setDate] = useState(new Date().getFullYear());
+  const [date, setDate] = useState(new Date());
 
   useEffect(() => {
-    setDate(new Date().getFullYear());
+    setDate(new Date());
   }, []);
 
   return (
@@ -23,30 +23,24 @@ function Footer() {
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                Resources
-              </h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
-                  <Link to="/" className="hover:underline">
-                    EcoBite
+                  <Link to="/contacto" className="hover:underline">
+                    Contacto
                   </Link>
                 </li>
                 <li>
                   <a
                     target="_blank"
-                    href="https://www.linkedin.com/company/nocountrytalent/"
+                    href="https://www.nocountry.tech/"
                     className="hover:underline"
                   >
-                    NC Linkedin
+                    No Country
                   </a>
                 </li>
               </ul>
             </div>
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                Follow us
-              </h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
                   <a
@@ -69,18 +63,19 @@ function Footer() {
               </ul>
             </div>
             <div>
-              <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-                Legal
-              </h2>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
-                  <a target="_blank" href="#" className="hover:underline">
-                    Terms &amp; Conditions
-                  </a>
+                  <Link to="/" className="hover:underline">
+                    EcoBite
+                  </Link>
                 </li>
                 <li>
-                  <a target="_blank" href="https://www.nocountry.tech/" className="hover:underline">
-                    No Country
+                  <a
+                    target="_blank"
+                    href="https://www.linkedin.com/company/nocountrytalent/"
+                    className="hover:underline"
+                  >
+                    NC Linkedin
                   </a>
                 </li>
               </ul>
@@ -90,9 +85,9 @@ function Footer() {
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-            © {date == 2023 ? 2024 : 2024 - date}{" "}
+            © {date.getFullYear() == 2024 ? date.getFullYear() + " " : <span>2024 - {date.getFullYear()}  </span>}
             <Link to="/" className="hover:underline">
-              EcoBite™
+               EcoBite™ 
             </Link>
             . Todos los derechos reservados.
           </span>
