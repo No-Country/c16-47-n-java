@@ -7,6 +7,7 @@ import Login from "./components/shared/Login";
 import "./App.css";
 import Navbar from "./components/shared/Navbar";
 import Footer from "./components/shared/Footer";
+import UserProfile from "./components/shared/UserProfile";
 
 function App() {
   const [showProfile, setShowProfile] = useState(false);
@@ -19,14 +20,22 @@ function App() {
     <Router>
       <div className="bg-white w-full min-h-screen">
         <HeaderBanner showProfile={showProfile} toggleProfile={toggleProfile} />
-        <Navbar/>
+        <Navbar />
         <Routes>
-          <Route path="/" element={<Productos/>}/>
-          <Route path="/contacto" element={<Contacto/>}/>
-          <Route path="/login" element={<div id="login"><Login/></div>}/>
+          <Route path="/" element={<Productos />} />
+          <Route path="/contacto" element={<Contacto />} />
+          <Route path="/user" element={<UserProfile />} />
+          <Route
+            path="/login"
+            element={
+              <div id="login">
+                <Login />
+              </div>
+            }
+          />
         </Routes>
       </div>
-      <Footer/>
+      <Footer />
     </Router>
   );
 }

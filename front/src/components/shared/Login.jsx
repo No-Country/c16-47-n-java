@@ -20,12 +20,11 @@ const LoginForm = () => {
     <>
       <div className="container" id="container">
         <div className="form-container sign-up-container">
-          <div className="bg-white px-10 py-10 rounded-3xl border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36] border-form">
-          <p className="font-medium text-lg text-gray-500 mt-4">
+          <div className="bg-white px-10 pb-10 rounded-3xl border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36] border-form">
+            <p className="font-medium text-lg text-gray-500 mt-10 mb-6">
               Crear cuenta
             </p>
             <form>
-              <h1 className="text-5xl font-semibold mb-5">Crear cuenta</h1>
               <input
                 type="text"
                 name="usuario"
@@ -60,6 +59,14 @@ const LoginForm = () => {
                 required
                 className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
               />
+              <div className="mt-8 flex flex-col gap-y-4">
+                <button
+                  type="submit"
+                  className="active:scale-[.98] hover:scale-[1.01] py-2 rounded-xl bg-[#74BB23] text-white text-lg font-bold"
+                >
+                  Registrar
+                </button>
+              </div>
             </form>
           </div>
         </div>
@@ -102,18 +109,30 @@ const LoginForm = () => {
           <div className="overlay">
             <div className="overlay-panel overlay-left">
               <div className="mt-5 flex justify-center items-center">
-                <img src="src/assets/img/Loguito-removebg.png" className="animate-bounce h-60 w-60 hidden sm:block"/>
+                <img
+                  src="src/assets/img/Loguito-removebg.png"
+                  className="animate-bounce h-60 w-60 hidden sm:block"
+                />
                 <p className="font-medium text-base">Ya tienes una cuenta?</p>
-                <button id="signIn" className="text-[#A1BB23] text-base font-medium ml-2">
+                <button
+                  id="signIn"
+                  className="text-[#A1BB23] text-base font-medium ml-2"
+                >
                   Inicia Sesion
                 </button>
               </div>
             </div>
             <div className="overlay-panel overlay-right">
               <div className="mt-5 flex justify-center items-center">
-                <img src="src/assets/img/Loguito-removebg.png" className="animate-bounce h-60 w-60 hidden sm:block"/>
+                <img
+                  src="src/assets/img/Loguito-removebg.png"
+                  className="animate-bounce h-60 w-60 hidden sm:block"
+                />
                 <p className="font-medium text-base">No tiene una cuenta?</p>
-                <button id="signUp" className="text-[#A1BB23] text-base font-medium ml-2">
+                <button
+                  id="signUp"
+                  className="text-[#A1BB23] text-base font-medium ml-2"
+                >
                   Registrarse
                 </button>
               </div>

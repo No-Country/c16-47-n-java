@@ -10,6 +10,9 @@ function Navbar() {
         <Link className="mr-4" to="/contacto">
           Contacto
         </Link>
+        <Link className="mr-4" to="/user">
+          Editar Perfil
+        </Link>
         <Link to="/login">Login</Link>
       </ul>
     </nav>

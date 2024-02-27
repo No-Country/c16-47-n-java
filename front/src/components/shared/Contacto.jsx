@@ -106,7 +106,7 @@ function Contacto() {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="text-[#a1bb23] text-sm py-3 px-12 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white hover:scale-110"
+              className="w-full mt-8 mb-4 active:scale-[.98] hover:scale-[1.01] py-2 rounded-xl bg-[#74BB23] text-white text-lg font-bold"
             >
               Enviar
             </button>
