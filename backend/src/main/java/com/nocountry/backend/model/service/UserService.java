@@ -6,17 +6,17 @@ import com.nocountry.backend.model.dto.Request.CellphoneRequest;
 import com.nocountry.backend.model.dto.Request.EmailRequest;
 import com.nocountry.backend.model.dto.Request.PasswordRequest;
 import com.nocountry.backend.model.dto.Request.UsernameRequest;
-import com.nocountry.backend.model.entity.UserEntity;
+import com.nocountry.backend.model.dto.Response.UserResponse;
 
 import lombok.NonNull;
-
 import java.util.List;
+import org.springframework.security.core.Authentication;
 
 public interface UserService {
     List<UserDTO> findAll();
     UserDTO findByUsername(String username);
     UserDTO findByEmail(String email);
-    UserDTO getOne(UserEntity userDB);
+    UserResponse getCurrentUser(Authentication auth);
     void updateUsername(UsernameRequest request);
     void updateEmail(EmailRequest request);
     void updatePassword(PasswordRequest request);

@@ -9,6 +9,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import com.nocountry.backend.common.security.jwt.JwtAuthFilter;
+import com.nocountry.backend.model.enums.ERole;
+
 import lombok.RequiredArgsConstructor;
 
 @Configuration
@@ -26,6 +28,7 @@ public class WebSecurity {
                 .authorizeHttpRequests((authz) -> authz
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/product/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole(ERole.ADMIN.toString())
                         .anyRequest().authenticated())
                 .sessionManagement(sessionManager->
                     sessionManager

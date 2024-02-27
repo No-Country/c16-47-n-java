@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CalificationResponse {
-    private Double numero;
+public class UserResponse {
+    private String username;
+    private String email;
+    private String cellphone;
+    private String address;
 }

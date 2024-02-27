@@ -7,4 +7,5 @@ import com.nocountry.backend.model.dto.Response.AuthResponse;
 public interface AuthService {
     AuthResponse login(LoginRequest request);
     AuthResponse register(RegisterRequest request);
+    AuthResponse adminRegister(RegisterRequest request);
 }

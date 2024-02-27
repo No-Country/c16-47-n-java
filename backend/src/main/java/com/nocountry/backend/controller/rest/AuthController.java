@@ -1,23 +1,25 @@
 package com.nocountry.backend.controller.rest;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.nocountry.backend.model.dto.Request.LoginRequest;
 import com.nocountry.backend.model.dto.Request.RegisterRequest;
 import com.nocountry.backend.model.dto.Response.AuthResponse;
-import com.nocountry.backend.model.service.AuthService;
+import com.nocountry.backend.model.service.impl.AuthServiceImpl;
+
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class AuthController {
     
-    private final AuthService AS;
+    private final AuthServiceImpl AS;
     
     // inicia sesion al usuario desde el AuthService
     @PostMapping(value = "login")
@@ -29,6 +31,12 @@ public class AuthController {
     @PostMapping(value = "register")
     public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request) {
         return ResponseEntity.ok(AS.register(request));
+    }
+
+    // crear usuario ADMIN
+    @PostMapping(value = "admin")
+    public ResponseEntity<AuthResponse> adminRegister(@RequestBody RegisterRequest request) {
+        return ResponseEntity.ok(AS.adminRegister(request));
     }
 
 }

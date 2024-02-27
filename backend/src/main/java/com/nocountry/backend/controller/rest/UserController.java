@@ -6,42 +6,25 @@ import com.nocountry.backend.model.dto.Request.CellphoneRequest;
 import com.nocountry.backend.model.dto.Request.EmailRequest;
 import com.nocountry.backend.model.dto.Request.PasswordRequest;
 import com.nocountry.backend.model.dto.Request.UsernameRequest;
-import com.nocountry.backend.model.entity.UserEntity;
+import com.nocountry.backend.model.dto.Response.UserResponse;
 import com.nocountry.backend.model.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/user")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class UserController {
 
     private final UserServiceImpl US;
 
-    // listar usuarios ADMIN
-    @GetMapping(value = "/findall")
-    public ResponseEntity<List<UserDTO>> findAll() {
-        return ResponseEntity.ok().body(US.findAll());
-    }
-
-    // buscar por username ADMIN
-    @GetMapping(value = "/findusername")
-    public ResponseEntity<UserDTO> findByUsername(@RequestParam String username) {
-        return ResponseEntity.ok().body(US.findByUsername(username));
-    }
-
-    // buscar por email ADMIN
-    @GetMapping(value = "/findemail")
-    public ResponseEntity<UserDTO> findByEmail(@RequestParam String email) {
-        return ResponseEntity.ok().body(US.findByEmail(email));
-    }
-
-    // traer usuario USER
+    // traer usuario local USER
     @GetMapping(value = "/user")
-    public ResponseEntity<UserDTO> findUser(@RequestBody UserEntity user) {
-        return ResponseEntity.ok().body(US.getOne(user));
+    public ResponseEntity<UserResponse> findUser(Authentication auth) {
+        return ResponseEntity.ok().body(US.getCurrentUser(auth));
     }
 
     // modificar username USER
@@ -60,7 +43,7 @@ public class UserController {
 
     // modificar password USER
     @PutMapping(value = "/updatepassword")
-    public ResponseEntity<?> updatePasswrod(@RequestBody PasswordRequest request) {
+    public ResponseEntity<?> updatePassword(@RequestBody PasswordRequest request) {
         US.updatePassword(request);
         return ResponseEntity.ok().body(null);
     }
@@ -76,13 +59,6 @@ public class UserController {
     @PutMapping(value = "/updateaddress")
     public ResponseEntity<?> updateAddress(@RequestBody AddressRequest request) {
         US.updateAddress(request);
-        return ResponseEntity.ok().body(null);
-    }
-
-    // borrar usuario ADMIN
-    @DeleteMapping(value = "/delete/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
-        US.deleteUser(id);
         return ResponseEntity.ok().body(null);
     }
 

@@ -23,6 +23,7 @@ public class AuthServiceImpl implements AuthService{
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authManager;
 
+    @Override
     public AuthResponse login(LoginRequest request) {
         authManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         UserDetails user = UR.findByUsername(request.getUsername());
@@ -32,6 +33,7 @@ public class AuthServiceImpl implements AuthService{
                 .build();
     }
 
+    @Override
     public AuthResponse register(RegisterRequest request) {
         UserEntity usuario = UserEntity.builder()
                 .username(request.getUsername())
@@ -40,6 +42,23 @@ public class AuthServiceImpl implements AuthService{
                 .cellphone(request.getCellphone())
                 .address(request.getAddress())
                 .role(ERole.USER)
+                .build();
+        UR.save(usuario);
+
+        return AuthResponse.builder()
+                .token(JWTS.getToken(usuario))
+                .build();
+    }
+
+    @Override
+    public AuthResponse adminRegister(RegisterRequest request) {
+        UserEntity usuario = UserEntity.builder()
+                .username(request.getUsername())
+                .email(request.getEmail())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .cellphone(request.getCellphone())
+                .address(request.getAddress())
+                .role(ERole.ADMIN)
                 .build();
         UR.save(usuario);
 

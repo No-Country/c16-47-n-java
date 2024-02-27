@@ -6,6 +6,7 @@ import com.nocountry.backend.model.dto.Request.CellphoneRequest;
 import com.nocountry.backend.model.dto.Request.EmailRequest;
 import com.nocountry.backend.model.dto.Request.PasswordRequest;
 import com.nocountry.backend.model.dto.Request.UsernameRequest;
+import com.nocountry.backend.model.dto.Response.UserResponse;
 import com.nocountry.backend.model.entity.UserEntity;
 import com.nocountry.backend.model.repository.UserRepository;
 import com.nocountry.backend.model.service.UserService;
@@ -13,6 +14,7 @@ import jakarta.transaction.Transactional;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -46,8 +48,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override // USER
-    public UserDTO getOne(UserEntity userDB){
-        return modelMapper.map(userDB, UserDTO.class);
+    public UserResponse getCurrentUser(Authentication auth) {
+        String username = auth.getName();
+        UserEntity userDB = UR.findByUsername(username);
+        return new UserResponse().builder()
+            .username(userDB.getUsername())
+            .email(userDB.getEmail())
+            .cellphone(userDB.getCellphone())
+            .address(userDB.getAddress())
+            .build();
     }
 
     // actualizar datos del usuario
