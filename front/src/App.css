@@ -7,19 +7,26 @@
   background-image: url("assets/img/fondo-productos.jpg");
 }
 
+header {
+  background: linear-gradient(to top, white, white, #dce9f0);
+}
+
 footer {
-  background: linear-gradient(to bottom, #eaeff2, white, white);
+  background: linear-gradient(to bottom, white, #eaeff2, #dce9f0);
 }
 
 .manejarFavorito {
-  cursor: "pointer";
-  position: "absolute";
-  right: "5px";
-  bottom: "5px";
-  z-index: "1";
-  font-size: "20px"
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  z-index: 1;
+  font-size: 20px
 }
 
 #login {
-  margin: 50px 100px;
+  height: 100%vh;
+  margin: 0 auto;
+  padding: 100px 100px;
+  background-color: #eaeff2;
 }
