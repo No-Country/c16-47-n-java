@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 
-const Card = (props) => {
-  const { producto, agregarAlCarrito } = props;
-  const { imagen, nombre, precio, stock, descripcion } = producto;
+function ProductCard({ product }) {
+  const { id, name, description, price, stock, imageUrl, califications } = product;
   const [calificacion, setCalificacion] = useState(0);
   const [favorito, setFavorito] = useState(false);
   const [cantidad, setCantidad] = useState(1);
   const [mostrarCompleto, setMostrarCompleto] = useState(false);
+
+  // salidas por terminal para manejo de errores
+  useEffect(() => {
+    console.log(`id: ${id}, nombre: ${name}, descripcion: ${description}, precio: ${price}, stock: ${stock}, url de imagen: ${imageUrl}, calificaciones: ${califications}`)
+  },[])
 
   const manejarCambioCalificacion = (nuevaCalificacion) => {
     setCalificacion(nuevaCalificacion);
@@ -16,8 +20,8 @@ const Card = (props) => {
     setFavorito(!favorito);
   };
 
-  const manejarCambioCantidad = (event) => {
-    const nuevaCantidad = parseInt(event.target.value);
+  const manejarCambioCantidad = (e) => {
+    const nuevaCantidad = parseInt(e.target.value);
     setCantidad(nuevaCantidad);
   };
 
@@ -30,10 +34,7 @@ const Card = (props) => {
   };
 
   const handleAgregarAlCarrito = () => {
-    agregarAlCarrito({
-      ...producto,
-      cantidad: cantidad
-    });
+      setCantidad(...cantidad, cantidad)
   };
 
   return (
@@ -41,26 +42,26 @@ const Card = (props) => {
       <div className="w-40 h-40 overflow-hidden rounded-lg relative">
         <div className="border">
         <img
-          src={imagen.url}
+          src={imageUrl}
           className="object-cover w-full h-full"
           alt="Product"
         />
         </div>
 
-        <div onClick={manejarFavorito} style={{ cursor: "pointer", position: "absolute", right: "5px", bottom: "5px", zIndex: "1", fontSize: "20px" }}>
+        <div className="manejarFavorito" onClick={manejarFavorito}>
           {favorito ? "❤️" : "🤍"}
         </div>
       </div>
-      <p className="text-xl">{nombre}</p>
+      <p className="text-xl">{name}</p>
       {!mostrarCompleto && (
         <button className="text-[#a1bb23] text-sm py-2 px-4 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white" onClick={mostrarCardCompleta}>Ver más</button>
       )}
       {mostrarCompleto && (
         <>
           <button className="absolute top-4 right-4 text-gray-600" onClick={ocultarCardCompleta}>X</button>
-          <p className="text-gray-500">{descripcion}</p>
+          <p className="text-gray-500">{description}</p>
           <div className="flex items-center">
-            <div className="text-xl text-black mr-2 font-bold">${precio}</div>
+            <div className="text-xl text-black mr-2 font-bold">${price}</div>
             <button className="text-[#a1bb23] text-sm py-2 px-4 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white" onClick={handleAgregarAlCarrito}>AGREGAR</button>
           </div>
           <p className="text-gray-600">{stock} disponibles</p>
@@ -95,4 +96,4 @@ const Card = (props) => {
   );
 };
 
-export default Card;
+export default ProductCard;

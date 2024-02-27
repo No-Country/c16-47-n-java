@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { traerProductos } from "./AppServicio";
-import Card from "./Card";
+import ProductCard from "./ProductCard";
 
 function Productos() {
-  const [productos, setProductos] = useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     traerProductos()
       .then((data) => {
         if (data && Array.isArray(data)) {
-          setProductos(data);
+          setProducts(data);
         } else {
-          console.error("La respuesta del servicio no es válida.");
+          console.error("");
         }
       })
       .catch((error) => {
@@ -20,15 +20,17 @@ function Productos() {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 p-8">
-      {productos.length > 0 ? (
-        productos.map((producto) => (
-          <Card key={producto.id} producto={producto} />
-        ))
-      ) : (
-        <p className="text-gray-400">No hay productos disponibles</p>
-      )}
-    </div>
+    <section id="productos" className="flex justify-center bg-cover">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 p-8">
+        {products.length > 0 ? (
+          products.map((product) => (
+            <ProductCard key={product.id} product={product}/>
+          ))
+        ) : (
+          <p className="text-gray-400">No hay productos disponibles</p>
+        )}
+      </div>
+    </section>
   );
 }
 

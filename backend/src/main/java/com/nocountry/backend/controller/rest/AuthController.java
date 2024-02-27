@@ -10,7 +10,6 @@ import com.nocountry.backend.model.dto.Request.LoginRequest;
 import com.nocountry.backend.model.dto.Request.RegisterRequest;
 import com.nocountry.backend.model.dto.Response.AuthResponse;
 import com.nocountry.backend.model.service.impl.AuthServiceImpl;
-
 import lombok.RequiredArgsConstructor;
 
 @RestController

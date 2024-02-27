@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 function Contacto() {
@@ -42,71 +41,79 @@ function Contacto() {
   const isEmailValid = validateEmail(formData.email);
 
   return (
-    <div
-      className="mt-5 max-w-md mx-auto bg-white text-black p-6 font-roboto relative border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36]"
-      style={{
-        borderRadius: "15px",
-        boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.5)",
-      }}
-    >
-      <h2 className="text-2xl font-semibold mb-4">Contáctanos</h2>
-      <form id="myform" onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label htmlFor="name" className="block mb-2">
-            Nombre Completo
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="border p-2 w-full"
-            style={{ borderRadius: "8px" }}
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="email" className="block mb-2">
-            Correo electrónico
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className={`border p-2 w-full ${isEmailValid ? '' : 'border-grey'}`}
-            style={{ borderRadius: "8px" }}
-            required
-          />
-          {!isEmailValid && <p className="text-red-500">Por favor, ingresa un correo electrónico válido.</p>}
-        </div>
-        <div className="mb-4">
-          <label htmlFor="message" className="block mb-2">
-            Mensaje
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            className="border p-2 w-full"
-            style={{ borderRadius: "8px" }}
-            rows="5"
-            required
-          ></textarea>
-        </div>
-        <div className="flex justify-center">
-          <button
-            type="submit"
-            className="text-[#a1bb23] text-sm py-3 px-12 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white hover:scale-110"
-          >
-            Enviar
-          </button>
-        </div>
-      </form>
-    </div>
+    <section className="bg-[#e4e9ec] p-6">
+      <div
+        className="mt-5 max-w-md mx-auto bg-white text-black p-6 font-roboto relative border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36]"
+        style={{
+          borderRadius: "15px",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.5)",
+        }}
+      >
+        <h2 className="text-2xl font-semibold mb-4">Contáctanos</h2>
+        <form id="myform" onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label htmlFor="name" className="block mb-2">
+              Nombre Completo
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="border p-2 w-full"
+              style={{ borderRadius: "8px" }}
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="email" className="block mb-2">
+              Correo electrónico
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className={`border p-2 w-full ${
+                isEmailValid ? "" : "border-grey"
+              }`}
+              style={{ borderRadius: "8px" }}
+              required
+            />
+            {!isEmailValid && (
+              <p className="text-red-500">
+                Por favor, ingresa un correo electrónico válido.
+              </p>
+            )}
+          </div>
+          <div className="mb-4">
+            <label htmlFor="message" className="block mb-2">
+              Mensaje
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              className="border p-2 w-full"
+              style={{ borderRadius: "8px" }}
+              rows="5"
+              required
+            ></textarea>
+          </div>
+          <div className="flex justify-center">
+            <button
+              type="submit"
+              className="text-[#a1bb23] text-sm py-3 px-12 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white hover:scale-110"
+            >
+              Enviar
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
   );
 }
 

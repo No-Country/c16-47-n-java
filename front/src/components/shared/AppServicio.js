@@ -1,10 +1,10 @@
 export async function traerProductos() {
     try {
-        const res = await fetch('/src/json/producto.json')
+        const res = await fetch('http://localhost:8080/product/findall')
         const data = await res.json()
         return data
     } catch (error) {
-        console.log(error)
+        console.log("La respuesta del servicio no es válida. " + error)
     }
 }
 
@@ -14,7 +14,7 @@ export async function traerCarrito() {
         const data = await res.json()
         return data
     } catch (error) {
-        console.log(error)
+        console.log("La respuesta del servicio no es válida. " + error)
     }
 }
 
@@ -24,7 +24,7 @@ export async function traerCategoria() {
         const data = await res.json()
         return data
     } catch (error) {
-        console.log(error)
+        console.log("La respuesta del servicio no es válida. " + error)
     }
 }
 
@@ -34,7 +34,7 @@ export async function traerImagen() {
         const data = await res.json()
         return data
     } catch (error) {
-        console.log(error)
+        console.log("La respuesta del servicio no es válida. " + error)
     }
 }
 
@@ -44,7 +44,7 @@ export async function traerOrden() {
         const data = await res.json()
         return data
     } catch (error) {
-        console.log(error)
+        console.log("La respuesta del servicio no es válida. " + error)
     }
 }
 
@@ -54,6 +54,6 @@ export async function traerUsuario() {
         const data = await res.json()
         return data
     } catch (error) {
-        console.log(error)
+        console.log("La respuesta del servicio no es válida. " + error)
     }
 }
