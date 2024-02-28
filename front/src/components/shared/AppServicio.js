@@ -8,6 +8,20 @@ export async function traerProductos() {
     }
 }
 
+export async function loginOrRegister(request) {
+    try {
+        await fetch('http://localhost:8080/auth/login', {
+            body: JSON.stringify(request),
+            headers:{
+                "Content-type": "application/json"
+            },
+            method: "POST"
+        })
+    } catch (error) {
+        console.log("No se puede logear. Error: " + error)
+    }
+}
+
 export async function traerCarrito() {
     try {
         const res = await fetch('/src/json/carrito.json')

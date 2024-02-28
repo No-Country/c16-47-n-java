@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import "/src/assets/styles/login.css";
+import { loginOrRegister } from "./AppServicio";
 
 const LoginForm = () => {
   useEffect(() => {
@@ -16,6 +17,14 @@ const LoginForm = () => {
     });
   }, []);
 
+  async function entrar(e) {
+    e.preventDefault()
+    const user = {
+      username: "",
+      password: ""
+    }
+    loginOrRegister(user).then()
+  }
   return (
     <>
       <div className="container" id="container">
@@ -24,7 +33,7 @@ const LoginForm = () => {
             <p className="font-medium text-lg text-gray-500 mt-10 mb-6">
               Crear cuenta
             </p>
-            <form>
+            <form onChange={(e) => entrar(e)}>
               <input
                 type="text"
                 name="usuario"
@@ -68,6 +77,14 @@ const LoginForm = () => {
                 </button>
               </div>
             </form>
+            <p className="font-medium text-base">Ya tienes una cuenta?</p>
+            <button
+              type="submit"
+              id="signIn"
+              className="text-[#A1BB23] text-base font-medium ml-2"
+            >
+              Inicia Sesion
+            </button>
           </div>
         </div>
         <div className="form-container sign-in-container">
@@ -103,6 +120,13 @@ const LoginForm = () => {
                 </button>
               </div>
             </form>
+            <p className="font-medium text-base">No tiene una cuenta?</p>
+            <button
+              id="signUp"
+              className="text-[#A1BB23] text-base font-medium ml-2"
+            >
+              Registrarse
+            </button>
           </div>
         </div>
         <div className="overlay-container">
@@ -113,13 +137,6 @@ const LoginForm = () => {
                   src="src/assets/img/Loguito-removebg.png"
                   className="animate-bounce h-60 w-60 hidden sm:block"
                 />
-                <p className="font-medium text-base">Ya tienes una cuenta?</p>
-                <button
-                  id="signIn"
-                  className="text-[#A1BB23] text-base font-medium ml-2"
-                >
-                  Inicia Sesion
-                </button>
               </div>
             </div>
             <div className="overlay-panel overlay-right">
@@ -128,13 +145,6 @@ const LoginForm = () => {
                   src="src/assets/img/Loguito-removebg.png"
                   className="animate-bounce h-60 w-60 hidden sm:block"
                 />
-                <p className="font-medium text-base">No tiene una cuenta?</p>
-                <button
-                  id="signUp"
-                  className="text-[#A1BB23] text-base font-medium ml-2"
-                >
-                  Registrarse
-                </button>
               </div>
             </div>
           </div>
