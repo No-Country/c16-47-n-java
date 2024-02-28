@@ -36,6 +36,10 @@ public class UserDTO {
     @NotBlank(message = "El nro de celular no puede estar en blanco")
     private String cellphone;
 
+    @NotNull(message = "El nombre no puede ser nulo")
+    @NotBlank(message = "El nombre no puede estar en blanco")
+    private String name;
+
     @Enumerated(EnumType.STRING)
     private ERole eRole;
 }

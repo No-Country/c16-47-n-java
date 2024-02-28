@@ -30,6 +30,7 @@ public class UserEntity implements UserDetails{
     private String password;
     private String address;
     private String cellphone;
+    private String name;
 
     @Enumerated(EnumType.STRING)
     private ERole role;

@@ -1,8 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "/src/assets/styles/login.css";
-import { loginOrRegister } from "./AppServicio";
+import { login, register } from "./AppServicio";
 
 const LoginForm = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [cellphone, setCellphone] = useState(0);
+  const [address, setAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
+  const [name, setName] = useState("");
+  const navigate = useNavigate();
+
   useEffect(() => {
     const signUpButton = document.getElementById("signUp");
     const signInButton = document.getElementById("signIn");
@@ -18,13 +28,45 @@ const LoginForm = () => {
   }, []);
 
   async function entrar(e) {
-    e.preventDefault()
-    const user = {
-      username: "",
-      password: ""
+    e.preventDefault();
+    console.log("Estoy en prevent default");
+    const loginRequest = {
+      username: username,
+      password: password,
+    };
+    console.log("Estoy en creacion de objeto");
+    try {
+      await login(loginRequest);
+      navigate("/");
+      console.log("Estoy en el navigate");
+    } catch (error) {
+      console.log("No se pudo logear. Error: " + error);
     }
-    loginOrRegister(user).then()
   }
+
+  async function registrar(e) {
+    e.preventDefault();
+    if (password != password2) {
+      alert("Las contraseñas no coinciden");
+    } else {
+      const registerRequest = {
+        username: username,
+        email: email,
+        cellphone: cellphone,
+        address: address,
+        password: password,
+        name: name,
+        role: null,
+      };
+      try {
+        await register(registerRequest);
+        navigate("/");
+      } catch (error) {
+        console.log("No se pudo registrar. Error: " + error);
+      }
+    }
+  }
+
   return (
     <>
       <div className="container" id="container">
@@ -33,22 +75,55 @@ const LoginForm = () => {
             <p className="font-medium text-lg text-gray-500 mt-10 mb-6">
               Crear cuenta
             </p>
-            <form onChange={(e) => entrar(e)}>
+            <form onSubmit={(e) => registrar(e)}>
               <input
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 type="text"
-                name="usuario"
+                name="username"
                 placeholder="Nombre de usuario"
                 required
                 className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
               />
               <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Correo electrónico"
                 required
                 className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
               />
               <input
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                type="text"
+                name="address"
+                placeholder="Dirección o domicilio"
+                required
+                className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
+              />
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                type="text"
+                name="name"
+                placeholder="Nombre completo"
+                required
+                className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
+              />
+              <input
+                value={cellphone}
+                onChange={(e) => setCellphone(e.target.value)}
+                type="text"
+                name="cellphone"
+                placeholder="Teléfono"
+                required
+                className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
+              />
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 name="password"
                 placeholder="Contraseña"
@@ -56,6 +131,8 @@ const LoginForm = () => {
                 className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
               />
               <input
+                value={password2}
+                onChange={(e) => setPassword2(e.target.value)}
                 type="password"
                 name="password2"
                 placeholder="Repetir cotraseña"
@@ -79,7 +156,6 @@ const LoginForm = () => {
             </form>
             <p className="font-medium text-base">Ya tienes una cuenta?</p>
             <button
-              type="submit"
               id="signIn"
               className="text-[#A1BB23] text-base font-medium ml-2"
             >
@@ -90,29 +166,36 @@ const LoginForm = () => {
         <div className="form-container sign-in-container">
           <div className="bg-white px-10 py-10 rounded-3xl border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36] border-form">
             <p className="font-medium text-lg text-gray-500 mt-4">
-              Por favor ingresa tus datos
+              Por favor ingresar sus datos
             </p>
-            <form>
+            <form onSubmit={(e) => entrar(e)}>
               <div className="mt-5">
                 <div>
-                  <label className="text-lg font-medium">Email</label>
+                  <label className="text-lg font-medium">Usuario</label>
                   <input
-                    type="email"
+                    name="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    type="text"
                     className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
-                    placeholder="Ingresa tu email"
+                    placeholder="Ingresar su nombre de usuario"
                   />
                 </div>
                 <div>
                   <label className="text-lg font-medium">Contraseña</label>
                   <input
+                    name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     type="password"
                     className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
-                    placeholder="Ingresa tu contraseña"
+                    placeholder="Ingresar su contraseña"
                   />
                 </div>
               </div>
               <div className="mt-8 flex flex-col gap-y-4">
                 <button
+                  onSubmit={(e) => entrar(e)}
                   type="submit"
                   className="active:scale-[.98] hover:scale-[1.01] py-2 rounded-xl bg-[#74BB23] text-white text-lg font-bold"
                 >
