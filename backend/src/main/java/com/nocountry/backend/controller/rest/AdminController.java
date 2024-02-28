@@ -18,7 +18,6 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping(value = "/admin")
 @RequiredArgsConstructor
-@CrossOrigin("*")
 public class AdminController {
 
     private final UserServiceImpl US;
