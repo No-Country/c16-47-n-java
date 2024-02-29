@@ -3,16 +3,8 @@
   box-shadow: "0px 2px 4px rgba(0, 0, 0, 0.5)";
 }
 
-#productos {
-  background-image: url("assets/img/fondo-productos.jpg");
-}
-
-header {
-  background: linear-gradient(to top, white, white, #dce9f0);
-}
-
-footer {
-  background: linear-gradient(to bottom, white, #eaeff2, #dce9f0);
+.scrollbarr {
+  scrollbar-width: none;
 }
 
 .manejarFavorito {
@@ -21,11 +13,11 @@ footer {
   right: 5px;
   bottom: 5px;
   z-index: 1;
-  font-size: 20px
+  font-size: 20px;
 }
 
 #login {
   margin: 0 auto;
-  padding: 100px 100px;
-  background-color: #eaeff2
+  padding: 70px 70px;
+  background-color: #181818;
 }

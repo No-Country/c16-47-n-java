@@ -10,22 +10,22 @@ function Footer() {
   }, []);
 
   return (
-    <footer className="bg-white dark:bg-gray-900">
+    <footer className="bg-[#202020] ">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <Link to="/" className="flex items-center">
               <img src={logo} className="h-8 me-3" alt="FlowBite Logo" />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-black">
+              <span className="self-center text-2xl font-semibold whitespace-nowrap text-white">
                 EcoBite
               </span>
             </Link>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-            <div>
-              <ul className="text-gray-500 dark:text-gray-400 font-medium">
+            <div className="text-white">
+              <ul className=" font-medium">
                 <li className="mb-4">
-                  <Link to="/contacto" className="hover:underline">
+                  <Link to="/contacto" className="text-white hover:underline">
                     Contacto
                   </Link>
                 </li>
@@ -33,7 +33,7 @@ function Footer() {
                   <a
                     target="_blank"
                     href="https://www.nocountry.tech/"
-                    className="hover:underline"
+                    className="text-white hover:underline"
                   >
                     No Country
                   </a>
@@ -41,12 +41,12 @@ function Footer() {
               </ul>
             </div>
             <div>
-              <ul className="text-gray-500 dark:text-gray-400 font-medium">
+              <ul className=" font-medium">
                 <li className="mb-4">
                   <a
                     target="_blank"
                     href="https://github.com/No-Country/c16-47-n-java"
-                    className="hover:underline "
+                    className="text-white hover:underline "
                   >
                     Github
                   </a>
@@ -55,7 +55,7 @@ function Footer() {
                   <a
                     target="_blank"
                     href="https://discord.gg/msZ3RpdPVz"
-                    className="hover:underline"
+                    className="text-white hover:underline"
                   >
                     NC Discord
                   </a>
@@ -65,7 +65,7 @@ function Footer() {
             <div>
               <ul className="text-gray-500 dark:text-gray-400 font-medium">
                 <li className="mb-4">
-                  <Link to="/" className="hover:underline">
+                  <Link to="/" className="text-white hover:underline">
                     EcoBite
                   </Link>
                 </li>
@@ -73,7 +73,7 @@ function Footer() {
                   <a
                     target="_blank"
                     href="https://www.linkedin.com/company/nocountrytalent/"
-                    className="hover:underline"
+                    className="text-white hover:underline"
                   >
                     NC Linkedin
                   </a>
@@ -82,19 +82,24 @@ function Footer() {
             </div>
           </div>
         </div>
-        <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+        <hr className="my-6 border-gray-600 sm:mx-auto dark:border-gray-700 lg:my-8" />
         <div className="sm:flex sm:items-center sm:justify-between">
-          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-            © {date.getFullYear() == 2024 ? date.getFullYear() + " " : <span>2024 - {date.getFullYear()}  </span>}
+          <span className="text-sm text-gray-400 sm:text-center dark:text-gray-400">
+            ©{" "}
+            {date.getFullYear() == 2024 ? (
+              date.getFullYear() + " "
+            ) : (
+              <span>2024 - {date.getFullYear()} </span>
+            )}
             <Link to="/" className="hover:underline">
-               EcoBite™ 
+              EcoBite™
             </Link>
             . Todos los derechos reservados.
           </span>
           <div className="flex mt-4 sm:justify-center sm:mt-0">
             <a
               href="#"
-              className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+              className="text-gray-500 hover:text-gray-900 dark:hover:text-white hover:scale-[1.3]"
             >
               <svg
                 className="w-4 h-4"
@@ -113,7 +118,7 @@ function Footer() {
             </a>
             <a
               href="#"
-              className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+              className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5 hover:scale-[1.3]"
             >
               <svg
                 className="w-4 h-4"
@@ -128,7 +133,7 @@ function Footer() {
             </a>
             <a
               href="#"
-              className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+              className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5 hover:scale-[1.3]"
             >
               <svg
                 className="w-4 h-4"

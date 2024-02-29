@@ -17,7 +17,7 @@ function App() {
 
   return (
     <Router>
-      <div className="bg-white w-full min-h-screen">
+      <div className="w-full min-h-screen">
         <HeaderBanner showProfile={showProfile} toggleProfile={toggleProfile} />
 
         <Routes>
