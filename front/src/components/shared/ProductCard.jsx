@@ -48,7 +48,7 @@ function ProductCard({ product }) {
           {favorito ? "❤️" : "🤍"}
         </div>
       </div>
-      <p className="text-xl">{product.name}</p>
+      <p className="text-xl text-white">{product.name}</p>
       {!mostrarCompleto && (
         <button
           className="text-[#a1bb23] text-sm py-2 px-4 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white"
@@ -60,14 +60,16 @@ function ProductCard({ product }) {
       {mostrarCompleto && (
         <>
           <button
-            className="absolute top-4 right-4 text-gray-600"
+            className="absolute top-4 right-4 text-gray-200"
             onClick={ocultarCardCompleta}
           >
             X
           </button>
-          <p className="text-gray-500">{product.description}</p>
-          <div className="flex items-center">
-            <div className="text-xl text-black mr-2 font-bold">${product.price}</div>
+          <p className="text-gray-300">{product.description}</p>
+          <div className="flex items-center flex-col">
+            <div className="text-xl text-[#a1bb23] mr-2 font-bold">
+              ${product.price}
+            </div>
             <button
               className="text-[#a1bb23] text-sm py-2 px-4 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white"
               onClick={handleAgregarAlCarrito}
@@ -75,10 +77,10 @@ function ProductCard({ product }) {
               AGREGAR
             </button>
           </div>
-          <p className="text-gray-600">{product.stock} disponibles</p>
+          <p className="text-gray-400">{product.stock} disponibles</p>
 
           <div>
-            <label htmlFor="cantidad" className="mr-2">
+            <label htmlFor="cantidad" className="text-gray-300 mr-2">
               Cantidad:
             </label>
             <input
@@ -92,7 +94,7 @@ function ProductCard({ product }) {
             />
           </div>
           <div>
-            <p>Calificación:</p>
+            <p className="text-gray-400">Calificación:</p>
             {[1, 2, 3, 4, 5].map((estrella) => (
               <span
                 key={estrella}
