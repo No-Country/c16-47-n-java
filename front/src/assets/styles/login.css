@@ -5,9 +5,7 @@
 .container {
   position: relative;
   overflow: hidden;
-  width: 1200px;
-  max-width: 100%;
-  min-height: 480px;
+  min-height: 798px;
 }
 
 .form-container {
