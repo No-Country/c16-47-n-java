@@ -3,6 +3,7 @@ package com.nocountry.backend.model.service.impl;
 import com.nocountry.backend.model.dto.UserDTO;
 import com.nocountry.backend.model.dto.Request.AddressRequest;
 import com.nocountry.backend.model.dto.Request.CellphoneRequest;
+import com.nocountry.backend.model.dto.Request.ChangesRequest;
 import com.nocountry.backend.model.dto.Request.EmailRequest;
 import com.nocountry.backend.model.dto.Request.PasswordRequest;
 import com.nocountry.backend.model.dto.Request.UsernameRequest;
@@ -49,14 +50,17 @@ public class UserServiceImpl implements UserService {
 
     @Override // USER
     public UserResponse getCurrentUser(Authentication auth) {
-        String username = auth.getName();
-        UserEntity userDB = UR.findByUsername(username);
+        UserEntity userDB = UR.findByUsername(auth.getName());
         return new UserResponse().builder()
-            .username(userDB.getUsername())
             .email(userDB.getEmail())
             .cellphone(userDB.getCellphone())
             .address(userDB.getAddress())
+            .name(userDB.getName())
             .build();
+    }
+
+    public void changeUserData(ChangesRequest request){
+        
     }
 
     // actualizar datos del usuario

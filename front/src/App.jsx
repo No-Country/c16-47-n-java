@@ -10,6 +10,7 @@ import UserProfile from "./components/shared/UserProfile";
 
 function App() {
   const [showProfile, setShowProfile] = useState(false);
+  
 
   const toggleProfile = () => {
     setShowProfile(!showProfile);

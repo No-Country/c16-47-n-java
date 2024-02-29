@@ -1,6 +1,15 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { traerUsuario } from "./AppServicio";
 
 const HeaderBanner = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    traerUsuario().then((data) => setUser(data));
+    console.log("Usuario traido desde el fetch: " + user)
+  }, user);
+
   return (
     <div>
       <header className="bg-[#202020] text-white py-4 flex justify-between items-center w-full">
@@ -17,7 +26,7 @@ const HeaderBanner = () => {
               className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23] mr-5"
               to="/"
             >
-              Home
+              EcoBite
             </Link>
             <Link
               className="active:scale-[.98] hover:scale-[1.1] hover:text-[#ff9a36] mr-5"
@@ -45,6 +54,7 @@ const HeaderBanner = () => {
         alt="banner"
         className="lg:h-60 h-40 w-full object-cover"
       />
+      { user != null > 0 && user ? <p>Hola de nuevo  {user.name}</p> : <></>}
     </div>
   );
 };

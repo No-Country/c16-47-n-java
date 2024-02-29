@@ -1,24 +1,44 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { guardarCambios, traerUsuario } from "./AppServicio";
 
 const UserProfile = () => {
-  const [name, setName] = useState("Eco Bite");
-  const [email, setEmail] = useState("EcoBite@gmail.com");
-  const [avatar, setAvatar] = useState("src/assets/img/producto1.jpg");
+  const [user, setUser] = useState([]);
+  const [avatar, setAvatar] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddres] = useState("");
+  const [cellphone, setCellphone] = useState("");
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
+  useEffect(() => {
+    async function perfil(e) {
+      e.preventDefault();
+      try {
+        await traerUsuario().then((data) => setUser(data));
+        console.log("Usuario traido desde UserProfile: " + user)
+      } catch (error) {
+        console.log("Hubo un error al cargar el usuario. Error: " + error);
+      }
+    }
+    perfil()
+  }, []);
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
+  async function cambiarDatos(e) {
+    e.preventDefault();
+    setUser({
+      name: name,
+      email: email,
+      address:address,
+      cellphone: cellphone
+    })
+    try {
+      await guardarCambios(user)
+    } catch (error) {
+      console.log("Hubo un error al guardar cambios. Error: " + error);
+    }
+  }
 
-  const handleAvatarChange = (e) => {
+  const cambiarAvatar = (e) => {
     setAvatar(URL.createObjectURL(e.target.files[0]));
-  };
-
-  const handleSaveChanges = () => {
-    console.log("Guardando cambios...");
   };
 
   return (
@@ -41,7 +61,7 @@ const UserProfile = () => {
             <p className="text-gray-500">{email}</p>
           </div>
         </div>
-        <div className="px-4 py-3">
+        <form onClick={cambiarDatos} method="POST" className="px-4 py-3">
           <label
             htmlFor="name"
             className="block text-sm font-medium text-gray-700"
@@ -53,7 +73,7 @@ const UserProfile = () => {
             id="name"
             className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             value={name}
-            onChange={handleNameChange}
+            onChange={(e) => setName(e.target.value)}
           />
           <label
             htmlFor="email"
@@ -66,8 +86,31 @@ const UserProfile = () => {
             id="email"
             className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             value={email}
-            onChange={handleEmailChange}
+            onChange={(e) => setEmail(e)}
           />
+          <input
+            type="text"
+            id="address"
+            className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            value={address}
+            onChange={(e) => setAddres(e)}
+          />
+          <input
+            type="text"
+            id="cellphone"
+            className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            value={cellphone}
+            onChange={(e) => setCellphone(e)}
+          />
+
+          <button
+            type="submit"
+            className="w-full mt-8 mb-4 active:scale-[.98] hover:scale-[1.01] py-2 rounded-xl bg-[#74BB23] text-white text-lg font-bold"
+          >
+            Guardar cambios
+          </button>
+        </form>
+        <form onClick={cambiarAvatar} method="POST">
           <label
             htmlFor="avatar"
             className="block text-sm font-medium text-gray-700 mt-2"
@@ -79,16 +122,15 @@ const UserProfile = () => {
             id="avatar"
             accept="image/*"
             className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            onChange={handleAvatarChange}
+            onChange={(e) => setAvatar(e)}
           />
           <button
             type="submit"
             className="w-full mt-8 mb-4 active:scale-[.98] hover:scale-[1.01] py-2 rounded-xl bg-[#74BB23] text-white text-lg font-bold"
-            onClick={handleSaveChanges}
           >
             Guardar cambios
           </button>
-        </div>
+        </form>
       </div>
     </section>
   );

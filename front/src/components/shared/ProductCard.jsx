@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 function ProductCard({ product }) {
-  const { name, description, price, stock, imageUrl, califications } = product;
   const [calificacion, setCalificacion] = useState(0);
   const [favorito, setFavorito] = useState(false);
   const [cantidad, setCantidad] = useState(1);
@@ -40,7 +39,7 @@ function ProductCard({ product }) {
       <div className="w-40 h-40 overflow-hidden rounded-lg relative">
         <div className="border">
           <img
-            src={imageUrl}
+            src={product.imageUrl}
             className="object-cover w-full h-full"
             alt="Product"
           />
@@ -49,7 +48,7 @@ function ProductCard({ product }) {
           {favorito ? "❤️" : "🤍"}
         </div>
       </div>
-      <p className="text-xl">{name}</p>
+      <p className="text-xl">{product.name}</p>
       {!mostrarCompleto && (
         <button
           className="text-[#a1bb23] text-sm py-2 px-4 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white"
@@ -66,9 +65,9 @@ function ProductCard({ product }) {
           >
             X
           </button>
-          <p className="text-gray-500">{description}</p>
+          <p className="text-gray-500">{product.description}</p>
           <div className="flex items-center">
-            <div className="text-xl text-black mr-2 font-bold">${price}</div>
+            <div className="text-xl text-black mr-2 font-bold">${product.price}</div>
             <button
               className="text-[#a1bb23] text-sm py-2 px-4 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white"
               onClick={handleAgregarAlCarrito}
@@ -76,7 +75,7 @@ function ProductCard({ product }) {
               AGREGAR
             </button>
           </div>
-          <p className="text-gray-600">{stock} disponibles</p>
+          <p className="text-gray-600">{product.stock} disponibles</p>
 
           <div>
             <label htmlFor="cantidad" className="mr-2">
@@ -87,7 +86,7 @@ function ProductCard({ product }) {
               id="cantidad"
               value={cantidad}
               min={1}
-              max={stock}
+              max={product.stock}
               onChange={manejarCambioCantidad}
               className="border border-gray-300 text-gray-600 rounded-md px-3 py-2 w-20 text-center"
             />

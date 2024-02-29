@@ -36,6 +36,9 @@ const LoginForm = () => {
     };
     console.log("Estoy en creacion de objeto");
     try {
+      console.log("Muestro la request desde le fetch: " + loginRequest)
+      console.log(loginRequest.username)
+      console.log(loginRequest.password)
       await login(loginRequest);
       navigate("/");
       console.log("Estoy en el navigate");
