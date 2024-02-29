@@ -22,9 +22,9 @@ const UserProfile = () => {
   };
 
   return (
-    <section className="bg-[#e4e9ec] p-6">
+    <section className="bg-[#181818] p-6">
       <div
-        className="mt-5 max-w-md mx-auto bg-white text-black p-6 font-roboto relative border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36]"
+        className="mt-5 max-w-md mx-auto bg-[#323232] text-black p-6 font-roboto relative border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36]"
         style={{
           borderRadius: "15px",
           boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.5)",
@@ -37,14 +37,14 @@ const UserProfile = () => {
             alt="User Avatar"
           />
           <div className="text-center mt-4">
-            <h1 className="text-xl font-semibold">{name}</h1>
-            <p className="text-gray-500">{email}</p>
+            <h1 className="text-xl text-white font-semibold">{name}</h1>
+            <p className="text-white">{email}</p>
           </div>
         </div>
         <div className="px-4 py-3">
           <label
             htmlFor="name"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-gray-300"
           >
             Nombre
           </label>
@@ -57,7 +57,7 @@ const UserProfile = () => {
           />
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-gray-700 mt-2"
+            className="block text-sm font-medium text-gray-300 mt-2"
           >
             Email
           </label>
@@ -70,7 +70,7 @@ const UserProfile = () => {
           />
           <label
             htmlFor="avatar"
-            className="block text-sm font-medium text-gray-700 mt-2"
+            className="block text-sm font-medium text-gray-300 mt-2"
           >
             Avatar
           </label>
