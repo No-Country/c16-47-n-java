@@ -41,18 +41,18 @@ function Contacto() {
   const isEmailValid = validateEmail(formData.email);
 
   return (
-    <section className="bg-[#e4e9ec] p-6">
+    <section className="bg-[#181818] p-6">
       <div
-        className="mt-5 max-w-md mx-auto bg-white text-black p-6 font-roboto relative border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36]"
+        className="mt-5 max-w-md mx-auto bg-[#323232] text-black p-6 font-roboto relative border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36]"
         style={{
           borderRadius: "15px",
           boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.5)",
         }}
       >
-        <h2 className="text-2xl font-semibold mb-4">Contáctanos</h2>
+        <h2 className="text-2xl text-white font-semibold mb-4">Contáctanos</h2>
         <form id="myform" onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="name" className="block mb-2">
+            <label htmlFor="name" className="text-gray-200 block mb-2">
               Nombre Completo
             </label>
             <input
@@ -67,7 +67,7 @@ function Contacto() {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block mb-2">
+            <label htmlFor="email" className="text-gray-200 block mb-2">
               Correo electrónico
             </label>
             <input
@@ -89,7 +89,7 @@ function Contacto() {
             )}
           </div>
           <div className="mb-4">
-            <label htmlFor="message" className="block mb-2">
+            <label htmlFor="message" className="text-gray-200 block mb-2">
               Mensaje
             </label>
             <textarea
