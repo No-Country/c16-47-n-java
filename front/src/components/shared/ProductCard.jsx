@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 function ProductCard({ product }) {
-  const { name, description, price, stock, imageUrl, califications } = product;
   const [calificacion, setCalificacion] = useState(0);
   const [favorito, setFavorito] = useState(false);
   const [cantidad, setCantidad] = useState(1);
@@ -40,7 +39,7 @@ function ProductCard({ product }) {
       <div className="w-40 h-40 overflow-hidden rounded-lg relative">
         <div className="border">
           <img
-            src={imageUrl}
+            src={product.imageUrl}
             className="object-cover w-full h-full"
             alt="Product"
           />
@@ -49,7 +48,7 @@ function ProductCard({ product }) {
           {favorito ? "❤️" : "🤍"}
         </div>
       </div>
-      <p className="text-xl">{name}</p>
+      <p className="text-xl text-white">{product.name}</p>
       {!mostrarCompleto && (
         <button
           className="text-[#a1bb23] text-sm py-2 px-4 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white"
@@ -61,14 +60,16 @@ function ProductCard({ product }) {
       {mostrarCompleto && (
         <>
           <button
-            className="absolute top-4 right-4 text-gray-600"
+            className="absolute top-4 right-4 text-gray-200"
             onClick={ocultarCardCompleta}
           >
             X
           </button>
-          <p className="text-gray-500">{description}</p>
-          <div className="flex items-center">
-            <div className="text-xl text-black mr-2 font-bold">${price}</div>
+          <p className="text-gray-300">{product.description}</p>
+          <div className="flex items-center flex-col">
+            <div className="text-xl text-[#a1bb23] mr-2 font-bold">
+              ${product.price}
+            </div>
             <button
               className="text-[#a1bb23] text-sm py-2 px-4 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white"
               onClick={handleAgregarAlCarrito}
@@ -76,10 +77,10 @@ function ProductCard({ product }) {
               AGREGAR
             </button>
           </div>
-          <p className="text-gray-600">{stock} disponibles</p>
+          <p className="text-gray-400">{product.stock} disponibles</p>
 
           <div>
-            <label htmlFor="cantidad" className="mr-2">
+            <label htmlFor="cantidad" className="text-gray-300 mr-2">
               Cantidad:
             </label>
             <input
@@ -87,13 +88,13 @@ function ProductCard({ product }) {
               id="cantidad"
               value={cantidad}
               min={1}
-              max={stock}
+              max={product.stock}
               onChange={manejarCambioCantidad}
               className="border border-gray-300 text-gray-600 rounded-md px-3 py-2 w-20 text-center"
             />
           </div>
           <div>
-            <p>Calificación:</p>
+            <p className="text-gray-400">Calificación:</p>
             {[1, 2, 3, 4, 5].map((estrella) => (
               <span
                 key={estrella}

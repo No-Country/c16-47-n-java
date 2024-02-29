@@ -9,9 +9,14 @@ export async function traerProductos() {
 }
 
 export async function login(request) {
+    console.log("Ésta es la request desde el servicio: " + request)
+    console.log(request.username)
+    console.log(request.password)
+    console.log(JSON.stringify(request))
     try {
         await fetch('http://localhost:8080/auth/login', {
             body: JSON.stringify(request),
+            mode: 'no-cors',
             headers:{
                 "Content-type": "application/json"
             },
@@ -26,6 +31,7 @@ export async function register(request) {
     try {
         await fetch('http://localhost:8080/auth/register', {
             body: JSON.stringify(request),
+            mode: 'no-cors',
             headers:{
                 "Content-type": "application/json"
             },
@@ -33,6 +39,31 @@ export async function register(request) {
         })
     } catch (error) {
         console.log("No se puede logear. Error: " + error)
+    }
+}
+
+export async function traerUsuario() {
+    try {
+        const res = await fetch('http://localhost:8080/user/user')
+        const data = await res.json()
+        console.log("Usuario desde el Servicio: "  + data)
+        return data
+    } catch (error) {
+        console.log("La respuesta del servicio no es válida. " + error)
+    }
+}
+
+export async function guardarCambios(request) {
+    try {
+        await fetch('http://localhost:8080/user/changes', {
+            body: JSON.stringify(request),
+            headers:{
+                "Content-type": "application/json"
+            },
+            method: "POST"
+        })
+    } catch (error) {
+        console.log("No se puede guardar los cambios. Error: " + error)
     }
 }
 
@@ -69,16 +100,6 @@ export async function traerImagen() {
 export async function traerOrden() {
     try {
         const res = await fetch('/src/json/orden.json')
-        const data = await res.json()
-        return data
-    } catch (error) {
-        console.log("La respuesta del servicio no es válida. " + error)
-    }
-}
-
-export async function traerUsuario() {
-    try {
-        const res = await fetch('/src/json/usuario.json')
         const data = await res.json()
         return data
     } catch (error) {
