@@ -39,7 +39,6 @@ public class ProductDTO {
     @URL(message = "La url de la imagen no es valida")
     private String imageUrl;
 
-    //TODO: hacer que muestren la suma de las calificaciones y la cantidad de favoritos y no los objetos
     private List<CalificationDTO> califications;
     private List<FavoriteDTO> favorites;
 }

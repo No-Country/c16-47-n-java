@@ -1,6 +1,5 @@
 package com.nocountry.backend.controller.rest;
 
-import com.nocountry.backend.model.dto.UserDTO;
 import com.nocountry.backend.model.dto.Request.AddressRequest;
 import com.nocountry.backend.model.dto.Request.CellphoneRequest;
 import com.nocountry.backend.model.dto.Request.EmailRequest;

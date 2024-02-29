@@ -1,6 +1,7 @@
 package com.nocountry.backend.model.service.impl;
 
 import com.nocountry.backend.model.dto.ProductDTO;
+import com.nocountry.backend.model.dto.Response.ProductResponse;
 import com.nocountry.backend.model.entity.Product;
 import com.nocountry.backend.model.enums.ECategory;
 import com.nocountry.backend.model.repository.ProductRepository;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,9 +20,27 @@ public class ProductServiceImpl implements ProductService {
     private final ModelMapper modelMapper;
 
     @Override
-    public List<ProductDTO> findAll() {
+    public List<ProductResponse> findAll() {
         List<Product> productsDB = productRepository.findAll();
-        return productsDB.stream().map(product -> modelMapper.map(product, ProductDTO.class)).toList();
+        List<ProductResponse> productResponses = new ArrayList<>();
+
+        for (Product product : productsDB) {
+            Integer favoritesCount = productRepository.favoriteCount(product.getId());
+            ProductResponse productResponse = new ProductResponse();
+
+            productResponse.setId(product.getId());
+            productResponse.setName(product.getName());
+            productResponse.setDescription(product.getDescription());
+            productResponse.setPrice(product.getPrice());
+            productResponse.setStock(product.getStock());
+            productResponse.setCategory(String.valueOf(product.getCategory()));
+            productResponse.setImageUrl(product.getImageUrl());
+            productResponse.setFavorites(favoritesCount);
+
+            productResponses.add(productResponse);
+        }
+
+        return productResponses;
     }
 
     @Override
@@ -58,5 +78,5 @@ public class ProductServiceImpl implements ProductService {
         List<Product> productsDB = productRepository.findByPriceBetween(price1, price2);
         return productsDB.stream().map(product -> modelMapper.map(product, ProductDTO.class)).toList();
     }
-    
+
 }
