@@ -34,7 +34,7 @@ function ProductCard({ product }) {
 
   return (
     <div
-      className="bg-white p-8 rounded-xl flex flex-col items-center gap-2 text-center text-black font-roboto relative border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36]"
+      className="bg-[#404040] p-8 rounded-xl flex flex-col items-center gap-2 text-center text-black font-roboto relative border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36]"
       style={{ boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.5)" }}
     >
       <div className="w-40 h-40 overflow-hidden rounded-lg relative">
