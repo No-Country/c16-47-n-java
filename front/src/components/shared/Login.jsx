@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "/src/assets/styles/login.css";
 import { login, register } from "./AppServicio";
 
-const LoginForm = () => {
+function Login({token, setToken}) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [cellphone, setCellphone] = useState(0);
@@ -29,19 +29,13 @@ const LoginForm = () => {
 
   async function entrar(e) {
     e.preventDefault();
-    console.log("Estoy en prevent default");
     const loginRequest = {
       username: username,
       password: password,
     };
-    console.log("Estoy en creacion de objeto");
     try {
-      console.log("Muestro la request desde le fetch: " + loginRequest)
-      console.log(loginRequest.username)
-      console.log(loginRequest.password)
-      await login(loginRequest);
+      await login(loginRequest).then((data) => setToken(data));
       navigate("/");
-      console.log("Estoy en el navigate");
     } catch (error) {
       console.log("No se pudo logear. Error: " + error);
     }
@@ -198,7 +192,6 @@ const LoginForm = () => {
               </div>
               <div className="mt-8 flex flex-col gap-y-4">
                 <button
-                  onSubmit={(e) => entrar(e)}
                   type="submit"
                   className="active:scale-[.98] hover:scale-[1.01] py-2 rounded-xl bg-[#74BB23] text-white text-lg font-bold"
                 >
@@ -240,4 +233,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default Login;

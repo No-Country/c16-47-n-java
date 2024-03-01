@@ -7,7 +7,6 @@ const HeaderBanner = () => {
 
   useEffect(() => {
     traerUsuario().then((data) => setUser(data));
-    console.log("Usuario traido desde el fetch: " + user)
   }, user);
 
   return (
@@ -54,7 +53,7 @@ const HeaderBanner = () => {
         alt="banner"
         className="lg:h-60 h-40 w-full object-cover"
       />
-      { user != null > 0 && user ? <p>Hola de nuevo  {user.name}</p> : <></>}
+      { user !== null && user ? <p>Hola de nuevo  {user.name}</p> : <></>}
     </div>
   );
 };
