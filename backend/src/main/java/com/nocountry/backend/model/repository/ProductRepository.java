@@ -25,4 +25,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = "SELECT COUNT(f.product_id) FROM Favorite f WHERE f.product_id = :productId", nativeQuery = true)
     Integer favoriteCount(Long productId);
 
+    @Query(value = "SELECT AVG(c.calification) FROM Calification c WHERE c.product_id = :productId", nativeQuery = true)
+    Double calificationAverage(Long productId);
+
 }

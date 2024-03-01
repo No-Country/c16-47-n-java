@@ -14,4 +14,5 @@ public class ProductResponse {
     private String category;
     private String imageUrl;
     private int favorites;
+    private Double calification;
 }

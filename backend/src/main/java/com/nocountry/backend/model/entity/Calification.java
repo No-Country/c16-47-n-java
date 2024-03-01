@@ -24,4 +24,7 @@ public class Calification {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity user;
+
+    @Column(columnDefinition = "DOUBLE DEFAULT 0.0")
+    private Double calification;
 }
