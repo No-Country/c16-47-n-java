@@ -10,8 +10,7 @@ import UserProfile from "./components/shared/UserProfile";
 
 function App() {
   const [showProfile, setShowProfile] = useState(false);
-  const [token, setToken] = useState('');
-  
+  const [token, setToken] = useState("");
 
   const toggleProfile = () => {
     setShowProfile(!showProfile);
@@ -19,7 +18,7 @@ function App() {
 
   return (
     <Router>
-      <div className="w-full min-h-screen">
+      <div className="w-full">
         <HeaderBanner showProfile={showProfile} toggleProfile={toggleProfile} />
 
         <Routes>
@@ -30,7 +29,7 @@ function App() {
             path="/login"
             element={
               <div id="login">
-                <Login token={token} setToken={setToken}/>
+                <Login token={token} setToken={setToken} />
               </div>
             }
           />

@@ -18,9 +18,9 @@ export async function login(request) {
       },
       method: "POST",
     });
-    console.log(`res desde el servicio: ${res}`)
+    console.log(`res desde el servicio: ${res}`);
     const data = await res.json();
-    console.log(`data desde el servicio: ${data}`)
+    console.log(`data desde el servicio: ${data}`);
     return data;
   } catch (error) {
     console.log("No se puede logear. Error: " + error);

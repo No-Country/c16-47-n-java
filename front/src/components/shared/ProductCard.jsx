@@ -78,7 +78,7 @@ function ProductCard({ product }) {
             </button>
           </div>
           <p className="text-gray-400">{product.stock} disponibles</p>
-          <p>Categoría:  {product.category}</p>
+          <p>Categoría: {product.category}</p>
           <div>
             <label htmlFor="cantidad" className="text-gray-300 mr-2">
               Cantidad:

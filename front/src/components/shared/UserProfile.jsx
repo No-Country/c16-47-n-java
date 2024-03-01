@@ -14,12 +14,12 @@ const UserProfile = () => {
       e.preventDefault();
       try {
         await traerUsuario().then((data) => setUser(data));
-        console.log("Usuario traido desde UserProfile: " + user)
+        console.log("Usuario traido desde UserProfile: " + user);
       } catch (error) {
         console.log("Hubo un error al cargar el usuario. Error: " + error);
       }
     }
-    perfil()
+    perfil();
   }, []);
 
   async function cambiarDatos(e) {
@@ -27,11 +27,11 @@ const UserProfile = () => {
     setUser({
       name: name,
       email: email,
-      address:address,
-      cellphone: cellphone
-    })
+      address: address,
+      cellphone: cellphone,
+    });
     try {
-      await guardarCambios(user)
+      await guardarCambios(user);
     } catch (error) {
       console.log("Hubo un error al guardar cambios. Error: " + error);
     }
