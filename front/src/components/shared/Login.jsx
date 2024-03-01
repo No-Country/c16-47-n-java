@@ -34,12 +34,19 @@ function Login({token, setToken}) {
       password: password,
     };
     try {
-      await login(loginRequest).then((data) => setToken(data));
+      await login(loginRequest).then((data) => setToken(`bearer ${data}`));
+      if(token.length > 0){
+        console.log(`El token es: ${token}`)
+      } else {
+        console.log("No hay token")
+      }
       navigate("/");
     } catch (error) {
       console.log("No se pudo logear. Error: " + error);
     }
   }
+
+  
 
   async function registrar(e) {
     e.preventDefault();

@@ -5,7 +5,6 @@ import com.nocountry.backend.model.service.impl.CloudinaryServiceImpl;
 import com.nocountry.backend.model.service.impl.ImageServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,7 +16,6 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/image")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
 public class ImageController {
     
     private final CloudinaryServiceImpl cloudinaryService;
