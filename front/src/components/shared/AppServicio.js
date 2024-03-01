@@ -9,14 +9,10 @@ export async function traerProductos() {
 }
 
 export async function login(request) {
-    console.log("Ésta es la request desde el servicio: " + request)
-    console.log(request.username)
-    console.log(request.password)
-    console.log(JSON.stringify(request))
+    console.log("Entrando al servicio")
     try {
         await fetch('http://localhost:8080/auth/login', {
             body: JSON.stringify(request),
-            mode: 'no-cors',
             headers:{
                 "Content-type": "application/json"
             },

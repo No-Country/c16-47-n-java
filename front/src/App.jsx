@@ -10,6 +10,7 @@ import UserProfile from "./components/shared/UserProfile";
 
 function App() {
   const [showProfile, setShowProfile] = useState(false);
+  const [token, setToken] = useState('');
   
 
   const toggleProfile = () => {
@@ -29,7 +30,7 @@ function App() {
             path="/login"
             element={
               <div id="login">
-                <Login />
+                <Login token={token} setToken={setToken}/>
               </div>
             }
           />
