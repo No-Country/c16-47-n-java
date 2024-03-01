@@ -6,6 +6,8 @@ function Productos() {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("todos");
+  const [orden, setOrden] = useState("");
+  const [busqueda, setBusqueda] = useState("");
 
   useEffect(() => {
     traerProductos().then((data) => {
@@ -13,6 +15,13 @@ function Productos() {
       setFilteredProducts(data);
     });
   }, []);
+
+  useEffect(() => {
+    const productosFiltrados = products.filter((product) =>
+      product.name.toLowerCase().includes(busqueda.toLowerCase())
+    );
+    setFilteredProducts(productosFiltrados);
+  }, [busqueda, products]);
 
   const handleFiltroCategoria = (categoria) => {
     if (categoria === "todos") {
@@ -25,6 +34,26 @@ function Productos() {
       setCategoriaSeleccionada(categoria);
       setFilteredProducts(productosFiltrados);
     }
+  };
+
+  const handleOrdenChange = (e) => {
+    const nuevoOrden = e.target.value;
+    setOrden(nuevoOrden);
+    if (nuevoOrden === "menor") {
+      const productosOrdenados = [...filteredProducts].sort(
+        (a, b) => a.price - b.price
+      );
+      setFilteredProducts(productosOrdenados);
+    } else if (nuevoOrden === "mayor") {
+      const productosOrdenados = [...filteredProducts].sort(
+        (a, b) => b.price - a.price
+      );
+      setFilteredProducts(productosOrdenados);
+    }
+  };
+
+  const handleBusquedaChange = (e) => {
+    setBusqueda(e.target.value);
   };
 
   return (
@@ -94,6 +123,31 @@ function Productos() {
         >
           Legumbres
         </button>
+      </div>
+      <div className="flex gap-4 mb-1">
+        <input
+          type="text"
+          value={busqueda}
+          onChange={handleBusquedaChange}
+          placeholder="Buscar productos..."
+          className="py-2 px-4 rounded-sm border text-white border-gray-500 transition duration-300 ease-in-out bg-[#323232] mb-4"
+        />
+        <select
+          value={orden}
+          onChange={handleOrdenChange}
+          style={{ height: "42px" }}
+          className="py-2 px-4 rounded-sm border text-white border-gray-500 transition duration-300 ease-in-out bg-[#323232]"
+        >
+          <option className="bg-[#232323] text-gray-400" value="">
+            Ordenar por precio
+          </option>
+          <option className="bg-[#232323] text-gray-400" value="menor">
+            Menor a mayor
+          </option>
+          <option className="bg-[#232323] text-gray-400" value="mayor">
+            Mayor a menor
+          </option>
+        </select>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 p-8 max-h-[90vh] overflow-y-auto m-8 bg-[#232323] scrollbarr border-x-2 border-x-[#676759]">
         {filteredProducts.length > 0 ? (

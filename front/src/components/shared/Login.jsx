@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "/src/assets/styles/login.css";
 import { login, register } from "./AppServicio";
 
-function Login({token, setToken}) {
+function Login({ token, setToken }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [cellphone, setCellphone] = useState(0);
@@ -35,18 +35,16 @@ function Login({token, setToken}) {
     };
     try {
       await login(loginRequest).then((data) => setToken(`bearer ${data}`));
-      if(token.length > 0){
-        console.log(`El token es: ${token}`)
+      if (token.length > 0) {
+        console.log(`El token es: ${token}`);
       } else {
-        console.log("No hay token")
+        console.log("No hay token");
       }
       navigate("/");
     } catch (error) {
       console.log("No se pudo logear. Error: " + error);
     }
   }
-
-  
 
   async function registrar(e) {
     e.preventDefault();
@@ -217,7 +215,7 @@ function Login({token, setToken}) {
         </div>
         <div className="overlay-container">
           <div className="overlay">
-            <div className="overlay-panel overlay-left">
+            <div className="overlay-panel overlay-left flex justify-center">
               <div className="mt-5 flex justify-center items-center">
                 <img
                   src="src/assets/img/Loguito-removebg.png"
@@ -225,11 +223,11 @@ function Login({token, setToken}) {
                 />
               </div>
             </div>
-            <div className="overlay-panel overlay-right">
+            <div className="overlay-panel overlay-right flex justify-start pt-10">
               <div className="mt-5 flex justify-center items-center">
                 <img
                   src="src/assets/img/Loguito-removebg.png"
-                  className="animate-bounce h-60 w-60 hidden sm:block"
+                  className="animate-bounce mt-10 h-60 w-60 hidden sm:block"
                 />
               </div>
             </div>
@@ -238,6 +236,6 @@ function Login({token, setToken}) {
       </div>
     </>
   );
-};
+}
 
 export default Login;

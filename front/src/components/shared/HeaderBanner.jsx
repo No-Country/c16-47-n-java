@@ -19,7 +19,7 @@ const HeaderBanner = () => {
             className="h-11 ml-8"
           />
         </div>
-        <nav className="flex pr-8 ">
+        <nav className="flex pr-8">
           <ul className="flex mb-4 text-white ">
             <Link
               className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23] mr-5"
@@ -53,7 +53,7 @@ const HeaderBanner = () => {
         alt="banner"
         className="lg:h-60 h-40 w-full object-cover"
       />
-      { user !== null && user ? <p>Hola de nuevo  {user.name}</p> : <></>}
+      {user !== null && user ? <p>Hola de nuevo {user.name}</p> : <></>}
     </div>
   );
 };
