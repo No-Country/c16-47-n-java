@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { guardarCambios, traerUsuario } from "./AppServicio";
 
-const UserProfile = () => {
+const UserProfile = ({token}) => {
   const [user, setUser] = useState([]);
   const [avatar, setAvatar] = useState("");
   const [name, setName] = useState("");
@@ -10,17 +10,17 @@ const UserProfile = () => {
   const [cellphone, setCellphone] = useState("");
 
   useEffect(() => {
-    async function perfil(e) {
-      e.preventDefault();
+    async function traerUser() {
       try {
-        await traerUsuario().then((data) => setUser(data));
-        console.log("Usuario traido desde UserProfile: " + user);
+        const res = await traerUsuario(token)
+        const data = res.json()
+        setUser(data)
       } catch (error) {
-        console.log("Hubo un error al cargar el usuario. Error: " + error);
+        console.log("No se pudo traer el usuario. Error: " + error)
       }
     }
-    perfil();
-  }, []);
+    traerUser()
+  }, [], user);
 
   async function cambiarDatos(e) {
     e.preventDefault();

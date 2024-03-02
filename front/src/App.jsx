@@ -9,22 +9,18 @@ import Footer from "./components/shared/Footer";
 import UserProfile from "./components/shared/UserProfile";
 
 function App() {
-  const [showProfile, setShowProfile] = useState(false);
   const [token, setToken] = useState("");
 
-  const toggleProfile = () => {
-    setShowProfile(!showProfile);
-  };
 
   return (
     <Router>
       <div className="w-full">
-        <HeaderBanner showProfile={showProfile} toggleProfile={toggleProfile} />
+        <HeaderBanner token={token} />
 
         <Routes>
           <Route path="/" element={<Productos />} />
           <Route path="/contacto" element={<Contacto />} />
-          <Route path="/user" element={<UserProfile />} />
+          <Route path="/user" element={<UserProfile token={token} />} />
           <Route
             path="/login"
             element={

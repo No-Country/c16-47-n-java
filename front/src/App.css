@@ -21,3 +21,9 @@
   padding: 70px 70px;
   background-color: #181818;
 }
+#hola {
+  text-align: end;
+  background-color: #181818;
+  color: #b1b1b1;
+  padding: 10px 25px 0 0;
+}

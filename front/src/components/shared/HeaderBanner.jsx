@@ -2,12 +2,21 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { traerUsuario } from "./AppServicio";
 
-const HeaderBanner = () => {
+const HeaderBanner = ({token}) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    traerUsuario().then((data) => setUser(data));
-  }, user);
+    async function traerUser() {
+      try {
+        const res = await traerUsuario(token)
+        const data = res.json()
+        setUser(data)
+      } catch (error) {
+        console.log("No se pudo traer el usuario. Error: " + error)
+      }
+    }
+    traerUser()
+  }, []);
 
   return (
     <div>
@@ -53,7 +62,7 @@ const HeaderBanner = () => {
         alt="banner"
         className="lg:h-60 h-40 w-full object-cover"
       />
-      {user !== null && user ? <p>Hola de nuevo {user.name}</p> : <></>}
+      {user !== null && user ? <p id="hola">Hola de nuevo {user.name}</p > : <p id="hola">NO USER</p>}
     </div>
   );
 };

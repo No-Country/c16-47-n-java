@@ -1,15 +1,18 @@
 export async function traerProductos() {
   try {
     const res = await fetch("http://localhost:8080/product/findall");
+    if (!res.ok) {
+      throw new Error("Error al traer productos");
+    }
     const data = await res.json();
     return data;
   } catch (error) {
     console.log("La respuesta del servicio no es válida. " + error);
+    throw error;
   }
 }
 
 export async function login(request) {
-  console.log("Entrando al servicio");
   try {
     const res = await fetch("http://localhost:8080/auth/login", {
       body: JSON.stringify(request),
@@ -18,9 +21,10 @@ export async function login(request) {
       },
       method: "POST",
     });
-    console.log(`res desde el servicio: ${res}`);
+    if (!res.ok) {
+      throw new Error("Error al iniciar sesión");
+    }
     const data = await res.json();
-    console.log(`data desde el servicio: ${data}`);
     return data;
   } catch (error) {
     console.log("No se puede logear. Error: " + error);
@@ -30,27 +34,37 @@ export async function login(request) {
 
 export async function register(request) {
   try {
-    await fetch("http://localhost:8080/auth/register", {
+    const res = await fetch("http://localhost:8080/auth/register", {
       body: JSON.stringify(request),
-      mode: "no-cors",
       headers: {
         "Content-type": "application/json",
       },
       method: "POST",
     });
+    if (!res.ok) {
+      throw new Error("Error al registrar usuario");
+    }
   } catch (error) {
-    console.log("No se puede logear. Error: " + error);
+    console.log("No se puede registrar. Error: " + error);
+    throw error;
   }
 }
 
-export async function traerUsuario() {
+export async function traerUsuario(token) {
   try {
-    const res = await fetch("http://localhost:8080/user/user");
+    const res = await fetch("http://localhost:8080/user/user", {
+      headers: {
+        Authorization: token, // Aquí agregamos el token al encabezado de autorización
+      },
+    });
+    if (!res.ok) {
+      throw new Error("Error al obtener el usuario");
+    }
     const data = await res.json();
-    console.log("Usuario desde el Servicio: " + data);
     return data;
   } catch (error) {
     console.log("La respuesta del servicio no es válida. " + error);
+    throw error;
   }
 }
 
