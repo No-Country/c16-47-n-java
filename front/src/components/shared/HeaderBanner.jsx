@@ -1,22 +1,12 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { traerUsuario } from "./AppServicio";
+import { Link, useNavigate } from "react-router-dom";
 
-const HeaderBanner = ({token}) => {
-  const [user, setUser] = useState(null);
+const HeaderBanner = ({ user, setUser }) => {
+  const navigate = useNavigate()
 
-  useEffect(() => {
-    async function traerUser() {
-      try {
-        const res = await traerUsuario(token)
-        const data = res.json()
-        setUser(data)
-      } catch (error) {
-        console.log("No se pudo traer el usuario. Error: " + error)
-      }
-    }
-    traerUser()
-  }, []);
+  function cerrarSesion() {
+    setUser(null)
+    navigate("/")
+  }
 
   return (
     <div>
@@ -42,18 +32,32 @@ const HeaderBanner = ({token}) => {
             >
               Contacto
             </Link>
-            <Link
-              className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23] mr-5"
-              to="/user"
-            >
-              Editar Perfil
-            </Link>
-            <Link
-              className="active:scale-[.98] hover:scale-[1.1] hover:text-[#ff9a36]"
-              to="/login"
-            >
-              Login
-            </Link>
+
+            {/* Logica de login/logout */}
+
+            {user == null ? (
+              <Link
+                className="active:scale-[.98] hover:scale-[1.1] hover:text-[#ff9a36]"
+                to="/login"
+              >
+                Ingresar
+              </Link>
+            ) : (
+              <>
+                <Link
+                  className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23] mr-5"
+                  to="/user"
+                >
+                  Editar Perfil
+                </Link>
+                <Link
+                  className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23] mr-5"
+                  onClick={cerrarSesion}
+                >
+                  Cerrar Sesión
+                </Link>
+              </>
+            )}
           </ul>
         </nav>
       </header>
@@ -62,7 +66,11 @@ const HeaderBanner = ({token}) => {
         alt="banner"
         className="lg:h-60 h-40 w-full object-cover"
       />
-      {user !== null && user ? <p id="hola">Hola de nuevo {user.name}</p > : <p id="hola">NO USER</p>}
+      {user !== null && user ? (
+        <p id="hola">Hola de nuevo {user.name}</p>
+      ) : (
+        <p id="hola">NO USER</p>
+      )}
     </div>
   );
 };

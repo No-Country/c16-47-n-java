@@ -3,16 +3,17 @@ import { useNavigate } from "react-router-dom";
 import "/src/assets/styles/login.css";
 import { login, register } from "./AppServicio";
 
-function Login({ token, setToken }) {
+function Login({ setToken }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [cellphone, setCellphone] = useState(0);
+  const [cellphone, setCellphone] = useState("");
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [name, setName] = useState("");
   const navigate = useNavigate();
 
+  // manejo de animaciones login/register
   useEffect(() => {
     const signUpButton = document.getElementById("signUp");
     const signInButton = document.getElementById("signIn");
@@ -27,7 +28,8 @@ function Login({ token, setToken }) {
     });
   }, []);
 
-  async function entrar(e) {
+  // login
+  async function login(e) {
     e.preventDefault();
     const loginRequest = {
       username: username,
@@ -35,15 +37,14 @@ function Login({ token, setToken }) {
     };
     try {
       const data = await login(loginRequest);
-      console.log(data)
       setToken('bearer ' + data.token + '');
-      console.log(token)
       navigate("/");
     } catch (error) {
       console.log("No se pudo logear. Error: " + error);
     }
   }
 
+  // register
   async function registrar(e) {
     e.preventDefault();
     if (password != password2) {
@@ -139,12 +140,12 @@ function Login({ token, setToken }) {
                 required
                 className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
               />
-              <input
+              {/* <input
                 type="file"
                 name="archivo"
                 required
                 className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
-              />
+              /> */}
               <div className="mt-8 flex flex-col gap-y-4">
                 <button
                   type="submit"
@@ -168,7 +169,7 @@ function Login({ token, setToken }) {
             <p className="font-medium text-lg text-gray-500 mt-4">
               Por favor ingresar sus datos
             </p>
-            <form onSubmit={(e) => entrar(e)}>
+            <form onSubmit={(e) => login(e)}>
               <div className="mt-5">
                 <div>
                   <label className="text-lg font-medium">Usuario</label>
