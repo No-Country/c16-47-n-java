@@ -13,32 +13,39 @@ function App() {
   const [token, setToken] = useState("");
   const [user, setUser] = useState(null);
 
-  useEffect(
-    () => {
-      async function traerUser() {
-        try {
-          const res = await traerUsuario(token);
-          const data = res.json();
-          setUser(data);
-        } catch (error) {
-          console.log("No se pudo traer el usuario. Error: " + error);
-        }
+  useEffect(() => {
+    async function traerUser() {
+      try {
+        const data = await traerUsuario(token);
+        console.log(data);
+        setUser(data);
+        // console.log(user.id)
+      } catch (error) {
+        console.log("No se pudo traer el usuario. Error: " + error);
       }
-      traerUser();
-    },
-    [],
-    user
-  );
+    }
+    traerUser();
+  }, [token]);
 
   return (
     <Router>
       <div className="w-full">
-        <HeaderBanner user={user} setUser={setUser}/>
+        <HeaderBanner user={user} setUser={setUser} />
         <Routes>
           <Route path="/" element={<Productos />} />
           <Route path="/contacto" element={<Contacto />} />
-          <Route path="/user" element={<UserProfile token={token} />} />
-          <Route path="/login" element={<div id="login"><Login setToken={setToken} /></div>} />
+          <Route
+            path="/user"
+            element={<UserProfile user={user} setUser={setUser} />}
+          />
+          <Route
+            path="/login"
+            element={
+              <div id="login">
+                <Login setToken={setToken} />
+              </div>
+            }
+          />
         </Routes>
       </div>
       <Footer />

@@ -18,9 +18,9 @@ public class CloudinaryServiceImpl implements CloudinaryService {
 
     public CloudinaryServiceImpl() {
         this.cloudinary = new Cloudinary(ObjectUtils.asMap(
-                "cloud_name", "dbqelo1vd",
-                "api_key", "589991622699799",
-                "api_secret", "WC0heTCKa4m-vqrBoOURgbDLd90"
+                "cloud_name", "dkmme98fh",
+                "api_key", "317988625797814",
+                "api_secret", "ly-9EtJ2fKjtG4gc_NOr9U7RI1A"
         ));
     }
 

@@ -1,4 +1,4 @@
-package com.nocountry.backend.model.dto.Response;
+package com.nocountry.backend.model.dto.Request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserResponse {
+public class ImageRequest {
     private Long id;
-    private String email;
-    private String cellphone;
-    private String address;
-    private String name;
     private String imageUrl;
 }

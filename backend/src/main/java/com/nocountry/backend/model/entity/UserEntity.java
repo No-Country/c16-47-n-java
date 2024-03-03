@@ -31,6 +31,8 @@ public class UserEntity implements UserDetails{
     private String address;
     private String cellphone;
     private String name;
+    @Column(name = "image_url")
+    private String imageUrl;
 
     @Enumerated(EnumType.STRING)
     private ERole role;

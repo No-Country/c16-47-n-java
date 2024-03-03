@@ -6,11 +6,8 @@ import { login, register } from "./AppServicio";
 function Login({ setToken }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [cellphone, setCellphone] = useState("");
-  const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  const [name, setName] = useState("");
   const navigate = useNavigate();
 
   // manejo de animaciones login/register
@@ -29,7 +26,7 @@ function Login({ setToken }) {
   }, []);
 
   // login
-  async function login(e) {
+  async function ingresar(e) {
     e.preventDefault();
     const loginRequest = {
       username: username,
@@ -37,7 +34,7 @@ function Login({ setToken }) {
     };
     try {
       const data = await login(loginRequest);
-      setToken('bearer ' + data.token + '');
+      setToken("Bearer " + data.token + "");
       navigate("/");
     } catch (error) {
       console.log("No se pudo logear. Error: " + error);
@@ -47,16 +44,14 @@ function Login({ setToken }) {
   // register
   async function registrar(e) {
     e.preventDefault();
+
     if (password != password2) {
       alert("Las contraseñas no coinciden");
     } else {
       const registerRequest = {
         username: username,
         email: email,
-        cellphone: cellphone,
-        address: address,
         password: password,
-        name: name,
         role: null,
       };
       try {
@@ -96,33 +91,6 @@ function Login({ setToken }) {
                 className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
               />
               <input
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                type="text"
-                name="address"
-                placeholder="Dirección o domicilio"
-                required
-                className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
-              />
-              <input
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                type="text"
-                name="name"
-                placeholder="Nombre completo"
-                required
-                className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
-              />
-              <input
-                value={cellphone}
-                onChange={(e) => setCellphone(e.target.value)}
-                type="text"
-                name="cellphone"
-                placeholder="Teléfono"
-                required
-                className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
-              />
-              <input
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
@@ -140,12 +108,6 @@ function Login({ setToken }) {
                 required
                 className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
               />
-              {/* <input
-                type="file"
-                name="archivo"
-                required
-                className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
-              /> */}
               <div className="mt-8 flex flex-col gap-y-4">
                 <button
                   type="submit"
@@ -169,7 +131,7 @@ function Login({ setToken }) {
             <p className="font-medium text-lg text-gray-500 mt-4">
               Por favor ingresar sus datos
             </p>
-            <form onSubmit={(e) => login(e)}>
+            <form onSubmit={(e) => ingresar(e)}>
               <div className="mt-5">
                 <div>
                   <label className="text-lg font-medium">Usuario</label>

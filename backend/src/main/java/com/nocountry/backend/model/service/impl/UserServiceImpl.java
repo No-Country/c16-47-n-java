@@ -5,7 +5,9 @@ import com.nocountry.backend.model.dto.Request.AddressRequest;
 import com.nocountry.backend.model.dto.Request.CellphoneRequest;
 import com.nocountry.backend.model.dto.Request.ChangesRequest;
 import com.nocountry.backend.model.dto.Request.EmailRequest;
+import com.nocountry.backend.model.dto.Request.ImageRequest;
 import com.nocountry.backend.model.dto.Request.PasswordRequest;
+import com.nocountry.backend.model.dto.Request.ProfileRequest;
 import com.nocountry.backend.model.dto.Request.UsernameRequest;
 import com.nocountry.backend.model.dto.Response.UserResponse;
 import com.nocountry.backend.model.entity.UserEntity;
@@ -52,10 +54,12 @@ public class UserServiceImpl implements UserService {
     public UserResponse getCurrentUser(Authentication auth) {
         UserEntity userDB = UR.findByUsername(auth.getName());
         return new UserResponse().builder()
+            .id(userDB.getId())
             .email(userDB.getEmail())
             .cellphone(userDB.getCellphone())
             .address(userDB.getAddress())
             .name(userDB.getName())
+            .imageUrl(userDB.getImageUrl())
             .build();
     }
 
@@ -110,6 +114,24 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(@NonNull Long id) {
         Optional<UserEntity> usuario = UR.findById(id);
         UR.delete(usuario.get());
+    }
+
+    @Override
+    @Transactional // setear imagen al usuario
+    public void setImage(ImageRequest request) {
+        UserEntity usuario = UR.findById(request.getId()).orElseThrow();
+        usuario.setImageUrl(request.getImageUrl());
+        UR.save(usuario);
+    }
+
+    @Override
+    @Transactional
+    public void progileUpdate(ProfileRequest request) {
+        UserEntity usuario = UR.findById(request.getId()).orElseThrow();
+        usuario.setAddress(request.getAddress());
+        usuario.setCellphone(request.getCellphone());
+        usuario.setName(request.getName());
+        UR.save(usuario);
     }
 
 }

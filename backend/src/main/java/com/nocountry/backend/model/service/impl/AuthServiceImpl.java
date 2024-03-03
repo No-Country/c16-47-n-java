@@ -39,10 +39,8 @@ public class AuthServiceImpl implements AuthService{
                 .username(request.getUsername())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .cellphone(request.getCellphone())
-                .address(request.getAddress())
-                .name(request.getName())
                 .role(ERole.USER)
+                .imageUrl("https://i.postimg.cc/BQ6C6jgz/avatar.jpg")
                 .build();
         UR.save(usuario);
 
@@ -57,8 +55,6 @@ public class AuthServiceImpl implements AuthService{
                 .username(request.getUsername())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .cellphone(request.getCellphone())
-                .address(request.getAddress())
                 .role(ERole.ADMIN)
                 .build();
         UR.save(usuario);

@@ -1,12 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 
 const HeaderBanner = ({ user, setUser }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   function cerrarSesion() {
-    setUser(null)
-    navigate("/")
+    setUser(null);
+    navigate("/");
   }
+
+  console.log(user);
 
   return (
     <div>
@@ -52,9 +54,8 @@ const HeaderBanner = ({ user, setUser }) => {
                 </Link>
                 <Link
                   className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23] mr-5"
-                  onClick={cerrarSesion}
                 >
-                  Cerrar Sesión
+                  <button onClick={cerrarSesion}>Cerrar Sesión</button>
                 </Link>
               </>
             )}

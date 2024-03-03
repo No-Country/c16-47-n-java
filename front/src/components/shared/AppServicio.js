@@ -54,7 +54,7 @@ export async function traerUsuario(token) {
   try {
     const res = await fetch("http://localhost:8080/user/user", {
       headers: {
-        Authorization: token, // Aquí agregamos el token al encabezado de autorización
+        Authorization: token, 
       },
     });
     if (!res.ok) {
@@ -70,7 +70,7 @@ export async function traerUsuario(token) {
 
 export async function guardarCambios(request) {
   try {
-    await fetch("http://localhost:8080/user/changes", {
+    await fetch("http://localhost:8080/user/profileUpdate", {
       body: JSON.stringify(request),
       headers: {
         "Content-type": "application/json",
@@ -121,3 +121,18 @@ export async function traerOrden() {
     console.log("La respuesta del servicio no es válida. " + error);
   }
 }
+
+// export async function getImage(request) {
+//   try {
+//     const res = await fetch('http://localhost:8080/image/upload', {
+      
+//       method: "POST"
+//     })
+//     if (!res.ok) {
+//       throw new Error("Error al persistir la imagen");
+//     }
+//   } catch (error) {
+//     console.log("No se pudo traer la imagen. Error : " + error)
+//     throw error
+//   }
+// }

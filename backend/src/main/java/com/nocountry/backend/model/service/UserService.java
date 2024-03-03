@@ -4,7 +4,9 @@ import com.nocountry.backend.model.dto.UserDTO;
 import com.nocountry.backend.model.dto.Request.AddressRequest;
 import com.nocountry.backend.model.dto.Request.CellphoneRequest;
 import com.nocountry.backend.model.dto.Request.EmailRequest;
+import com.nocountry.backend.model.dto.Request.ImageRequest;
 import com.nocountry.backend.model.dto.Request.PasswordRequest;
+import com.nocountry.backend.model.dto.Request.ProfileRequest;
 import com.nocountry.backend.model.dto.Request.UsernameRequest;
 import com.nocountry.backend.model.dto.Response.UserResponse;
 
@@ -23,4 +25,6 @@ public interface UserService {
     void updateCellphone(CellphoneRequest request);
     void updateAddress(AddressRequest request);
     void deleteUser(@NonNull Long id);
+    void setImage(ImageRequest request);
+    void progileUpdate(ProfileRequest request);
 }

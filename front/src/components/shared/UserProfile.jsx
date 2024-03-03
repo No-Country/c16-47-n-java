@@ -1,32 +1,17 @@
-import { useEffect, useState } from "react";
-import { guardarCambios, traerUsuario } from "./AppServicio";
+import { useState } from "react";
+import { guardarCambios } from "./AppServicio";
 
-const UserProfile = ({token}) => {
-  const [user, setUser] = useState([]);
+const UserProfile = ({user, setUser}) => {
   const [avatar, setAvatar] = useState("");
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
   const [address, setAddres] = useState("");
   const [cellphone, setCellphone] = useState("");
-
-  useEffect(() => {
-    async function traerUser() {
-      try {
-        const res = await traerUsuario(token)
-        const data = res.json()
-        setUser(data)
-      } catch (error) {
-        console.log("No se pudo traer el usuario. Error: " + error)
-      }
-    }
-    traerUser()
-  }, [], user);
 
   async function cambiarDatos(e) {
     e.preventDefault();
     setUser({
+      // id: user.id,
       name: name,
-      email: email,
       address: address,
       cellphone: cellphone,
     });
@@ -58,7 +43,6 @@ const UserProfile = ({token}) => {
           />
           <div className="text-center mt-4">
             <h1 className="text-xl text-white font-semibold">{name}</h1>
-            <p className="text-white">{email}</p>
           </div>
         </div>
         <form onClick={cambiarDatos} method="POST" className="px-4 py-3">
@@ -76,18 +60,11 @@ const UserProfile = ({token}) => {
             onChange={(e) => setName(e.target.value)}
           />
           <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-300 mt-2"
+            htmlFor="address"
+            className="block text-sm font-medium text-gray-300"
           >
-            Email
+            Dirección
           </label>
-          <input
-            type="email"
-            id="email"
-            className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            value={email}
-            onChange={(e) => setEmail(e)}
-          />
           <input
             type="text"
             id="address"
@@ -95,6 +72,12 @@ const UserProfile = ({token}) => {
             value={address}
             onChange={(e) => setAddres(e)}
           />
+          <label
+            htmlFor="cellphone"
+            className="block text-sm font-medium text-gray-300"
+          >
+            Teléfono
+          </label>
           <input
             type="text"
             id="cellphone"

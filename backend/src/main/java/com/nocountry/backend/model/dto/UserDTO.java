@@ -28,18 +28,8 @@ public class UserDTO {
     @NotBlank(message = "La contrasenia no puede ser en blanco")
     private String password;
 
-    @NotNull(message = "La direccion no puede ser nulo")
-    @NotBlank(message = "La direccion no puede estar en blanco")
     private String address;
-
-    @NotNull(message = "El nro de celular no puede ser nulo")
-    @NotBlank(message = "El nro de celular no puede estar en blanco")
     private String cellphone;
-
-    @NotNull(message = "El nombre no puede ser nulo")
-    @NotBlank(message = "El nombre no puede estar en blanco")
     private String name;
-
-    @Enumerated(EnumType.STRING)
-    private ERole eRole;
+    private String imageUrl;
 }
