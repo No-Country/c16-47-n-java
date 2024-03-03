@@ -17,9 +17,7 @@ function App() {
     async function traerUser() {
       try {
         const data = await traerUsuario(token);
-        console.log(data);
         setUser(data);
-        // console.log(user.id)
       } catch (error) {
         console.log("No se pudo traer el usuario. Error: " + error);
       }
@@ -36,7 +34,7 @@ function App() {
           <Route path="/contacto" element={<Contacto />} />
           <Route
             path="/user"
-            element={<UserProfile user={user} setUser={setUser} />}
+            element={<UserProfile token={token} user={user} setUser={setUser} />}
           />
           <Route
             path="/login"

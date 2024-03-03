@@ -55,7 +55,8 @@ function Login({ setToken }) {
         role: null,
       };
       try {
-        await register(registerRequest);
+        const data = await register(registerRequest);
+        setToken("Bearer " + data.token + "");
         navigate("/");
       } catch (error) {
         console.log("No se pudo registrar. Error: " + error);

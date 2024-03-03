@@ -44,6 +44,8 @@ export async function register(request) {
     if (!res.ok) {
       throw new Error("Error al registrar usuario");
     }
+    const data = await res.json();
+    return data;
   } catch (error) {
     console.log("No se puede registrar. Error: " + error);
     throw error;
@@ -54,7 +56,7 @@ export async function traerUsuario(token) {
   try {
     const res = await fetch("http://localhost:8080/user/user", {
       headers: {
-        Authorization: token, 
+        Authorization: token,
       },
     });
     if (!res.ok) {
@@ -68,17 +70,39 @@ export async function traerUsuario(token) {
   }
 }
 
-export async function guardarCambios(request) {
+export async function guardarCambios(request, token) {
   try {
-    await fetch("http://localhost:8080/user/profileUpdate", {
+    const res = await fetch("http://localhost:8080/user/profileUpdate", {
       body: JSON.stringify(request),
       headers: {
+        Authorization: token,
         "Content-type": "application/json",
       },
       method: "POST",
     });
+    if (!res.ok) {
+      throw new Error("Error al actualizar el usuario");
+    }
   } catch (error) {
     console.log("No se puede guardar los cambios. Error: " + error);
+  }
+}
+
+export async function traerImagen(request, token) {
+  try {
+    const res = await fetch("http://localhost:8080/user/updateImage", {
+      body: JSON.stringify(request),
+      headers: {
+        Authorization: token,
+        "Content-type": "multipart/form-data",
+      },
+      method: "POST",
+    });
+    if (!res.ok) {
+      throw new Error("Error al actualizar la imagen");
+    }
+  } catch (error) {
+    console.log("La respuesta del servicio no es válida. " + error);
   }
 }
 
@@ -102,16 +126,6 @@ export async function traerCategoria() {
   }
 }
 
-export async function traerImagen() {
-  try {
-    const res = await fetch("/src/json/imagen.json");
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.log("La respuesta del servicio no es válida. " + error);
-  }
-}
-
 export async function traerOrden() {
   try {
     const res = await fetch("/src/json/orden.json");
@@ -121,18 +135,3 @@ export async function traerOrden() {
     console.log("La respuesta del servicio no es válida. " + error);
   }
 }
-
-// export async function getImage(request) {
-//   try {
-//     const res = await fetch('http://localhost:8080/image/upload', {
-      
-//       method: "POST"
-//     })
-//     if (!res.ok) {
-//       throw new Error("Error al persistir la imagen");
-//     }
-//   } catch (error) {
-//     console.log("No se pudo traer la imagen. Error : " + error)
-//     throw error
-//   }
-// }

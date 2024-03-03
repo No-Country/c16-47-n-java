@@ -8,8 +8,6 @@ const HeaderBanner = ({ user, setUser }) => {
     navigate("/");
   }
 
-  console.log(user);
-
   return (
     <div>
       <header className="bg-[#202020] text-white py-4 flex justify-between items-center w-full">
@@ -70,7 +68,7 @@ const HeaderBanner = ({ user, setUser }) => {
       {user !== null && user ? (
         <p id="hola">Hola de nuevo {user.name}</p>
       ) : (
-        <p id="hola">NO USER</p>
+        <p> </p>
       )}
     </div>
   );

@@ -1,30 +1,40 @@
 import { useState } from "react";
-import { guardarCambios } from "./AppServicio";
+import { guardarCambios, traerImagen } from "./AppServicio";
 
-const UserProfile = ({user, setUser}) => {
-  const [avatar, setAvatar] = useState("");
-  const [name, setName] = useState("");
-  const [address, setAddres] = useState("");
-  const [cellphone, setCellphone] = useState("");
+const UserProfile = ({user, setUser, token}) => {
+  const [avatar, setAvatar] = useState(user.imageUrl);
+  const [name, setName] = useState(user.name);
+  const [address, setAddres] = useState(user.address);
+  const [cellphone, setCellphone] = useState(user.cellphone);
 
   async function cambiarDatos(e) {
     e.preventDefault();
-    setUser({
-      // id: user.id,
+    const changes = {
+      id: user.id,
       name: name,
       address: address,
       cellphone: cellphone,
-    });
+    };
     try {
-      await guardarCambios(user);
+      await guardarCambios(changes, token);
     } catch (error) {
       console.log("Hubo un error al guardar cambios. Error: " + error);
     }
   }
 
-  const cambiarAvatar = (e) => {
-    setAvatar(URL.createObjectURL(e.target.files[0]));
-  };
+  async function cambiarAvatar(e) {
+    e.preventDefault()
+    const newAvatar = {
+      id: user.id,
+      avatar: avatar
+    }
+    try {
+      await traerImagen(newAvatar, token)
+    } catch (error) {
+      console.log("Hubo un error al guardar la imagens. Error: " + error);
+    }
+    
+  }
 
   return (
     <section className="bg-[#181818] p-6">
@@ -70,7 +80,7 @@ const UserProfile = ({user, setUser}) => {
             id="address"
             className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             value={address}
-            onChange={(e) => setAddres(e)}
+            onChange={(e) => setAddres(e.target.value)}
           />
           <label
             htmlFor="cellphone"
@@ -83,7 +93,7 @@ const UserProfile = ({user, setUser}) => {
             id="cellphone"
             className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             value={cellphone}
-            onChange={(e) => setCellphone(e)}
+            onChange={(e) => setCellphone(e.target.value)}
           />
 
           <button
