@@ -1,8 +1,8 @@
 package com.nocountry.backend.model.dto;
 
-import com.nocountry.backend.model.entity.Product;
-import com.nocountry.backend.model.entity.UserEntity;
-import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.nocountry.backend.model.dto.Response.OrderResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,19 +16,16 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class OrderDTO {
 
     private Long id;
     private LocalDate orderDate;
     private String total;
 
-    private UserEntity user;
+    //TODO devolver el usuario
+    //private UserEntity user;
 
-    @ManyToMany(fetch = FetchType.EAGER, targetEntity = Product.class, cascade = CascadeType.PERSIST)
-    @JoinTable(name = "order_product",
-            joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id")
-    )
-    private List<Product> products;
-
+    //TODO terminar de hacer funcionar devolucion de los productos
+    private List<OrderResponse> products;
 }

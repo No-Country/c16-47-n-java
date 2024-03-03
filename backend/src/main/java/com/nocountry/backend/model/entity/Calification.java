@@ -1,6 +1,7 @@
 package com.nocountry.backend.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +26,7 @@ public class Calification {
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
-    @Column(columnDefinition = "DOUBLE DEFAULT 0.0")
+    @Positive(message = "La calificación no puede ser negativa")
+    @Column(columnDefinition = "DEFAULT 0.0")
     private Double calification;
 }

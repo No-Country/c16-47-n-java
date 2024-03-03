@@ -7,7 +7,6 @@ import com.nocountry.backend.model.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -21,6 +20,4 @@ public class OrderServiceImpl implements OrderService {
         List<Order> orderDB = orderRepository.findAll();
         return orderDB.stream().map(order -> modelMapper.map(order, OrderDTO.class)).toList();
     }
-
-
 }
