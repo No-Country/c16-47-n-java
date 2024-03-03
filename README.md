@@ -21,4 +21,4 @@ Comenzando con 7 personas y con pocos roles hemos podido terminar nuestro proyec
 - Postman
 Entre otras muchas más tecnologías
 
-![LoginBounce](https://github.com/No-Country/c16-47-n-java/blob/main/imagenes/LoginaGif.gif)
+![LoginBounce](https://github.com/No-Country/c16-47-n-java/blob/main/imagenes/Login%20Bounce.gif)
