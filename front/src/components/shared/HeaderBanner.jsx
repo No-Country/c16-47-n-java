@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { traerUsuario } from "./AppServicio";
+import { Link, useNavigate } from "react-router-dom";
 
-const HeaderBanner = () => {
-  const [user, setUser] = useState(null);
+const HeaderBanner = ({ user, setUser }) => {
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    traerUsuario().then((data) => setUser(data));
-  }, user);
+  function cerrarSesion() {
+    setUser(null);
+    navigate("/");
+  }
 
   return (
     <div>
@@ -19,7 +18,7 @@ const HeaderBanner = () => {
             className="h-11 ml-8"
           />
         </div>
-        <nav className="flex pr-8 ">
+        <nav className="flex pr-8">
           <ul className="flex mb-4 text-white ">
             <Link
               className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23] mr-5"
@@ -33,18 +32,31 @@ const HeaderBanner = () => {
             >
               Contacto
             </Link>
-            <Link
-              className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23] mr-5"
-              to="/user"
-            >
-              Editar Perfil
-            </Link>
-            <Link
-              className="active:scale-[.98] hover:scale-[1.1] hover:text-[#ff9a36]"
-              to="/login"
-            >
-              Login
-            </Link>
+
+            {/* Logica de login/logout */}
+
+            {user == null ? (
+              <Link
+                className="active:scale-[.98] hover:scale-[1.1] hover:text-[#ff9a36]"
+                to="/login"
+              >
+                Ingresar
+              </Link>
+            ) : (
+              <>
+                <Link
+                  className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23] mr-5"
+                  to="/user"
+                >
+                  Editar Perfil
+                </Link>
+                <Link
+                  className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23] mr-5"
+                >
+                  <button onClick={cerrarSesion}>Cerrar Sesión</button>
+                </Link>
+              </>
+            )}
           </ul>
         </nav>
       </header>
@@ -53,7 +65,11 @@ const HeaderBanner = () => {
         alt="banner"
         className="lg:h-60 h-40 w-full object-cover"
       />
-      { user !== null && user ? <p>Hola de nuevo  {user.name}</p> : <></>}
+      {user !== null && user ? (
+        <p id="hola">Hola de nuevo {user.name}</p>
+      ) : (
+        <p> </p>
+      )}
     </div>
   );
 };

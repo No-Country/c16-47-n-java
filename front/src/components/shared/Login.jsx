@@ -3,16 +3,14 @@ import { useNavigate } from "react-router-dom";
 import "/src/assets/styles/login.css";
 import { login, register } from "./AppServicio";
 
-function Login({token, setToken}) {
+function Login({ setToken }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [cellphone, setCellphone] = useState(0);
-  const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  const [name, setName] = useState("");
   const navigate = useNavigate();
 
+  // manejo de animaciones login/register
   useEffect(() => {
     const signUpButton = document.getElementById("signUp");
     const signInButton = document.getElementById("signIn");
@@ -27,36 +25,38 @@ function Login({token, setToken}) {
     });
   }, []);
 
-  async function entrar(e) {
+  // login
+  async function ingresar(e) {
     e.preventDefault();
     const loginRequest = {
       username: username,
       password: password,
     };
     try {
-      await login(loginRequest).then((data) => setToken(data));
+      const data = await login(loginRequest);
+      setToken("Bearer " + data.token + "");
       navigate("/");
     } catch (error) {
       console.log("No se pudo logear. Error: " + error);
     }
   }
 
+  // register
   async function registrar(e) {
     e.preventDefault();
+
     if (password != password2) {
       alert("Las contraseñas no coinciden");
     } else {
       const registerRequest = {
         username: username,
         email: email,
-        cellphone: cellphone,
-        address: address,
         password: password,
-        name: name,
         role: null,
       };
       try {
-        await register(registerRequest);
+        const data = await register(registerRequest);
+        setToken("Bearer " + data.token + "");
         navigate("/");
       } catch (error) {
         console.log("No se pudo registrar. Error: " + error);
@@ -92,33 +92,6 @@ function Login({token, setToken}) {
                 className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
               />
               <input
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                type="text"
-                name="address"
-                placeholder="Dirección o domicilio"
-                required
-                className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
-              />
-              <input
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                type="text"
-                name="name"
-                placeholder="Nombre completo"
-                required
-                className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
-              />
-              <input
-                value={cellphone}
-                onChange={(e) => setCellphone(e.target.value)}
-                type="text"
-                name="cellphone"
-                placeholder="Teléfono"
-                required
-                className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
-              />
-              <input
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 type="password"
@@ -133,12 +106,6 @@ function Login({token, setToken}) {
                 type="password"
                 name="password2"
                 placeholder="Repetir cotraseña"
-                required
-                className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
-              />
-              <input
-                type="file"
-                name="archivo"
                 required
                 className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
               />
@@ -165,7 +132,7 @@ function Login({token, setToken}) {
             <p className="font-medium text-lg text-gray-500 mt-4">
               Por favor ingresar sus datos
             </p>
-            <form onSubmit={(e) => entrar(e)}>
+            <form onSubmit={(e) => ingresar(e)}>
               <div className="mt-5">
                 <div>
                   <label className="text-lg font-medium">Usuario</label>
@@ -210,7 +177,7 @@ function Login({token, setToken}) {
         </div>
         <div className="overlay-container">
           <div className="overlay">
-            <div className="overlay-panel overlay-left">
+            <div className="overlay-panel overlay-left flex justify-center">
               <div className="mt-5 flex justify-center items-center">
                 <img
                   src="src/assets/img/Loguito-removebg.png"
@@ -218,11 +185,11 @@ function Login({token, setToken}) {
                 />
               </div>
             </div>
-            <div className="overlay-panel overlay-right">
+            <div className="overlay-panel overlay-right flex justify-start pt-10">
               <div className="mt-5 flex justify-center items-center">
                 <img
                   src="src/assets/img/Loguito-removebg.png"
-                  className="animate-bounce h-60 w-60 hidden sm:block"
+                  className="animate-bounce mt-10 h-60 w-60 hidden sm:block"
                 />
               </div>
             </div>
@@ -231,6 +198,6 @@ function Login({token, setToken}) {
       </div>
     </>
   );
-};
+}
 
 export default Login;

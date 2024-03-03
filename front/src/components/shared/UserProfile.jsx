@@ -1,45 +1,40 @@
-import { useEffect, useState } from "react";
-import { guardarCambios, traerUsuario } from "./AppServicio";
+import { useState } from "react";
+import { guardarCambios, traerImagen } from "./AppServicio";
 
-const UserProfile = () => {
-  const [user, setUser] = useState([]);
-  const [avatar, setAvatar] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddres] = useState("");
-  const [cellphone, setCellphone] = useState("");
-
-  useEffect(() => {
-    async function perfil(e) {
-      e.preventDefault();
-      try {
-        await traerUsuario().then((data) => setUser(data));
-        console.log("Usuario traido desde UserProfile: " + user)
-      } catch (error) {
-        console.log("Hubo un error al cargar el usuario. Error: " + error);
-      }
-    }
-    perfil()
-  }, []);
+const UserProfile = ({user, setUser, token}) => {
+  const [avatar, setAvatar] = useState(user.imageUrl);
+  const [name, setName] = useState(user.name);
+  const [address, setAddres] = useState(user.address);
+  const [cellphone, setCellphone] = useState(user.cellphone);
 
   async function cambiarDatos(e) {
     e.preventDefault();
-    setUser({
+    const changes = {
+      id: user.id,
       name: name,
-      email: email,
-      address:address,
-      cellphone: cellphone
-    })
+      address: address,
+      cellphone: cellphone,
+    };
     try {
-      await guardarCambios(user)
+      await guardarCambios(changes, token);
     } catch (error) {
       console.log("Hubo un error al guardar cambios. Error: " + error);
     }
   }
 
-  const cambiarAvatar = (e) => {
-    setAvatar(URL.createObjectURL(e.target.files[0]));
-  };
+  async function cambiarAvatar(e) {
+    e.preventDefault()
+    const newAvatar = {
+      id: user.id,
+      avatar: avatar
+    }
+    try {
+      await traerImagen(newAvatar, token)
+    } catch (error) {
+      console.log("Hubo un error al guardar la imagens. Error: " + error);
+    }
+    
+  }
 
   return (
     <section className="bg-[#181818] p-6">
@@ -58,7 +53,6 @@ const UserProfile = () => {
           />
           <div className="text-center mt-4">
             <h1 className="text-xl text-white font-semibold">{name}</h1>
-            <p className="text-white">{email}</p>
           </div>
         </div>
         <form onClick={cambiarDatos} method="POST" className="px-4 py-3">
@@ -76,31 +70,30 @@ const UserProfile = () => {
             onChange={(e) => setName(e.target.value)}
           />
           <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-300 mt-2"
+            htmlFor="address"
+            className="block text-sm font-medium text-gray-300"
           >
-            Email
+            Dirección
           </label>
-          <input
-            type="email"
-            id="email"
-            className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            value={email}
-            onChange={(e) => setEmail(e)}
-          />
           <input
             type="text"
             id="address"
             className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             value={address}
-            onChange={(e) => setAddres(e)}
+            onChange={(e) => setAddres(e.target.value)}
           />
+          <label
+            htmlFor="cellphone"
+            className="block text-sm font-medium text-gray-300"
+          >
+            Teléfono
+          </label>
           <input
             type="text"
             id="cellphone"
             className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             value={cellphone}
-            onChange={(e) => setCellphone(e)}
+            onChange={(e) => setCellphone(e.target.value)}
           />
 
           <button

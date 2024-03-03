@@ -1,12 +1,9 @@
 package com.nocountry.backend.model.service.impl;
 
 import com.nocountry.backend.model.dto.UserDTO;
-import com.nocountry.backend.model.dto.Request.AddressRequest;
-import com.nocountry.backend.model.dto.Request.CellphoneRequest;
 import com.nocountry.backend.model.dto.Request.ChangesRequest;
-import com.nocountry.backend.model.dto.Request.EmailRequest;
 import com.nocountry.backend.model.dto.Request.PasswordRequest;
-import com.nocountry.backend.model.dto.Request.UsernameRequest;
+import com.nocountry.backend.model.dto.Request.ProfileRequest;
 import com.nocountry.backend.model.dto.Response.UserResponse;
 import com.nocountry.backend.model.entity.UserEntity;
 import com.nocountry.backend.model.repository.UserRepository;
@@ -52,10 +49,12 @@ public class UserServiceImpl implements UserService {
     public UserResponse getCurrentUser(Authentication auth) {
         UserEntity userDB = UR.findByUsername(auth.getName());
         return new UserResponse().builder()
+            .id(userDB.getId())
             .email(userDB.getEmail())
             .cellphone(userDB.getCellphone())
             .address(userDB.getAddress())
             .name(userDB.getName())
+            .imageUrl(userDB.getImageUrl())
             .build();
     }
 
@@ -64,21 +63,6 @@ public class UserServiceImpl implements UserService {
     }
 
     // actualizar datos del usuario
-    @Override
-    @Transactional // USER
-    public void updateUsername(UsernameRequest request) {
-        UserEntity userDB = UR.findById(request.getId()).orElseThrow();
-        userDB.setUsername(request.getUsername());
-        UR.save(userDB);
-    }
-
-    @Override
-    @Transactional // USER
-    public void updateEmail(EmailRequest request) {
-        UserEntity usuario = UR.findById(request.getId()).orElseThrow();
-        usuario.setEmail(request.getEmail());
-        UR.save(usuario);
-    }
 
     @Override
     @Transactional // USER
@@ -88,28 +72,22 @@ public class UserServiceImpl implements UserService {
         UR.save(usuario);
     }
 
-    @Override
-    @Transactional // USER
-    public void updateCellphone(CellphoneRequest request) {
-        UserEntity usuario = UR.findById(request.getId()).orElseThrow();
-        usuario.setCellphone(request.getCellphone());
-        UR.save(usuario);
-    }
-
-    @Override
-    @Transactional // USER
-    public void updateAddress(AddressRequest request) {
-        UserEntity usuario = UR.findById(request.getId()).orElseThrow();
-        usuario.setAddress(request.getAddress());
-        UR.save(usuario);
-    }
-
     // eliminación del usuario
     @Override
     @Transactional // ADMIN
     public void deleteUser(@NonNull Long id) {
         Optional<UserEntity> usuario = UR.findById(id);
         UR.delete(usuario.get());
+    }
+
+    @Override
+    @Transactional
+    public void profileUpdate(ProfileRequest request) {
+        UserEntity usuario = UR.findById(request.getId()).orElseThrow();
+        usuario.setAddress(request.getAddress());
+        usuario.setCellphone(request.getCellphone());
+        usuario.setName(request.getName());
+        UR.save(usuario);
     }
 
 }

@@ -1,13 +1,16 @@
 package com.nocountry.backend.controller.rest;
 
-import com.nocountry.backend.model.dto.Request.AddressRequest;
-import com.nocountry.backend.model.dto.Request.CellphoneRequest;
-import com.nocountry.backend.model.dto.Request.EmailRequest;
+import com.nocountry.backend.model.dto.Request.ImageRequest;
 import com.nocountry.backend.model.dto.Request.PasswordRequest;
-import com.nocountry.backend.model.dto.Request.UsernameRequest;
+import com.nocountry.backend.model.dto.Request.ProfileRequest;
 import com.nocountry.backend.model.dto.Response.UserResponse;
-import com.nocountry.backend.model.service.impl.UserServiceImpl;
+import com.nocountry.backend.model.entity.UserEntity;
+import com.nocountry.backend.model.repository.UserRepository;
+import com.nocountry.backend.model.service.CloudinaryService;
+import com.nocountry.backend.model.service.ImageService;
+import com.nocountry.backend.model.service.UserService;
 import lombok.RequiredArgsConstructor;
+import java.io.IOException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -15,29 +18,17 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "/user")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
 public class UserController {
 
-    private final UserServiceImpl US;
+    private final UserService US;
+    private final ImageService imageService;
+    private final CloudinaryService cloudinaryService;
+    private final UserRepository UR;
 
     // traer usuario local USER
     @GetMapping(value = "/user")
     public ResponseEntity<UserResponse> findUser(Authentication auth) {
         return ResponseEntity.ok().body(US.getCurrentUser(auth));
-    }
-
-    // modificar username USER
-    @PutMapping(value = "/updateusename")
-    public ResponseEntity<?> updateUsername(@RequestBody UsernameRequest request) {
-        US.updateUsername(request);
-        return ResponseEntity.ok().body(null);
-    }
-
-    // modificar email USER
-    @PutMapping(value = "/updateemail")
-    public ResponseEntity<?> updateEmail(@RequestBody EmailRequest request) {
-        US.updateEmail(request);
-        return ResponseEntity.ok().body(null);
     }
 
     // modificar password USER
@@ -47,17 +38,18 @@ public class UserController {
         return ResponseEntity.ok().body(null);
     }
 
-    // modificar cellphone USER
-    @PutMapping(value = "/updatecellphone")
-    public ResponseEntity<?> updateCellphone(@RequestBody CellphoneRequest request) {
-        US.updateCellphone(request);
+    // setear imagen
+    @PostMapping("/updateImage")
+    public ResponseEntity<Void> upload(@RequestBody ImageRequest request) throws IOException {
+        var image = imageService.save(cloudinaryService.upload(request.getFile()));
+        UserEntity usuario = UR.findById(request.getId()).orElseThrow();
+        usuario.setImageUrl(image.getUrl());
         return ResponseEntity.ok().body(null);
     }
 
-    // modificar address USER
-    @PutMapping(value = "/updateaddress")
-    public ResponseEntity<?> updateAddress(@RequestBody AddressRequest request) {
-        US.updateAddress(request);
+    @PutMapping(value = "/profileUpdate")
+    public ResponseEntity<?> profileUpdate(@RequestBody ProfileRequest request) {
+        US.profileUpdate(request);
         return ResponseEntity.ok().body(null);
     }
 
