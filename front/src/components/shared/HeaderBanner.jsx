@@ -58,7 +58,7 @@ const HeaderBanner = ({ user, setUser }) => {
                 ) : (
                   <>
                     <Link
-                      className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23] mr-5"
+                      className="active:scale-[.98] hover:scale-[1.1] hover:text-[#ff9a36] mr-5"
                       to="/user"
                     >
                       Editar Perfil
