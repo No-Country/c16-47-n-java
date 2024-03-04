@@ -58,10 +58,6 @@ public class UserServiceImpl implements UserService {
             .build();
     }
 
-    public void changeUserData(ChangesRequest request){
-        
-    }
-
     // actualizar datos del usuario
 
     @Override

@@ -76,8 +76,9 @@ export async function guardarCambios(request, token) {
       body: JSON.stringify(request),
       headers: {
         Authorization: token,
+        "Content-type": "application/json",
       },
-      method: "POST",
+      method: "PUT",
     });
     if (!res.ok) {
       throw new Error("Error al actualizar el usuario");
@@ -87,30 +88,19 @@ export async function guardarCambios(request, token) {
   }
 }
 
-export async function guardarImagen(id, formData, token, fileName) {
-  if (formData) {
-    try {
-      console.log("---------------------------------------");
-      console.log(fileName)
-      console.log("---------------------------------------");
-      console.log(formData);
-      console.log(typeof formData);
-      console.log("---------------------------------------");
-      const res = await fetch(`http://localhost:8080/user/updateImage/${id}`, {
-        body: formData,
-        headers: {
-          Authorization: token,
-          "Content-type": "multipart/form-data,",
-        },
-        method: "POST",
-      });
-      if (!res.ok) {
-        throw new Error("Error al actualizar la imagen");
-      }
-    } catch (error) {
-      console.log("La respuesta del servicio no es válida. " + error);
+export async function guardarImagen(id, formData, token) {
+  try {
+    const res = await fetch(`http://localhost:8080/user/updateImage/${id}`, {
+      body: formData,
+      headers: {
+        Authorization: token,
+      },
+      method: "POST",
+    });
+    if (!res.ok) {
+      throw new Error("Error al actualizar la imagen");
     }
-  } else {
-    console.log("No hay archivo");
+  } catch (error) {
+    console.log("La respuesta del servicio no es válida. " + error);
   }
 }
