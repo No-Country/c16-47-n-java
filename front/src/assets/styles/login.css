@@ -5,7 +5,7 @@
 .container {
   position: relative;
   overflow: hidden;
-  min-height: 150vh;
+  min-height: 60vh;
 }
 
 .form-container {
@@ -115,25 +115,20 @@
 }
 
 @media screen and (width < 798px) {
-  .container {
-    min-height: 150vh;
-  }
-  .overlay-container{
+  #desaparecer {
     display: none;
   }
-  .overlay {
-    display: none;
+  .sign-in-container{
+    width: 100%;
+    z-index: 0;
   }
-  .overlay-left {
-    display: none;
+  .sign-up-container{
+    width: 100%;
+    z-index: 0;
   }
-  .overlay-right {
-    display: none;
-  }
-  .overlay-panel {
-    display: none;
-  }
-  .container.right-panel-active {
-    display: none;
+  .container.right-panel-active .sign-up-container {
+    transform: translateX(0%);
+    opacity: 1;
+    z-index: 1;
   }
 }

@@ -175,7 +175,7 @@ function Login({ setToken }) {
             </button>
           </div>
         </div>
-        <div className="overlay-container">
+        <div id="desaparecer" className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-left flex justify-center">
               <div className="mt-5 flex justify-center items-center">
