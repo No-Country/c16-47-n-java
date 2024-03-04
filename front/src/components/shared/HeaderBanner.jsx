@@ -12,11 +12,13 @@ const HeaderBanner = ({ user, setUser }) => {
     <div>
       <header className="bg-[#202020] text-white py-4 flex justify-between items-center w-full">
         <div className="flex justify-center">
-          <img
-            src="/src/assets/img/Logo.png"
-            alt="Logo"
-            className="h-11 ml-8"
-          />
+          <Link to="/">
+            <img
+              src="/src/assets/img/Logo.png"
+              alt="Logo"
+              className="h-11 ml-8"
+            />
+          </Link>
         </div>
         <nav className="flex pr-8">
           <ul className="flex mb-4 text-white ">

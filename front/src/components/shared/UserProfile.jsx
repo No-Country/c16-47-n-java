@@ -1,7 +1,7 @@
 import {  useEffect, useState } from "react";
 import { guardarCambios, guardarImagen } from "./AppServicio";
 
-const UserProfile = ({ user, setUser, token }) => {
+const UserProfile = ({ user, setUser}) => {
   const [avatar, setAvatar] = useState(user.imageUrl);
   const [name, setName] = useState(user.name);
   const [address, setAddres] = useState(user.address);
@@ -17,7 +17,7 @@ const UserProfile = ({ user, setUser, token }) => {
       cellphone: cellphone,
     };
     try {
-      await guardarCambios(changes, token);
+      await guardarCambios(changes, localStorage.getItem("token"));
     } catch (error) {
       console.log("Hubo un error al guardar cambios. Error: " + error);
     }
@@ -33,7 +33,7 @@ const UserProfile = ({ user, setUser, token }) => {
     const formData = new FormData();
     formData.append("image", file);
 
-    await guardarImagen(user.id, formData, token);
+    await guardarImagen(user.id, formData, localStorage.getItem("token"));
   }
 
   return (

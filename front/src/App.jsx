@@ -11,20 +11,19 @@ import { traerUsuario } from "./components/shared/AppServicio";
 import AboutUs from "./components/shared/AboutUs";
 
 function App() {
-  const [token, setToken] = useState("");
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     async function traerUser() {
       try {
-        const data = await traerUsuario(token);
+        const data = await traerUsuario(localStorage.getItem("token"));
         setUser(data);
       } catch (error) {
         console.log("No se pudo traer el usuario. Error: " + error);
       }
     }
     traerUser();
-  }, [token]);
+  }, [localStorage]);
 
   return (
     <Router>
@@ -36,15 +35,13 @@ function App() {
           <Route path="/nosotros" element={<AboutUs />} />
           <Route
             path="/user"
-            element={
-              <UserProfile token={token} user={user} setUser={setUser} />
-            }
+            element={<UserProfile user={user} setUser={setUser} />}
           />
           <Route
             path="/login"
             element={
               <div id="login">
-                <Login setToken={setToken} />
+                <Login />
               </div>
             }
           />

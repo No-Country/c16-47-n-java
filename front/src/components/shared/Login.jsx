@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "/src/assets/styles/login.css";
 import { login, register } from "./AppServicio";
 
-function Login({ setToken }) {
+function Login() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,7 +34,8 @@ function Login({ setToken }) {
     };
     try {
       const data = await login(loginRequest);
-      setToken("Bearer " + data.token + "");
+      // setToken("Bearer " + data.token + "");
+      localStorage.setItem("token","Bearer " + data.token + "")
       navigate("/");
     } catch (error) {
       console.log("No se pudo logear. Error: " + error);
@@ -56,7 +57,7 @@ function Login({ setToken }) {
       };
       try {
         const data = await register(registerRequest);
-        setToken("Bearer " + data.token + "");
+        localStorage.setItem("token","Bearer " + data.token + "")
         navigate("/");
       } catch (error) {
         console.log("No se pudo registrar. Error: " + error);
@@ -175,7 +176,7 @@ function Login({ setToken }) {
             </button>
           </div>
         </div>
-        <div className="overlay-container">
+        <div id="desaparecer" className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-left flex justify-center">
               <div className="mt-5 flex justify-center items-center">

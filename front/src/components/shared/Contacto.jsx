@@ -61,7 +61,7 @@ function Contacto() {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="border p-2 w-full"
+              className="border p-2 w-full bg-[#252525] text-white"
               style={{ borderRadius: "8px" }}
               required
             />
@@ -77,7 +77,7 @@ function Contacto() {
               value={formData.email}
               onChange={handleChange}
               className={`border p-2 w-full ${
-                isEmailValid ? "" : "border-grey"
+                isEmailValid ? "" : "border-grey bg-[#252525] text-white"
               }`}
               style={{ borderRadius: "8px" }}
               required
@@ -97,7 +97,7 @@ function Contacto() {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              className="border p-2 w-full"
+              className="border p-2 w-full bg-[#252525] text-white"
               style={{ borderRadius: "8px" }}
               rows="5"
               required
