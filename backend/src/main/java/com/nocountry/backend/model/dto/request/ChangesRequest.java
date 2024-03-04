@@ -1,6 +1,5 @@
-package com.nocountry.backend.model.dto.Request;
+package com.nocountry.backend.model.dto.request;
 
-import com.nocountry.backend.model.enums.ERole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,9 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RegisterRequest {
+public class ChangesRequest {
     private String username;
-    private String password;
     private String email;
-    private ERole role;
+    private String cellphone;
+    private String address;
+    private String name;
 }

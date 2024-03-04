@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.nocountry.backend.model.dto.Request.LoginRequest;
-import com.nocountry.backend.model.dto.Request.RegisterRequest;
-import com.nocountry.backend.model.dto.Response.AuthResponse;
+import com.nocountry.backend.model.dto.request.LoginRequest;
+import com.nocountry.backend.model.dto.request.RegisterRequest;
+import com.nocountry.backend.model.dto.response.AuthResponse;
 import com.nocountry.backend.model.service.impl.AuthServiceImpl;
 import lombok.RequiredArgsConstructor;
 

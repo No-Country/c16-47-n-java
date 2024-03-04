@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.nocountry.backend.model.dto.UserDTO;
-import com.nocountry.backend.model.dto.Response.UserResponse;
+import com.nocountry.backend.model.dto.response.UserResponse;
 import com.nocountry.backend.model.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 

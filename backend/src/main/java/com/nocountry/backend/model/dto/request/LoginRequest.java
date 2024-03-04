@@ -1,4 +1,4 @@
-package com.nocountry.backend.model.dto.Request;
+package com.nocountry.backend.model.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

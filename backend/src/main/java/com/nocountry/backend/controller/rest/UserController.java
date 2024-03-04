@@ -1,8 +1,8 @@
 package com.nocountry.backend.controller.rest;
 
-import com.nocountry.backend.model.dto.Request.PasswordRequest;
-import com.nocountry.backend.model.dto.Request.ProfileRequest;
-import com.nocountry.backend.model.dto.Response.UserResponse;
+import com.nocountry.backend.model.dto.request.PasswordRequest;
+import com.nocountry.backend.model.dto.request.ProfileRequest;
+import com.nocountry.backend.model.dto.response.UserResponse;
 import com.nocountry.backend.model.entity.Image;
 import com.nocountry.backend.model.entity.UserEntity;
 import com.nocountry.backend.model.repository.UserRepository;

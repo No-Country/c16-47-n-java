@@ -2,7 +2,7 @@ package com.nocountry.backend.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.nocountry.backend.model.dto.Response.OrderResponse;
+import com.nocountry.backend.model.dto.response.OrderResponse;
 import com.nocountry.backend.model.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
