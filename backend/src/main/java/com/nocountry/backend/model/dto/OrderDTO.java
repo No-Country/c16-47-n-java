@@ -24,7 +24,7 @@ public class OrderDTO {
     private LocalDate orderDate;
     private String total;
 
-    private UserEntity user;
-
+    //private UserEntity user;
+    private Long userId;
     private List<OrderResponse> products;
 }
