@@ -1,7 +1,7 @@
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { guardarCambios, guardarImagen } from "./AppServicio";
 
-const UserProfile = ({ user, setUser}) => {
+const UserProfile = ({ user, setUser }) => {
   const [avatar, setAvatar] = useState(user.imageUrl);
   const [name, setName] = useState(user.name);
   const [address, setAddres] = useState(user.address);
@@ -29,7 +29,7 @@ const UserProfile = ({ user, setUser}) => {
 
   async function cambiarAvatar(e) {
     e.preventDefault();
-    
+
     const formData = new FormData();
     formData.append("image", file);
 
