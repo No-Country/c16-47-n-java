@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { guardarCambios, traerImagen } from "./AppServicio";
+import { guardarCambios } from "./AppServicio";
 
-const UserProfile = ({user, setUser, token}) => {
+const UserProfile = ({ user, setUser, token }) => {
   const [avatar, setAvatar] = useState(user.imageUrl);
   const [name, setName] = useState(user.name);
   const [address, setAddres] = useState(user.address);
   const [cellphone, setCellphone] = useState(user.cellphone);
+  const [file, setFile] = useState(null);
+  // const [fileName, setFileName] = useState("");
 
   async function cambiarDatos(e) {
     e.preventDefault();
@@ -23,17 +25,34 @@ const UserProfile = ({user, setUser, token}) => {
   }
 
   async function cambiarAvatar(e) {
-    e.preventDefault()
-    const newAvatar = {
-      id: user.id,
-      avatar: avatar
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", file);
+    const res = await fetch(
+      `http://localhost:8080/user/updateImage/${user.id}`,
+      {
+        body: formData,
+        headers: {
+          Authorization: token,
+          // "Content-type": "multipart/form-data,",
+        },
+        method: "POST",
+      }
+    );
+    if (res.ok) {
+      const data = res.json();
+      console.log(data);
     }
-    try {
-      await traerImagen(newAvatar, token)
-    } catch (error) {
-      console.log("Hubo un error al guardar la imagens. Error: " + error);
-    }
-    
+    // try {
+    //   await guardarImagen(user.id, formData, token, fileName);
+    // } catch (error) {
+    //   console.log("Hubo un error al guardar la imagens. Error: " + error);
+    // }
+  }
+
+  function handleFileChange(e) {
+    setFile(e.target.files[0]);
+    console.log(file);
   }
 
   return (
@@ -103,7 +122,7 @@ const UserProfile = ({user, setUser, token}) => {
             Guardar cambios
           </button>
         </form>
-        <form onClick={cambiarAvatar} method="POST">
+        <form onSubmit={cambiarAvatar} method="POST">
           <label
             htmlFor="avatar"
             className="block text-sm font-medium text-gray-300 mt-2"
@@ -112,10 +131,12 @@ const UserProfile = ({user, setUser, token}) => {
           </label>
           <input
             type="file"
+            // formEncType="multipart/form-data"
+            // name="avatar"
             id="avatar"
-            accept="image/*"
+            // accept="image/*"
             className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            onChange={(e) => setAvatar(e)}
+            onChange={handleFileChange}
           />
           <button
             type="submit"

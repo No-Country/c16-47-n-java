@@ -76,7 +76,6 @@ export async function guardarCambios(request, token) {
       body: JSON.stringify(request),
       headers: {
         Authorization: token,
-        "Content-type": "application/json",
       },
       method: "POST",
     });
@@ -88,50 +87,30 @@ export async function guardarCambios(request, token) {
   }
 }
 
-export async function traerImagen(request, token) {
-  try {
-    const res = await fetch("http://localhost:8080/user/updateImage", {
-      body: JSON.stringify(request),
-      headers: {
-        Authorization: token,
-        "Content-type": "multipart/form-data",
-      },
-      method: "POST",
-    });
-    if (!res.ok) {
-      throw new Error("Error al actualizar la imagen");
+export async function guardarImagen(id, formData, token, fileName) {
+  if (formData) {
+    try {
+      console.log("---------------------------------------");
+      console.log(fileName)
+      console.log("---------------------------------------");
+      console.log(formData);
+      console.log(typeof formData);
+      console.log("---------------------------------------");
+      const res = await fetch(`http://localhost:8080/user/updateImage/${id}`, {
+        body: formData,
+        headers: {
+          Authorization: token,
+          "Content-type": "multipart/form-data,",
+        },
+        method: "POST",
+      });
+      if (!res.ok) {
+        throw new Error("Error al actualizar la imagen");
+      }
+    } catch (error) {
+      console.log("La respuesta del servicio no es válida. " + error);
     }
-  } catch (error) {
-    console.log("La respuesta del servicio no es válida. " + error);
-  }
-}
-
-export async function traerCarrito() {
-  try {
-    const res = await fetch("/src/json/carrito.json");
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.log("La respuesta del servicio no es válida. " + error);
-  }
-}
-
-export async function traerCategoria() {
-  try {
-    const res = await fetch("/src/json/categoria.json");
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.log("La respuesta del servicio no es válida. " + error);
-  }
-}
-
-export async function traerOrden() {
-  try {
-    const res = await fetch("/src/json/orden.json");
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.log("La respuesta del servicio no es válida. " + error);
+  } else {
+    console.log("No hay archivo");
   }
 }
