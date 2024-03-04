@@ -80,4 +80,7 @@ public class ProductServiceImpl implements ProductService {
         return productsDB.stream().map(product -> modelMapper.map(product, ProductDTO.class)).toList();
     }
 
+    public Product findById(Long id) {
+        return productRepository.findById(id).orElse(null);
+    }
 }
