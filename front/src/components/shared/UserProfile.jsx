@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { guardarCambios } from "./AppServicio";
+import {  useEffect, useState } from "react";
+import { guardarCambios, guardarImagen } from "./AppServicio";
 
 const UserProfile = ({ user, setUser, token }) => {
   const [avatar, setAvatar] = useState(user.imageUrl);
@@ -7,7 +7,6 @@ const UserProfile = ({ user, setUser, token }) => {
   const [address, setAddres] = useState(user.address);
   const [cellphone, setCellphone] = useState(user.cellphone);
   const [file, setFile] = useState(null);
-  // const [fileName, setFileName] = useState("");
 
   async function cambiarDatos(e) {
     e.preventDefault();
@@ -24,35 +23,17 @@ const UserProfile = ({ user, setUser, token }) => {
     }
   }
 
-  async function cambiarAvatar(e) {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("image", file);
-    const res = await fetch(
-      `http://localhost:8080/user/updateImage/${user.id}`,
-      {
-        body: formData,
-        headers: {
-          Authorization: token,
-          // "Content-type": "multipart/form-data,",
-        },
-        method: "POST",
-      }
-    );
-    if (res.ok) {
-      const data = res.json();
-      console.log(data);
-    }
-    // try {
-    //   await guardarImagen(user.id, formData, token, fileName);
-    // } catch (error) {
-    //   console.log("Hubo un error al guardar la imagens. Error: " + error);
-    // }
-  }
-
   function handleFileChange(e) {
     setFile(e.target.files[0]);
-    console.log(file);
+  }
+
+  async function cambiarAvatar(e) {
+    e.preventDefault();
+    
+    const formData = new FormData();
+    formData.append("image", file);
+
+    await guardarImagen(user.id, formData, token);
   }
 
   return (

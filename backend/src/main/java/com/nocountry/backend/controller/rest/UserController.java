@@ -2,7 +2,8 @@ package com.nocountry.backend.controller.rest;
 
 import com.nocountry.backend.model.dto.Request.PasswordRequest;
 import com.nocountry.backend.model.dto.Request.ProfileRequest;
-import com.nocountry.backend.model.dto.response.UserResponse;
+import com.nocountry.backend.model.dto.Response.UserResponse;
+import com.nocountry.backend.model.entity.Image;
 import com.nocountry.backend.model.entity.UserEntity;
 import com.nocountry.backend.model.repository.UserRepository;
 import com.nocountry.backend.model.service.CloudinaryService;
@@ -10,6 +11,10 @@ import com.nocountry.backend.model.service.ImageService;
 import com.nocountry.backend.model.service.UserService;
 import lombok.RequiredArgsConstructor;
 import java.io.IOException;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -38,13 +43,36 @@ public class UserController {
         return ResponseEntity.ok().body(null);
     }
 
-    // setear imagen
     @PostMapping("/updateImage/{id}")
-    public synchronized ResponseEntity<String> upload(@RequestParam("image") MultipartFile imagen, @PathVariable Long id) throws IOException {
-        var image = imageService.save(cloudinaryService.upload(imagen));
-        UserEntity usuario = UR.findById(id).orElseThrow();
-        usuario.setImageUrl(image.getUrl());
-        return ResponseEntity.ok().body(usuario.getImageUrl());
+    public ResponseEntity<?> updateImage(@RequestParam("image") MultipartFile imagen, @PathVariable Long id) throws IOException, InterruptedException, ExecutionException {
+        CompletableFuture<String> futureImageUrl = CompletableFuture.supplyAsync(() -> {
+            try {
+                // Cargar la imagen en Cloudinary y obtener la URL
+                Image uploadedImage = cloudinaryService.upload(imagen);
+                // Guardar la imagen en la base de datos
+                Image savedImage = imageService.save(uploadedImage);
+                return savedImage.getUrl();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        });
+
+        // Esperar hasta que se complete la carga de la imagen y obtener la URL
+        String imageUrl = futureImageUrl.get();
+
+        if (imageUrl != null) {
+            // Actualizar la URL de la imagen en la entidad de usuario
+            UserEntity usuario = UR.findById(id).orElseThrow();
+            usuario.setImageUrl(imageUrl);
+            UR.save(usuario);
+            Image img = new Image();
+            img.setId(id);
+            img.setUrl(imageUrl);
+            return ResponseEntity.ok().body(img);
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al cargar la imagen");
+        }
     }
 
     @PutMapping(value = "/profileUpdate")
