@@ -22,10 +22,10 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findByPriceBetween(double price1, double price2);
 
-    @Query(value = "SELECT COUNT(f.product_id) FROM Favorite f WHERE f.product_id = :productId", nativeQuery = true)
+    @Query(value = "SELECT COUNT(f.product_id) FROM favorite f WHERE f.product_id = :productId", nativeQuery = true)
     Integer favoriteCount(Long productId);
 
-    @Query(value = "SELECT IFNULL(ROUND(AVG(c.calification), 1), 0) FROM Calification c WHERE c.product_id = :productId", nativeQuery = true)
+    @Query(value = "SELECT IFNULL(ROUND(AVG(c.calification), 1), 0) FROM calification c WHERE c.product_id = :productId", nativeQuery = true)
     Double calificationAverage(Long productId);
 
 }
