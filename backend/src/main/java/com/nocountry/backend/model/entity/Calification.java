@@ -27,6 +27,5 @@ public class Calification {
     private UserEntity user;
 
     @Positive(message = "La calificación no puede ser negativa")
-    @Column(columnDefinition = "DEFAULT 0.0")
     private Double calification;
 }
