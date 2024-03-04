@@ -32,6 +32,13 @@ const HeaderBanner = ({ user, setUser }) => {
             >
               Contacto
             </Link>
+            <Link
+              className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23] mr-5"
+              to="/nosotros"
+              target="_blank"
+            >
+              Nosotros
+            </Link>
 
             {/* Logica de login/logout */}
 

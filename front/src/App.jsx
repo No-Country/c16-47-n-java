@@ -8,6 +8,7 @@ import "./App.css";
 import Footer from "./components/shared/Footer";
 import UserProfile from "./components/shared/UserProfile";
 import { traerUsuario } from "./components/shared/AppServicio";
+import AboutUs from "./components/shared/AboutUs";
 
 function App() {
   const [token, setToken] = useState("");
@@ -32,9 +33,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Productos />} />
           <Route path="/contacto" element={<Contacto />} />
+          <Route path="/nosotros" element={<AboutUs />} />
           <Route
             path="/user"
-            element={<UserProfile token={token} user={user} setUser={setUser} />}
+            element={
+              <UserProfile token={token} user={user} setUser={setUser} />
+            }
           />
           <Route
             path="/login"
