@@ -1,7 +1,7 @@
 package com.nocountry.backend.model.service;
 
-import com.nocountry.backend.model.dto.Request.LoginRequest;
-import com.nocountry.backend.model.dto.Request.RegisterRequest;
+import com.nocountry.backend.model.dto.request.LoginRequest;
+import com.nocountry.backend.model.dto.request.RegisterRequest;
 import com.nocountry.backend.model.dto.response.AuthResponse;
 
 public interface AuthService {

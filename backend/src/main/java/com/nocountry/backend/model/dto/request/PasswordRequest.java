@@ -1,4 +1,4 @@
-package com.nocountry.backend.model.dto.Request;
+package com.nocountry.backend.model.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProfileRequest {
+public class PasswordRequest {
     private Long id;
-    private String name;
-    private String address;
-    private String cellphone;
+    private String password;
 }

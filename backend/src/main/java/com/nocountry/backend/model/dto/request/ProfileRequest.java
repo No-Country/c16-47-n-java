@@ -1,6 +1,4 @@
-package com.nocountry.backend.model.dto.Request;
-
-import org.springframework.web.multipart.MultipartFile;
+package com.nocountry.backend.model.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ImageRequest {
+public class ProfileRequest {
     private Long id;
-    private MultipartFile file;
+    private String name;
+    private String address;
+    private String cellphone;
 }

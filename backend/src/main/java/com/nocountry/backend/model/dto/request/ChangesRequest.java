@@ -1,4 +1,4 @@
-package com.nocountry.backend.model.dto.Request;
+package com.nocountry.backend.model.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class LoginRequest {
+public class ChangesRequest {
     private String username;
-    private String password;
+    private String email;
+    private String cellphone;
+    private String address;
+    private String name;
 }
