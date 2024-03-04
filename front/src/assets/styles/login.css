@@ -1,11 +1,11 @@
 * {
-    color: #000000;
+  color: #000000;
 }
 
 .container {
   position: relative;
   overflow: hidden;
-  min-height: 498px;
+  min-height: 150vh;
 }
 
 .form-container {
@@ -112,4 +112,28 @@
 
 .container.right-panel-active .overlay-right {
   transform: translateX(20%);
+}
+
+@media screen and (width < 798px) {
+  .container {
+    min-height: 150vh;
+  }
+  .overlay-container{
+    display: none;
+  }
+  .overlay {
+    display: none;
+  }
+  .overlay-left {
+    display: none;
+  }
+  .overlay-right {
+    display: none;
+  }
+  .overlay-panel {
+    display: none;
+  }
+  .container.right-panel-active {
+    display: none;
+  }
 }
