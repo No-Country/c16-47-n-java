@@ -35,7 +35,7 @@ function Login() {
     try {
       const data = await login(loginRequest);
       // setToken("Bearer " + data.token + "");
-      localStorage.setItem("token","Bearer " + data.token + "")
+      localStorage.setItem("token", "Bearer " + data.token + "");
       navigate("/");
     } catch (error) {
       console.log("No se pudo logear. Error: " + error);
@@ -57,7 +57,7 @@ function Login() {
       };
       try {
         const data = await register(registerRequest);
-        localStorage.setItem("token","Bearer " + data.token + "")
+        localStorage.setItem("token", "Bearer " + data.token + "");
         navigate("/");
       } catch (error) {
         console.log("No se pudo registrar. Error: " + error);
@@ -67,7 +67,7 @@ function Login() {
 
   return (
     <>
-      <div className="container bg-[#181818]" id="container">
+      <div className="container iniciar bg-[#181818]" id="container">
         <div className="form-container sign-up-container">
           <div className="bg-[#323232] px-10 pb-10 rounded-3xl border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36] border-form">
             <p className="font-medium text-lg text-gray-500 mt-10 mb-6">
@@ -178,7 +178,7 @@ function Login() {
         </div>
         <div id="desaparecer" className="overlay-container">
           <div className="overlay">
-            <div className="overlay-panel overlay-left flex justify-center">
+            <div className="overlay-panel overlay-left flex  justify-center">
               <div className="mt-5 flex justify-center items-center">
                 <img
                   src="src/assets/img/Loguito-removebg.png"
@@ -186,11 +186,11 @@ function Login() {
                 />
               </div>
             </div>
-            <div className="overlay-panel overlay-right flex justify-start pt-10">
-              <div className="mt-5 flex justify-center items-center">
+            <div className="overlay-panel overlay-right flex justify-center">
+              <div className="flex justify-center items-center">
                 <img
                   src="src/assets/img/Loguito-removebg.png"
-                  className="animate-bounce mt-10 h-60 w-60 hidden sm:block"
+                  className="animate-bounce h-60 w-60 hidden sm:block"
                 />
               </div>
             </div>

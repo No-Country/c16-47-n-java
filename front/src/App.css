@@ -21,6 +21,11 @@
   padding: 70px 70px;
   background-color: #181818;
 }
+
+.iniciar {
+  height: 467px;
+}
+
 #hola {
   text-align: end;
   background-color: #181818;
