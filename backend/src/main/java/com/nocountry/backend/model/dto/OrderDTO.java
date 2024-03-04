@@ -3,7 +3,6 @@ package com.nocountry.backend.model.dto;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.nocountry.backend.model.dto.response.OrderResponse;
-import com.nocountry.backend.model.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,7 +23,6 @@ public class OrderDTO {
     private LocalDate orderDate;
     private String total;
 
-    //private UserEntity user;
     private Long userId;
     private List<OrderResponse> products;
 }
