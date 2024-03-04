@@ -4,7 +4,7 @@ import com.nocountry.backend.model.dto.UserDTO;
 import com.nocountry.backend.model.dto.Request.ChangesRequest;
 import com.nocountry.backend.model.dto.Request.PasswordRequest;
 import com.nocountry.backend.model.dto.Request.ProfileRequest;
-import com.nocountry.backend.model.dto.Response.UserResponse;
+import com.nocountry.backend.model.dto.response.UserResponse;
 import com.nocountry.backend.model.entity.UserEntity;
 import com.nocountry.backend.model.repository.UserRepository;
 import com.nocountry.backend.model.service.UserService;

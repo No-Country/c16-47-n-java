@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.nocountry.backend.model.entity.UserEntity;
 import com.nocountry.backend.model.dto.Request.LoginRequest;
 import com.nocountry.backend.model.dto.Request.RegisterRequest;
-import com.nocountry.backend.model.dto.Response.AuthResponse;
+import com.nocountry.backend.model.dto.response.AuthResponse;
 import com.nocountry.backend.model.enums.ERole;
 import com.nocountry.backend.model.repository.UserRepository;
 import com.nocountry.backend.model.service.AuthService;

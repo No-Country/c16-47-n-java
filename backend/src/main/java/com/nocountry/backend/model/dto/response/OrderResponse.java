@@ -1,4 +1,4 @@
-package com.nocountry.backend.model.dto.Response;
+package com.nocountry.backend.model.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;

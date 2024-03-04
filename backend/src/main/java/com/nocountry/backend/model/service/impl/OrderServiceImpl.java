@@ -1,7 +1,7 @@
 package com.nocountry.backend.model.service.impl;
 
 import com.nocountry.backend.model.dto.OrderDTO;
-import com.nocountry.backend.model.dto.Response.OrderResponse;
+import com.nocountry.backend.model.dto.response.OrderResponse;
 import com.nocountry.backend.model.entity.Order;
 import com.nocountry.backend.model.entity.Product;
 import com.nocountry.backend.model.repository.OrderRepository;
