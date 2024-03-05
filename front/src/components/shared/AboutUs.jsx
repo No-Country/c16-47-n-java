@@ -61,10 +61,12 @@ const Card = ({
   linkedinURL,
   isLeftAligned,
 }) => {
-  const color = isLeftAligned ? 'bg-[#303030]' : 'bg-[#252525]';
+  const color = isLeftAligned ? "bg-[#303030]" : "bg-[#252525]";
 
   return (
-    <div className={`${color} p-12 flex flex-row items-center justify-center gap-44 animacion`}>
+    <div
+      className={`${color} p-12 flex flex-row items-center justify-center lg:gap-44 animacion`}
+    >
       <div
         className={`flex-shrink-0 ${
           isLeftAligned ? "mr-4 md:mr-0" : "order-2 ml-4 md:ml-0"
@@ -73,7 +75,7 @@ const Card = ({
         <img
           src={imageSrc}
           alt={name}
-          className="mx-4 w-24 h-24 md:w-32 md:h-auto object-cover rounded-full shadow-xl shadow-[#101010]"
+          className="lg:mx-4 md:mx-4 w-24 h-24 md:w-32 md:h-auto object-cover rounded-full shadow-xl shadow-[#101010] "
         />
       </div>
       <div className="mx-4 flex flex-col max-w-md">
