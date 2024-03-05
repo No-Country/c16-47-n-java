@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-function ProductCard({ product }) {
+const ProductCard = ({ product, addToCart }) => {
   const [calificacion, setCalificacion] = useState(0);
   const [favorito, setFavorito] = useState(false);
   const [cantidad, setCantidad] = useState(1);
@@ -28,7 +28,7 @@ function ProductCard({ product }) {
   };
 
   const handleAgregarAlCarrito = () => {
-    setCantidad(...cantidad, cantidad);
+    addToCart(product); // Llamada a la función addToCart con el producto actual
   };
 
   return (
@@ -49,6 +49,17 @@ function ProductCard({ product }) {
         </div>
       </div>
       <p className="text-xl text-white">{product.name}</p>
+      <div className="flex items-center flex-col">
+        <div className="text-xl text-[#a1bb23] mr-2 font-bold">
+          ${product.price}
+        </div>
+        <button
+          className="text-[#a1bb23] text-sm py-2 px-4 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white"
+          onClick={handleAgregarAlCarrito}
+        >
+          AGREGAR
+        </button>
+      </div>
       {!mostrarCompleto && (
         <button
           className="text-[#a1bb23] text-sm py-2 px-4 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white"
@@ -66,19 +77,7 @@ function ProductCard({ product }) {
             X
           </button>
           <p className="text-gray-300">{product.description}</p>
-          <div className="flex items-center flex-col">
-            <div className="text-xl text-[#a1bb23] mr-2 font-bold">
-              ${product.price}
-            </div>
-            <button
-              className="text-[#a1bb23] text-sm py-2 px-4 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white"
-              onClick={handleAgregarAlCarrito}
-            >
-              AGREGAR
-            </button>
-          </div>
           <p className="text-gray-400">{product.stock} disponibles</p>
-
           <div>
             <label htmlFor="cantidad" className="text-gray-300 mr-2">
               Cantidad:
@@ -112,6 +111,6 @@ function ProductCard({ product }) {
       )}
     </div>
   );
-}
+};
 
 export default ProductCard;

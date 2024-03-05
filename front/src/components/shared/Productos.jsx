@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { traerProductos } from "./AppServicio";
 import ProductCard from "./ProductCard";
+import Cart from "./Cart";
 
 function Productos() {
   const [products, setProducts] = useState([]);
@@ -59,6 +60,7 @@ function Productos() {
   return (
     <section id="productos" className="flex flex-col items-center bg-[#181818]">
       <div className="flex flex-wrap gap-4 m-4 justify-center">
+        <Cart />
         <button
           className={`py-2 px-4 rounded-xl border text-white border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white ${
             categoriaSeleccionada === "todos" && "bg-[#a1bb23] text-white"
