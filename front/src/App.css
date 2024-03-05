@@ -32,3 +32,18 @@
   color: #b1b1b1;
   padding: 10px 25px 0 0;
 }
+
+/* Estilos para el div que se anima */
+.animacion {
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+
+  to {
+      opacity: 1;
+  }
+}

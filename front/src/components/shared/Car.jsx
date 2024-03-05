@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { RiCloseLine, RiDeleteBin6Line } from "react-icons/ri";
 
 const Card = (props) => {

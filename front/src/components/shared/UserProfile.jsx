@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { guardarCambios, guardarImagen } from "./AppServicio";
 
-const UserProfile = ({ user, setUser }) => {
+const UserProfile = () => {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")))
+ 
   const [avatar, setAvatar] = useState(user.imageUrl);
   const [name, setName] = useState(user.name);
   const [address, setAddres] = useState(user.address);
@@ -112,10 +114,7 @@ const UserProfile = ({ user, setUser }) => {
           </label>
           <input
             type="file"
-            // formEncType="multipart/form-data"
-            // name="avatar"
             id="avatar"
-            // accept="image/*"
             className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             onChange={handleFileChange}
           />
@@ -127,6 +126,7 @@ const UserProfile = ({ user, setUser }) => {
           </button>
         </form>
       </div>
+      
     </section>
   );
 };

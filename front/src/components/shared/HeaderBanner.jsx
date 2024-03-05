@@ -3,8 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 const HeaderBanner = ({ user, setUser }) => {
   const navigate = useNavigate();
 
-  function cerrarSesion() {
-    setUser(null);
+  function cerrarSesion(e) {
+    e.preventDefault()
+    localStorage.setItem("user", null)
+    localStorage.setItem("token", null)
+    setUser(null)
     navigate("/");
   }
 
@@ -37,7 +40,6 @@ const HeaderBanner = ({ user, setUser }) => {
             <Link
               className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23] mr-5"
               to="/nosotros"
-              target="_blank"
             >
               Nosotros
             </Link>
@@ -64,7 +66,7 @@ const HeaderBanner = ({ user, setUser }) => {
                       Editar Perfil
                     </Link>
                     <Link className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23] mr-5">
-                      <button onClick={cerrarSesion}>Cerrar Sesión</button>
+                      <button onClick={(e) => cerrarSesion(e)}>Cerrar Sesión</button>
                     </Link>
                   </>
                 )}
@@ -79,7 +81,7 @@ const HeaderBanner = ({ user, setUser }) => {
         className="lg:h-60 h-40 w-full object-cover"
       />
       {user !== null && user ? (
-        <p id="hola">Hola de nuevo {user.name}</p>
+        <p id="hola">Hola de nuevo, {user.name}</p>
       ) : (
         <p> </p>
       )}

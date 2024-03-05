@@ -1,10 +1,10 @@
 const AboutUs = () => {
   return (
-    <div className="bg-[#303030] py-6">
-      <div className="grid grid-cols-1 mx-auto max-w-3xl">
+    <div className="bg-[#252525] py-16">
+      <div className="grid grid-cols-1 mx-auto">
         <Card
-          name="Alejandro Dominguez"
-          description="Lorem ipsum dolor sit amet, conse fdghfgh fghf ghfgh fghf ghfg fdghfg hfdg hfdg hfdg hdfg"
+          name="Alejo Domínguez"
+          description="Leader de quipos en No Country realizando reuniones motivacionales y de Sprint. Gestión en control de tareas de equipo y actividades en habilidades blandas."
           rol="Team Leader"
           imageSrc="/src/assets/img/Alejo-Profile.jpg"
           githubURL="https://github.com"
@@ -13,8 +13,8 @@ const AboutUs = () => {
         />
         <Card
           name="Saulo Cid"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          rol="Full-Stack"
+          description="Organizador de equipo y repartidor de tareas en Scrum. Divisor de roles y control de producción. Desarrollador Java Fullstack con Spring Security JWT, MySql y React + Vite."
+          rol="Product Manager - Fullstack"
           imageSrc="/src/assets/img/Saulo-Profile.jpg"
           githubURL="https://github.com/saulocid"
           linkedinURL="https://www.linkedin.com/in/saulociddev/"
@@ -22,7 +22,7 @@ const AboutUs = () => {
         />
         <Card
           name="Daniel Flores"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          description="Desarrollador Java Back-end con Spring Security JWT con conocimientos amplios en Docker y MySql, armador de estructura backend y apoyo a equipo en tareas del ámbito."
           rol="Back-End"
           imageSrc="/src/assets/img/Daniel-Profile.jpg"
           githubURL="https://github.com/xOnlinEx"
@@ -31,7 +31,7 @@ const AboutUs = () => {
         />
         <Card
           name="Joel Fiaré"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          description="Desarrollador Java Back-end con Spring Security JWT con amplio conocimiento en armado de base de datos MySql. Gestor de clases  y métodos relacionales."
           rol="Back-End"
           imageSrc="/src/assets/img/Joel-Profile.jpg"
           githubURL="https://github.com/JoelFiare"
@@ -40,7 +40,7 @@ const AboutUs = () => {
         />
         <Card
           name="Micaela Murrie"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          description="Desarrolladora Front-end React Vite con amplio conocimiento en estructuración y estilos personalizados. Empleando creaciones en Canva, Figma, Tailwind y Bootstrap."
           rol="Front-End"
           imageSrc="/src/assets/img/Mica-Profile.jpg"
           githubURL="https://github.com/MicaelaMurrie"
@@ -61,8 +61,10 @@ const Card = ({
   linkedinURL,
   isLeftAligned,
 }) => {
+  const color = isLeftAligned ? 'bg-[#303030]' : 'bg-[#252525]';
+
   return (
-    <div className="bg-[#303030] p-4 flex flex-row items-center justify-between my-6">
+    <div className={`${color} p-12 flex flex-row items-center justify-center gap-44 animacion`}>
       <div
         className={`flex-shrink-0 ${
           isLeftAligned ? "mr-4 md:mr-0" : "order-2 ml-4 md:ml-0"
