@@ -17,7 +17,7 @@ const HeaderBanner = ({ user, setUser }) => {
         <div className="flex justify-center">
           <Link to="/">
             <img
-              src="../assets/img/Logo.png"
+              src="././assets/img/Logo.png"
               alt="Logo"
               className="h-11 ml-8"
             />
