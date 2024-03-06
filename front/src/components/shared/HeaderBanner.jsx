@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import logo from "/src/assets/img/Logo.png";
 
 const HeaderBanner = ({ user, setUser }) => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const HeaderBanner = ({ user, setUser }) => {
         <div className="flex justify-center">
           <Link to="/">
             <img
-              src="././assets/img/Logo.png"
+              src={logo}
               alt="Logo"
               className="h-11 ml-8"
             />
