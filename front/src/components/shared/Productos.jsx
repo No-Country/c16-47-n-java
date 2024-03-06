@@ -5,15 +5,12 @@ import Cart from "./Cart";
 
 function Productos() {
   const [products, setProducts] = useState([]);
+  const [productsCart, setProductsCart] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("todos");
   const [orden, setOrden] = useState("");
   const [busqueda, setBusqueda] = useState("");
-
-  const addToCart = (p) => {
-    const { name, price } = p;
-    console.log("Producto agregado al carrito:", { name, price });
-  };
+  const [idCart, setIdCart] = useState(0);
 
   useEffect(() => {
     traerProductos().then((data) => {
@@ -21,6 +18,27 @@ function Productos() {
       setFilteredProducts(data);
     });
   }, []);
+
+  function addToCart(prod, cant) {
+    setIdCart(idCart+1)
+    const newProduct = {
+      id: prod.id,
+      idCart: idCart,
+      name: prod.name,
+      price: prod.price,
+      stock: prod.stock,
+      cant: cant,
+      imageUrl: prod.imageUrl,
+    };
+    try {
+      setProductsCart([...productsCart, newProduct]);
+    } catch (error) {
+      console.log("No se puede agregar el producto. Error: " + error);
+    }
+    productsCart.length > 0
+      ? console.log(productsCart)
+      : console.log("No hay productos");
+  }
 
   useEffect(() => {
     const productosFiltrados = products.filter((product) =>
@@ -65,7 +83,7 @@ function Productos() {
   return (
     <section id="productos" className="flex flex-col items-center bg-[#181818]">
       <div className="flex flex-wrap gap-4 m-4 justify-center">
-        <Cart />
+        <Cart productsCart={productsCart} setProductsCart={setProductsCart} />
         <button
           className={`py-2 px-4 rounded-xl border text-white border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white ${
             categoriaSeleccionada === "todos" && "bg-[#a1bb23] text-white"

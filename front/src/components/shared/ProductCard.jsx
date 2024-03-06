@@ -15,8 +15,8 @@ const ProductCard = ({ product, addToCart }) => {
   };
 
   const manejarCambioCantidad = (e) => {
-    const nuevaCantidad = parseInt(e.target.value);
-    setCantidad(nuevaCantidad);
+    console.log("La cantidad a elegir es "+e)
+    setCantidad(e);
   };
 
   const mostrarCardCompleta = () => {
@@ -28,7 +28,7 @@ const ProductCard = ({ product, addToCart }) => {
   };
 
   const handleAgregarAlCarrito = () => {
-    addToCart(product); // Llamada a la función addToCart con el producto actual
+    addToCart(product, parseInt(cantidad)); // Llamada a la función addToCart con el producto actual
   };
 
   return (
@@ -53,12 +53,6 @@ const ProductCard = ({ product, addToCart }) => {
         <div className="text-xl text-[#a1bb23] mr-2 font-bold">
           ${product.price}
         </div>
-        <button
-          className="text-[#a1bb23] text-sm py-2 px-4 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white"
-          onClick={handleAgregarAlCarrito}
-        >
-          AGREGAR
-        </button>
       </div>
       {!mostrarCompleto && (
         <button
@@ -76,6 +70,12 @@ const ProductCard = ({ product, addToCart }) => {
           >
             X
           </button>
+          <button
+            className="text-[#a1bb23] text-sm py-2 px-4 rounded-xl border border-gray-500 transition duration-300 ease-in-out hover:bg-[#a1bb23] hover:text-white"
+            onClick={handleAgregarAlCarrito}
+          >
+            AGREGAR
+          </button>
           <p className="text-gray-300">{product.description}</p>
           <p className="text-gray-400">{product.stock} disponibles</p>
           <div>
@@ -88,7 +88,7 @@ const ProductCard = ({ product, addToCart }) => {
               value={cantidad}
               min={1}
               max={product.stock}
-              onChange={manejarCambioCantidad}
+              onChange={(e) => manejarCambioCantidad(e.target.value)}
               className="border border-gray-300 text-gray-600 rounded-md px-3 py-2 w-20 text-center"
             />
           </div>

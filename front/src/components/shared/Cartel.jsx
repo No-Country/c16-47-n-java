@@ -1,43 +1,33 @@
-import React, { useState } from "react";
-import Cartel from "./Cartel";
+import { useState } from "react";
 
-const Cart = () => {
-  const [cartOpen, setCartOpen] = useState(false);
-  const [addedProductId, setAddedProductId] = useState(null);
-  const [products, setProducts] = useState([]); // Agregar estado para almacenar todos los productos
+function Cartel({ productsCart, setProductsCart }) {
 
-  const toggleCart = () => {
-    setCartOpen((prevState) => !prevState);
-  };
-
-  // Función para encontrar el producto por su ID
-  const findProductById = (id) => {
-    return products.find((product) => product.id === id);
-  };
-
-  // Función para agregar un producto al carrito
-  const addToCart = (productId) => {
-    setAddedProductId(productId);
-    setCartOpen(true);
-  };
-
-  // Obtener el producto agregado al carrito
-  const addedProduct = addedProductId ? findProductById(addedProductId) : null;
-
-  // Extraer nombre y precio del producto agregado
-  const productName = addedProduct ? addedProduct.name : "";
-  const productPrice = addedProduct ? addedProduct.price : "";
+  function generarOrden(e) {
+    e.preventDefault();
+  }
 
   return (
     <div className="relative">
-      <div className="hover:scale-[1.1]" onClick={toggleCart}></div>
-      {cartOpen && addedProduct && (
-        <div className="cartel absolute top-11 bg-white p-4 border border-gray-300 shadow w-60 z-50">
-          <Cartel productName={productName} productPrice={productPrice} />
-        </div>
+      <div className="hover:scale-[1.1]"></div>
+      {productsCart.length > 0 && (
+        <form
+          onSubmit={(e) => generarOrden(e)}
+          className="cartel absolute top-11 bg-white p-4 border border-gray-300 shadow w-60 z-50"
+        >
+          {productsCart.map((p) => (
+            <section key={p.idCart} className="border-red-900 inline-flex">
+              <p>{p.name}</p>
+              <img className="w-10" src={p.imageUrl} alt={p.name} />
+              <p>cantidad: {p.cant} </p>
+              <p>${p.price}</p>
+              <hr className=""/>
+            </section>
+          ))}
+          <button type="submit">Comprar</button>
+        </form>
       )}
     </div>
   );
-};
+}
 
-export default Cart;
+export default Cartel;

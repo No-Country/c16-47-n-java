@@ -1,14 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Cartel from "./Cartel";
 
-const Cart = () => {
+const Cart = ({productsCart, setPoductsCart}) => {
   const [cartOpen, setCartOpen] = useState(false);
-  const [addedProduct, setAddedProduct] = useState(null);
-
-  const handleAddToCart = (producto) => {
-    setAddedProduct(producto);
-    setCartOpen(true);
-  };
 
   const toggleCart = () => {
     setCartOpen((prevState) => !prevState);
@@ -62,7 +56,7 @@ const Cart = () => {
       </div>
       {cartOpen && (
         <div className="cartel absolute top-11 bg-white p-4 border border-gray-300 shadow w-60 z-50">
-          <Cartel productName={addedProduct ? addedProduct.name : null} />
+          <Cartel productsCart={productsCart} setPoductsCart={setPoductsCart} />
         </div>
       )}
     </div>
