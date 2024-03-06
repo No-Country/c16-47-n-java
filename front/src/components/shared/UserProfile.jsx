@@ -1,14 +1,15 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { guardarCambios, guardarImagen } from "./AppServicio";
 
 const UserProfile = () => {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")))
- 
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+
   const [avatar, setAvatar] = useState(user.imageUrl);
   const [name, setName] = useState(user.name);
   const [address, setAddres] = useState(user.address);
   const [cellphone, setCellphone] = useState(user.cellphone);
   const [file, setFile] = useState(null);
+  const [datos, setDatos] = useState(false);
 
   async function cambiarDatos(e) {
     e.preventDefault();
@@ -23,6 +24,7 @@ const UserProfile = () => {
     } catch (error) {
       console.log("Hubo un error al guardar cambios. Error: " + error);
     }
+    setDatos(!datos)
   }
 
   function handleFileChange(e) {
@@ -36,6 +38,10 @@ const UserProfile = () => {
     formData.append("image", file);
 
     await guardarImagen(user.id, formData, localStorage.getItem("token"));
+  }
+
+  function editar() {
+    setDatos(!datos);
   }
 
   return (
@@ -53,80 +59,109 @@ const UserProfile = () => {
             src={avatar}
             alt="User Avatar"
           />
-          <div className="text-center mt-4">
-            <h1 className="text-xl text-white font-semibold">{name}</h1>
-          </div>
         </div>
-        <form onClick={cambiarDatos} method="POST" className="px-4 py-3">
-          <label
-            htmlFor="name"
-            className="block text-sm font-medium text-gray-300"
-          >
-            Nombre
-          </label>
-          <input
-            type="text"
-            id="name"
-            className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <label
-            htmlFor="address"
-            className="block text-sm font-medium text-gray-300"
-          >
-            Dirección
-          </label>
-          <input
-            type="text"
-            id="address"
-            className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            value={address}
-            onChange={(e) => setAddres(e.target.value)}
-          />
-          <label
-            htmlFor="cellphone"
-            className="block text-sm font-medium text-gray-300"
-          >
-            Teléfono
-          </label>
-          <input
-            type="text"
-            id="cellphone"
-            className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            value={cellphone}
-            onChange={(e) => setCellphone(e.target.value)}
-          />
+        {datos ? (
+          <>
+            <form onClick={cambiarDatos} method="POST" className="px-4 py-3">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-gray-300"
+              >
+                Nombre
+              </label>
+              <input
+                type="text"
+                id="name"
+                className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <label
+                htmlFor="address"
+                className="block text-sm font-medium text-gray-300"
+              >
+                Dirección
+              </label>
+              <input
+                type="text"
+                id="address"
+                className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                value={address}
+                onChange={(e) => setAddres(e.target.value)}
+              />
+              <label
+                htmlFor="cellphone"
+                className="block text-sm font-medium text-gray-300"
+              >
+                Teléfono
+              </label>
+              <input
+                type="text"
+                id="cellphone"
+                className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                value={cellphone}
+                onChange={(e) => setCellphone(e.target.value)}
+              />
 
-          <button
-            type="submit"
-            className="w-full mt-8 mb-4 active:scale-[.98] hover:scale-[1.01] py-2 rounded-xl bg-[#74BB23] text-white text-lg font-bold"
-          >
-            Guardar cambios
-          </button>
-        </form>
-        <form onSubmit={cambiarAvatar} method="POST">
-          <label
-            htmlFor="avatar"
-            className="block text-sm font-medium text-gray-300 mt-2"
-          >
-            Avatar
-          </label>
-          <input
-            type="file"
-            id="avatar"
-            className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            onChange={handleFileChange}
-          />
-          <button
-            type="submit"
-            className="w-full mt-8 mb-4 active:scale-[.98] hover:scale-[1.01] py-2 rounded-xl bg-[#74BB23] text-white text-lg font-bold"
-          >
-            Guardar cambios
-          </button>
-        </form>
+              <button
+                type="submit"
+                className="w-full mt-8 mb-4 active:scale-[.98] hover:scale-[1.01] py-2 rounded-xl bg-[#74BB23] text-white text-lg font-bold"
+              >
+                Guardar cambios
+              </button>
+              <button
+                onClick={editar}
+                className="w-full mt-8 mb-4 active:scale-[.98] hover:scale-[1.01] py-2 rounded-xl bg-[#74BB23] text-white text-lg font-bold"
+              >
+                Cancelar
+              </button>
+            </form>
+            <form onSubmit={cambiarAvatar} method="POST">
+              <label
+                htmlFor="avatar"
+                className="block text-sm font-medium text-gray-300 mt-2"
+              >
+                Avatar
+              </label>
+              <input
+                type="file"
+                id="avatar"
+                className="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                onChange={handleFileChange}
+              />
+              <button
+                type="submit"
+                className="w-full mt-8 mb-4 active:scale-[.98] hover:scale-[1.01] py-2 rounded-xl bg-[#74BB23] text-white text-lg font-bold"
+              >
+                Guardar cambios
+              </button>
+              <button
+                onClick={editar}
+                className="w-full mt-8 mb-4 active:scale-[.98] hover:scale-[1.01] py-2 rounded-xl bg-[#74BB23] text-white text-lg font-bold"
+              >
+                x
+              </button>
+            </form>
+          </>
+        ) : (
+          <>
+
+
+
+            <label
+              htmlFor="address"
+              className="block text-sm font-medium text-gray-300"
+            >
+              Dirección
+            </label>
+            <p>{address}</p>
+
+
+
+            <button onClick={editar}>Editar</button>
+          </>
+        )}
       </div>
-      
     </section>
   );
 };
