@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import logo from "/src/assets/img/Logo.png";
+import banner from "/src/assets/img/banner.jpg";
 
 const HeaderBanner = ({ user, setUser }) => {
   const navigate = useNavigate();
@@ -17,11 +18,7 @@ const HeaderBanner = ({ user, setUser }) => {
       <header className="bg-[#202020] text-white py-3 flex justify-between items-center w-full">
         <div className="flex justify-center">
           <Link to="/">
-            <img
-              src={logo}
-              alt="Logo"
-              className="h-11 ml-8"
-            />
+            <img src={logo} alt="Logo" className="h-11 ml-8" />
           </Link>
         </div>
         <nav className="flex pr-8">
@@ -79,7 +76,7 @@ const HeaderBanner = ({ user, setUser }) => {
         </nav>
       </header>
       <img
-        src="/src/assets/img/banner.jpg"
+        src={banner}
         alt="banner"
         className="lg:h-60 h-40 w-full object-cover"
       />

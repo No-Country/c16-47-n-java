@@ -1,12 +1,18 @@
+import alejandro from "/src/assets/img/Alejo-Profile.jpg";
+import saulo from "/src/assets/img/Saulo-Profile.jpg";
+import daniel from "/src/assets/img/Daniel-Profile.jpg";
+import joel from "/src/assets/img/Joel-Profile.jpg";
+import mica from "/src/assets/img/Mica-Profile.jpg";
+
 const AboutUs = () => {
   return (
     <div className="bg-[#252525] py-16">
       <div className="grid grid-cols-1 mx-auto">
         <Card
-          name="Alejo Domínguez"
+          name="Alejandro Domínguez"
           description="Leader de quipos en No Country realizando reuniones motivacionales y de Sprint. Gestión en control de tareas de equipo y actividades en habilidades blandas."
           rol="Team Leader"
-          imageSrc="/src/assets/img/Alejo-Profile.jpg"
+          imageSrc={alejandro}
           githubURL="https://github.com"
           linkedinURL="https://www.linkedin.com/in/jose-alejandro-dominguez/"
           isLeftAligned={true}
@@ -15,7 +21,7 @@ const AboutUs = () => {
           name="Saulo Cid"
           description="Organizador de equipo y repartidor de tareas en Scrum. Divisor de roles y control de producción. Desarrollador Java Fullstack con Spring Security JWT, MySql y React + Vite."
           rol="Product Manager - Fullstack"
-          imageSrc="/src/assets/img/Saulo-Profile.jpg"
+          imageSrc={saulo}
           githubURL="https://github.com/saulocid"
           linkedinURL="https://www.linkedin.com/in/saulociddev/"
           isLeftAligned={false}
@@ -24,7 +30,7 @@ const AboutUs = () => {
           name="Daniel Flores"
           description="Desarrollador Java Back-end con Spring Security JWT con conocimientos amplios en Docker y MySql, armador de estructura backend y apoyo a equipo en tareas del ámbito."
           rol="Back-End"
-          imageSrc="/src/assets/img/Daniel-Profile.jpg"
+          imageSrc={daniel}
           githubURL="https://github.com/xOnlinEx"
           linkedinURL="https://www.linkedin.com/in/daniel-flores-developer/"
           isLeftAligned={true}
@@ -33,7 +39,7 @@ const AboutUs = () => {
           name="Joel Fiaré"
           description="Desarrollador Java Back-end con Spring Security JWT con amplio conocimiento en armado de base de datos MySql. Gestor de clases  y métodos relacionales."
           rol="Back-End"
-          imageSrc="/src/assets/img/Joel-Profile.jpg"
+          imageSrc={joel}
           githubURL="https://github.com/JoelFiare"
           linkedinURL="https://www.linkedin.com/in/joelfiare/"
           isLeftAligned={false}
@@ -42,7 +48,7 @@ const AboutUs = () => {
           name="Micaela Murrie"
           description="Desarrolladora Front-end React Vite con amplio conocimiento en estructuración y estilos personalizados. Empleando creaciones en Canva, Figma, Tailwind y Bootstrap."
           rol="Front-End"
-          imageSrc="/src/assets/img/Mica-Profile.jpg"
+          imageSrc={mica}
           githubURL="https://github.com/MicaelaMurrie"
           linkedinURL="https://www.linkedin.com/in/micaela-murrie-a977b9284/"
           isLeftAligned={true}
