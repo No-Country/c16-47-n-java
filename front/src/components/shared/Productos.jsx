@@ -35,9 +35,6 @@ function Productos() {
     } catch (error) {
       console.log("No se puede agregar el producto. Error: " + error);
     }
-    productsCart.length > 0
-      ? console.log(productsCart)
-      : console.log("No hay productos");
   }
 
   useEffect(() => {

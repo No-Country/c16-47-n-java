@@ -15,7 +15,6 @@ const ProductCard = ({ product, addToCart }) => {
   };
 
   const manejarCambioCantidad = (e) => {
-    console.log("La cantidad a elegir es "+e)
     setCantidad(e);
   };
 

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Cartel from "./Cartel";
 
-const Cart = ({productsCart, setPoductsCart}) => {
+const Cart = ({ productsCart, setPoductsCart }) => {
   const [cartOpen, setCartOpen] = useState(false);
 
   const toggleCart = () => {
-    setCartOpen((prevState) => !prevState);
+    setCartOpen(!cartOpen);
   };
 
   return (
@@ -55,9 +55,7 @@ const Cart = ({productsCart, setPoductsCart}) => {
         <span className="sr-only">Carrito de compras</span>
       </div>
       {cartOpen && (
-        <div className="cartel absolute top-11 bg-white p-4 border border-gray-300 shadow w-60 z-50">
-          <Cartel productsCart={productsCart} setPoductsCart={setPoductsCart} />
-        </div>
+        <Cartel productsCart={productsCart} setPoductsCart={setPoductsCart} />
       )}
     </div>
   );

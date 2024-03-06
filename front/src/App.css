@@ -43,3 +43,12 @@
     opacity: 1;
   }
 }
+
+.nombreProducto {
+  min-width: 160px;
+}
+
+.carrito {
+  min-width: 350px;
+  width: 100%;
+}
