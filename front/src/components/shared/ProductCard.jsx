@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const ProductCard = ({ product, addToCart }) => {
   const [calificacion, setCalificacion] = useState(0);

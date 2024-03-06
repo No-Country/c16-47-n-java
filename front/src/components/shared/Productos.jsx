@@ -10,6 +10,8 @@ function Productos() {
   const [orden, setOrden] = useState("");
   const [busqueda, setBusqueda] = useState("");
 
+  const addToCart = (p) => console.log(p);
+
   useEffect(() => {
     traerProductos().then((data) => {
       setProducts(data);
@@ -154,7 +156,11 @@ function Productos() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 p-8 max-h-[90vh] overflow-y-auto m-8 bg-[#232323] scrollbarr">
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              addToCart={addToCart}
+            />
           ))
         ) : (
           <p className="text-gray-400">No hay productos disponibles</p>
