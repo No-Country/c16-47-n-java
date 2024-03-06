@@ -1,6 +1,7 @@
 package com.nocountry.backend.controller.rest;
 
 import com.nocountry.backend.model.dto.OrderDTO;
+import com.nocountry.backend.model.dto.request.OrderRequest;
 import com.nocountry.backend.model.service.impl.OrderServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +21,9 @@ public class OrderController {
     }
 
     //guardar orden
-    @PostMapping(value = "/save")
-    public ResponseEntity<OrderDTO> save(@RequestBody OrderDTO order) {
-        return ResponseEntity.ok().body(orderService.save(order));
+    @PostMapping(value = "/save/{id}")
+    public ResponseEntity<?> save(@RequestBody OrderRequest request, @PathVariable Long id) {
+        orderService.save(request, id);
+        return ResponseEntity.ok().body(null);
     }
 }

@@ -104,3 +104,20 @@ export async function guardarImagen(id, formData, token) {
     console.log("La respuesta del servicio no es válida. " + error);
   }
 }
+
+export async function generarOrden(request, token) {
+  try {
+    const res = await fetch(`http://localhost:8080/order/save/${request.id}`, {
+      body: JSON.stringify(request),
+      headers: {
+        Authorization: token,
+      },
+      method: "POST",
+    });
+    if (!res.ok) {
+      throw new Error("Error al realizar consulta");
+    }
+  } catch (error) {
+    console.log("No se pudo generar la orden. Error: " + error);
+  }
+}
