@@ -10,7 +10,10 @@ function Productos() {
   const [orden, setOrden] = useState("");
   const [busqueda, setBusqueda] = useState("");
 
-  const addToCart = (p) => console.log(p);
+  const addToCart = (p) => {
+    const { name, price } = p;
+    console.log("Producto agregado al carrito:", { name, price });
+  };
 
   useEffect(() => {
     traerProductos().then((data) => {
@@ -153,7 +156,7 @@ function Productos() {
           </option>
         </select>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 p-8 max-h-[90vh] overflow-y-auto m-8 bg-[#232323] scrollbarr">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 p-8  m-8 bg-[#232323] ">
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
             <ProductCard
