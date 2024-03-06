@@ -4,16 +4,16 @@ const HeaderBanner = ({ user, setUser }) => {
   const navigate = useNavigate();
 
   function cerrarSesion(e) {
-    e.preventDefault()
-    localStorage.setItem("user", null)
-    localStorage.setItem("token", null)
-    setUser(null)
+    e.preventDefault();
+    localStorage.setItem("user", null);
+    localStorage.setItem("token", null);
+    setUser(null);
     navigate("/");
   }
 
   return (
     <div>
-      <header className="bg-[#202020] text-white py-4 flex justify-between items-center w-full">
+      <header className="bg-[#202020] text-white py-3 flex justify-between items-center w-full">
         <div className="flex justify-center">
           <Link to="/">
             <img
@@ -24,7 +24,7 @@ const HeaderBanner = ({ user, setUser }) => {
           </Link>
         </div>
         <nav className="flex pr-8">
-          <ul className="flex mb-4 text-white ">
+          <ul className="flex text-white ">
             <Link
               className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23] mr-5"
               to="/"
@@ -63,10 +63,12 @@ const HeaderBanner = ({ user, setUser }) => {
                       className="active:scale-[.98] hover:scale-[1.1] hover:text-[#ff9a36] mr-5"
                       to="/user"
                     >
-                      Editar Perfil
+                      Perfil
                     </Link>
                     <Link className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23] mr-5">
-                      <button onClick={(e) => cerrarSesion(e)}>Cerrar Sesión</button>
+                      <button onClick={(e) => cerrarSesion(e)}>
+                        Cerrar Sesión
+                      </button>
                     </Link>
                   </>
                 )}

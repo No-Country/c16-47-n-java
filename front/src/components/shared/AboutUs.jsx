@@ -8,7 +8,7 @@ const AboutUs = () => {
           rol="Team Leader"
           imageSrc="/src/assets/img/Alejo-Profile.jpg"
           githubURL="https://github.com"
-          linkedinURL="https://www.linkedin.com"
+          linkedinURL="https://www.linkedin.com/in/jose-alejandro-dominguez/"
           isLeftAligned={true}
         />
         <Card
@@ -97,7 +97,6 @@ const Card = ({
                 clipRule="evenodd"
               />
             </svg>
-            <span className="sr-only">GitHub page</span>
           </a>
           <a
             href={linkedinURL}
@@ -117,7 +116,6 @@ const Card = ({
                 clipRule="evenodd"
               />
             </svg>
-            <span className="sr-only">LinkedIn page</span>
           </a>
         </div>
       </div>

@@ -10,6 +10,7 @@ function Productos() {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("todos");
   const [orden, setOrden] = useState("");
   const [busqueda, setBusqueda] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
   const [idCart, setIdCart] = useState(0);
 
   useEffect(() => {
@@ -20,7 +21,7 @@ function Productos() {
   }, []);
 
   function addToCart(prod, cant) {
-    setIdCart(idCart+1)
+    setIdCart(idCart + 1);
     const newProduct = {
       id: prod.id,
       idCart: idCart,
@@ -41,40 +42,55 @@ function Productos() {
     const productosFiltrados = products.filter((product) =>
       product.name.toLowerCase().includes(busqueda.toLowerCase())
     );
-    setFilteredProducts(productosFiltrados);
-  }, [busqueda, products]);
-
-  const handleFiltroCategoria = (categoria) => {
-    if (categoria === "todos") {
-      setCategoriaSeleccionada("todos");
-      setFilteredProducts(products);
-    } else {
-      const productosFiltrados = products.filter(
-        (product) => product.category && product.category === categoria
+    if (categoriaSeleccionada !== "todos") {
+      const productosFiltradosCategoria = productosFiltrados.filter(
+        (product) => product.category === categoriaSeleccionada
       );
-      setCategoriaSeleccionada(categoria);
+      setFilteredProducts(productosFiltradosCategoria);
+    } else {
       setFilteredProducts(productosFiltrados);
     }
-  };
+  }, [busqueda, products, categoriaSeleccionada]);
 
-  const handleOrdenChange = (e) => {
-    const nuevoOrden = e.target.value;
-    setOrden(nuevoOrden);
-    if (nuevoOrden === "menor") {
-      const productosOrdenados = [...filteredProducts].sort(
+  useEffect(() => {
+    let productosOrdenados;
+    if (orden === "menor") {
+      productosOrdenados = [...filteredProducts].sort(
         (a, b) => a.price - b.price
       );
-      setFilteredProducts(productosOrdenados);
-    } else if (nuevoOrden === "mayor") {
-      const productosOrdenados = [...filteredProducts].sort(
+    } else if (orden === "mayor") {
+      productosOrdenados = [...filteredProducts].sort(
         (a, b) => b.price - a.price
       );
-      setFilteredProducts(productosOrdenados);
+    } else {
+      productosOrdenados = filteredProducts;
     }
+    setFilteredProducts(productosOrdenados);
+  }, [orden, filteredProducts]);
+
+  const handleFiltroCategoria = (categoria) => {
+    setCategoriaSeleccionada(categoria);
   };
 
   const handleBusquedaChange = (e) => {
     setBusqueda(e.target.value);
+  };
+
+  const handleOrdenChange = (e) => {
+    setOrden(e.target.value);
+  };
+
+  const productsPerPage = 9;
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
   };
 
   return (
@@ -145,35 +161,35 @@ function Productos() {
         >
           Legumbres
         </button>
+        <div className="flex gap-4 mb-1">
+          <input
+            type="text"
+            value={busqueda}
+            onChange={handleBusquedaChange}
+            placeholder="Buscar productos..."
+            className="py-2 px-4 rounded-sm border text-white border-gray-500 transition duration-300 ease-in-out bg-[#323232] mb-4"
+          />
+          <select
+            value={orden}
+            onChange={handleOrdenChange}
+            style={{ height: "42px" }}
+            className="py-2 px-4 rounded-sm border text-white border-gray-500 transition duration-300 ease-in-out bg-[#323232]"
+          >
+            <option className="bg-[#232323] text-gray-400" value="">
+              Ordenar por precio
+            </option>
+            <option className="bg-[#232323] text-gray-400" value="menor">
+              Menor a mayor
+            </option>
+            <option className="bg-[#232323] text-gray-400" value="mayor">
+              Mayor a menor
+            </option>
+          </select>
+        </div>
       </div>
-      <div className="flex gap-4 mb-1">
-        <input
-          type="text"
-          value={busqueda}
-          onChange={handleBusquedaChange}
-          placeholder="Buscar productos..."
-          className="py-2 px-4 rounded-sm border text-white border-gray-500 transition duration-300 ease-in-out bg-[#323232] mb-4"
-        />
-        <select
-          value={orden}
-          onChange={handleOrdenChange}
-          style={{ height: "42px" }}
-          className="py-2 px-4 rounded-sm border text-white border-gray-500 transition duration-300 ease-in-out bg-[#323232]"
-        >
-          <option className="bg-[#232323] text-gray-400" value="">
-            Ordenar por precio
-          </option>
-          <option className="bg-[#232323] text-gray-400" value="menor">
-            Menor a mayor
-          </option>
-          <option className="bg-[#232323] text-gray-400" value="mayor">
-            Mayor a menor
-          </option>
-        </select>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 p-8  m-8 bg-[#232323] ">
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map((product) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 p-8">
+        {currentProducts.length > 0 ? (
+          currentProducts.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
@@ -182,6 +198,23 @@ function Productos() {
           ))
         ) : (
           <p className="text-gray-400">No hay productos disponibles</p>
+        )}
+      </div>
+      <div className="flex justify-center mt-3">
+        {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+          (page) => (
+            <button
+              key={page}
+              onClick={() => handlePageChange(page)}
+              className={`px-2 mb-20 font-bold text-lg ${
+                currentPage === page
+                  ? "bg-gray-700 rounded-full text-[#a1bb23]"
+                  : " text-gray-300"
+              }`}
+            >
+              {page}
+            </button>
+          )
         )}
       </div>
     </section>
