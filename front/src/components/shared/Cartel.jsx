@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FaTrash } from "react-icons/fa";
 
 function Cartel({ productsCart, setProductsCart }) {
   const [user, setUser] = useState(null);
@@ -37,28 +38,34 @@ function Cartel({ productsCart, setProductsCart }) {
   }
 
   return (
-    <div className="relative">
-      <div className="hover:scale-[1.1]"></div>
+    <div className="absolute">
       {productsCart.length > 0 && (
         <form
           onSubmit={(e) => guardarOrden(e)}
-          className="cartel absolute top-11 bg-white p-4 border border-gray-300 shadow z-10"
+          className="cartel top-11 bg-[#e2e2e2] p-2 border border-gray-200 rounded-sm w-max flex flex-col z-50"
         >
           {productsCart.map((p) => (
             <div
               key={p.idCart}
-              className="producto-carrito inline-flex carrito"
+              className="producto-carrito my-1 inline-flex carrito"
             >
-              <p className="nombreProducto">{p.name}</p>
               <img className="w-10 mr-2" src={p.imageUrl} alt={p.name} />
-              <p className="mr-2">cantidad: {p.cant}</p>
-              <p>${p.price}</p>
+              <p className="nombreProducto min-w-44 my-auto">{p.name}</p>
+              <p className="mr-2 my-auto min-w-3">{p.cant}</p>
+              <p className="my-auto mx-2 min-w-10 text-[#1e6415] font-semibold">
+                ${p.price}
+              </p>
               <button type="button" onClick={() => eliminar(p.idCart)}>
-                Quitar
+                <FaTrash />
               </button>
             </div>
           ))}
-          <button type="submit">Comprar</button>
+          <button
+            type="submit"
+            className="text-gray-100 bg-gray-700 rounded-md"
+          >
+            Comprar
+          </button>
         </form>
       )}
     </div>
