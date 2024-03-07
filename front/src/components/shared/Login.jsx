@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "/src/assets/styles/login.css";
 import { login, register } from "./AppServicio";
+import logo from "/src/assets/img/Loguito-removebg.png";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -181,7 +182,7 @@ function Login() {
             <div className="overlay-panel overlay-left flex  justify-center">
               <div className="mt-5 flex justify-center items-center">
                 <img
-                  src="src/assets/img/Loguito-removebg.png"
+                  src={logo}
                   className="animate-bounce h-60 w-60 hidden sm:block"
                 />
               </div>
@@ -189,7 +190,7 @@ function Login() {
             <div className="overlay-panel overlay-right flex justify-center">
               <div className="flex justify-center items-center">
                 <img
-                  src="src/assets/img/Loguito-removebg.png"
+                  src={logo}
                   className="animate-bounce h-60 w-60 hidden sm:block"
                 />
               </div>
