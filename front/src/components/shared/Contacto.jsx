@@ -83,7 +83,7 @@ function Contacto() {
               required
             />
             {!isEmailValid && (
-              <p className="text-red-500">
+              <p className="text-gray-500">
                 Por favor, ingresa un correo electrónico válido.
               </p>
             )}
