@@ -15,13 +15,13 @@ function App() {
 
   useEffect(() => {
     async function traerUser() {
-        try {
-          const data = await traerUsuario(localStorage.getItem("token"));
-          localStorage.setItem("user", JSON.stringify(data));
-          setUser(data);
-        } catch (error) {
-          console.log("No se pudo traer el usuario. Error: " + error);
-        }
+      try {
+        const data = await traerUsuario(localStorage.getItem("token"));
+        localStorage.setItem("user", JSON.stringify(data));
+        setUser(data);
+      } catch (error) {
+        console.log("No se pudo traer el usuario. Error: " + error);
+      }
     }
     traerUser();
   }, []);
