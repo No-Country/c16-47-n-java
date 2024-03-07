@@ -8,6 +8,6 @@ COPY src ./src
 RUN mvn package -DskipTests
 
 # Etapa final
-FROM openjdk:21-ea
-COPY --from=builder /app/target/backend-0.0.1-SNAPSHOT.jar app.jar
+FROM openjdk:21
+COPY --from=builder /app/target/backend-1.0.0.jar app.jar
 CMD ["java","-jar","app.jar"]
