@@ -161,7 +161,7 @@ function Productos() {
         >
           Legumbres
         </button>
-        <div className="flex gap-4 mb-1">
+        <div className="flex flex-wrap justify-center gap-4 mb-1">
           <input
             type="text"
             value={busqueda}
