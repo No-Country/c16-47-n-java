@@ -69,7 +69,7 @@ function Login() {
   return (
     <>
       <div className="container iniciar bg-[#181818]" id="container">
-        <div className="form-container sign-up-container">
+        <div className="form-container  sign-up-container">
           <div className="bg-[#323232] px-10 pb-10 rounded-3xl border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36] border-form">
             <p className="font-medium text-lg text-gray-300 mt-10 mb-6">
               Crear cuenta

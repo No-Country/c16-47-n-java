@@ -38,16 +38,16 @@ function Cartel({ productsCart, setProductsCart }) {
   }
 
   return (
-    <div className="absolute">
+    <div className="relative">
       {productsCart.length > 0 && (
         <form
           onSubmit={(e) => guardarOrden(e)}
-          className="cartel top-11 bg-[#e2e2e2] p-2 border border-gray-200 rounded-sm w-max flex flex-col z-50"
+          className="cartel bg-[#e2e2e2] p-2 border border-gray-200 absolute rounded-sm flex flex-col z-50"
         >
           {productsCart.map((p) => (
             <div
               key={p.idCart}
-              className="producto-carrito my-1 inline-flex carrito"
+              className="producto-carrito w-80 inline-flex carrito"
             >
               <img className="w-10 mr-2" src={p.imageUrl} alt={p.name} />
               <p className="nombreProducto min-w-44 my-auto">{p.name}</p>
@@ -55,8 +55,12 @@ function Cartel({ productsCart, setProductsCart }) {
               <p className="my-auto mx-2 min-w-10 text-[#1e6415] font-semibold">
                 ${p.price}
               </p>
-              <button type="button" onClick={() => eliminar(p.idCart)}>
-                <FaTrash />
+              <button
+                className=""
+                type="button"
+                onClick={() => eliminar(p.idCart)}
+              >
+                <FaTrash className="" />
               </button>
             </div>
           ))}

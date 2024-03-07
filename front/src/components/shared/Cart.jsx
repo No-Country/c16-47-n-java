@@ -9,7 +9,7 @@ const Cart = ({ productsCart, setPoductsCart }) => {
   };
 
   return (
-    <div className="relative">
+    <div className="">
       <div className="hover:scale-[1.1]" onClick={toggleCart}>
         <svg
           version="1.0"
