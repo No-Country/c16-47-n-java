@@ -31,8 +31,8 @@ public class ProductServiceImpl implements ProductService {
             productResponse.setStock(product.getStock());
             productResponse.setCategory(String.valueOf(product.getCategory()));
             productResponse.setImageUrl(product.getImageUrl());
-            productResponse.setFavorites(favoritesCount);
-            productResponse.setCalification(productRepository.calificationAverage(product.getId()));
+//            productResponse.setFavorites(favoritesCount);
+//            productResponse.setCalification(productRepository.calificationAverage(product.getId()));
             productResponses.add(productResponse);
         }
 
