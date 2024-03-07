@@ -16,18 +16,19 @@ function Cartel({ productsCart, setProductsCart }) {
     );
   }
 
-  async function generarOrden(e) {
+  async function guardarOrden(e) {
+    // e.preventDefault();
     productsCart.forEach((p) => {
       setTotal(total + parseFloat(p.price) * parseFloat(p.cant));
     });
-    console.log(total);
-    e.preventDefault();
     const userRequest = {
       idUser: user.id,
       orderDate: null,
       products: productsCart,
-      total: total,
+      total: total.toString(),
     };
+    localStorage.setItem("orden", JSON.stringify(userRequest));
+    console.log(localStorage.getItem("orden"));
     try {
       await generarOrden(userRequest, localStorage.getItem("token"));
     } catch (error) {
@@ -40,11 +41,11 @@ function Cartel({ productsCart, setProductsCart }) {
       <div className="hover:scale-[1.1]"></div>
       {productsCart.length > 0 && (
         <form
-          onSubmit={(e) => generarOrden(e)}
+          onSubmit={(e) => guardarOrden(e)}
           className="cartel absolute top-11 bg-white p-4 border border-gray-300 shadow z-10"
         >
           {productsCart.map((p) => (
-            <section
+            <div
               key={p.idCart}
               className="producto-carrito inline-flex carrito"
             >
@@ -55,7 +56,7 @@ function Cartel({ productsCart, setProductsCart }) {
               <button type="button" onClick={() => eliminar(p.idCart)}>
                 Quitar
               </button>
-            </section>
+            </div>
           ))}
           <button type="submit">Comprar</button>
         </form>

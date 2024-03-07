@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderRequest {
+    private Long id;
     private LocalDate orderDate;
     private String total;
     private List<OrderResponse> products;

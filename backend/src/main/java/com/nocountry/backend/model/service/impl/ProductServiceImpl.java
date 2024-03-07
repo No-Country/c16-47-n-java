@@ -39,6 +39,7 @@ public class ProductServiceImpl implements ProductService {
         return productResponses;
     }
 
+    @Override
     public Product findById(Long id) {
         return productRepository.findById(id).orElse(null);
     }

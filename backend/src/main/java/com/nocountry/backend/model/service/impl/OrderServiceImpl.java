@@ -9,6 +9,8 @@ import com.nocountry.backend.model.entity.UserEntity;
 import com.nocountry.backend.model.repository.OrderRepository;
 import com.nocountry.backend.model.repository.UserRepository;
 import com.nocountry.backend.model.service.OrderService;
+import com.nocountry.backend.model.service.ProductService;
+
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -23,7 +25,7 @@ import java.util.Optional;
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final ModelMapper modelMapper;
-    private final ProductServiceImpl productServiceImpl;
+    private final ProductService productService;
     private final UserRepository userRepository;
 
     @Override
@@ -33,9 +35,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void save(OrderRequest request, Long id) {
+    public void save(OrderRequest request) {
 
-        Optional<UserEntity> res = userRepository.findById(id);
+        Optional<UserEntity> res = userRepository.findById(request.getId());
         if (res.isPresent()) {
             OrderDTO orderDTO = new OrderDTO();
             orderDTO.setUserId(res.get().getId());
@@ -43,13 +45,14 @@ public class OrderServiceImpl implements OrderService {
             orderDTO.setProducts(request.getProducts());
             orderDTO.setTotal(request.getTotal());
 
-            Order order = modelMapper.map(orderDTO, Order.class);
+            Order order = new Order();
+            order = modelMapper.map(orderDTO, Order.class);
             // Recuperar los productos asociados a la orden y asegurarse de que estén
             // administrados
             List<OrderResponse> orderResponses = orderDTO.getProducts();
             List<Product> products = new ArrayList<>();
             for (OrderResponse orderResponse : orderResponses) {
-                Product product = productServiceImpl.findById(orderResponse.getId());
+                Product product = productService.findById(orderResponse.getId());
                 products.add(product);
             }
             order.setProducts(products);

@@ -108,13 +108,14 @@ export async function guardarImagen(id, formData, token) {
 
 export async function generarOrden(request, token) {
   try {
-    const res = await fetch(`https://c16-47-n-java-proyect-test.koyeb.app/order/save/${request.id}`, {
+    const res = await fetch(`https://c16-47-n-java-proyect-test.koyeb.app/order/save`, {
       body: JSON.stringify(request),
       headers: {
         Authorization: token,
       },
       method: "POST",
     });
+    console.log(request)
     if (!res.ok) {
       throw new Error("Error al realizar consulta");
     }
