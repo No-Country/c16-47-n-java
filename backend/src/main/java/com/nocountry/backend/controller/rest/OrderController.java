@@ -24,6 +24,8 @@ public class OrderController {
     @PostMapping(value = "/save/{id}")
     public ResponseEntity<?> save(@RequestBody OrderRequest request, @PathVariable Long id) {
         orderService.save(request, id);
+        System.out.println(request); // ver request
+        System.out.println(id); // ver id
         return ResponseEntity.ok().body(null);
     }
 }
