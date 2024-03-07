@@ -70,7 +70,7 @@ const HeaderBanner = ({ user, setUser }) => {
                 <li>
                   <button
                     onClick={(e) => cerrarSesion(e)}
-                    className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23]"
+                    className="text-white active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23]"
                   >
                     Cerrar Sesión
                   </button>
