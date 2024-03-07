@@ -22,54 +22,59 @@ const HeaderBanner = ({ user, setUser }) => {
           </Link>
         </div>
         <nav className="flex pr-8">
-          <ul className="flex text-white ">
-            <Link
-              className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23] mr-5"
-              to="/"
-            >
-              EcoBite
-            </Link>
-            <Link
-              className="active:scale-[.98] hover:scale-[1.1] hover:text-[#ff9a36] mr-5"
-              to="/contacto"
-            >
-              Contacto
-            </Link>
-            <Link
-              className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23] mr-5"
-              to="/nosotros"
-            >
-              Nosotros
-            </Link>
-
-            {/* Logica de login/logout */}
-
-            {user == null ? (
+          <ul className="flex flex-col sm:flex-row sm:gap-3 my-0 py-0">
+            <li className="lg:mr-5 mb-2">
               <Link
-                className="active:scale-[.98] hover:scale-[1.1] hover:text-[#ff9a36]"
-                to="/login"
+                className="text-white active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23]"
+                to="/"
               >
-                Ingresar
+                EcoBite
               </Link>
+            </li>
+            <li className="lg:mr-5 mb-2">
+              <Link
+                className="text-white active:scale-[.98] hover:scale-[1.1] hover:text-[#ff9a36]"
+                to="/contacto"
+              >
+                Contacto
+              </Link>
+            </li>
+            <li className="lg:mr-5 mb-2">
+              <Link
+                className="text-white active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23]"
+                to="/nosotros"
+              >
+                Nosotros
+              </Link>
+            </li>
+            {/* Logica de login/logout */}
+            {user == null ? (
+              <li>
+                <Link
+                  className="text-white active:scale-[.98] hover:scale-[1.1] hover:text-[#ff9a36]"
+                  to="/login"
+                >
+                  Ingresar
+                </Link>
+              </li>
             ) : (
               <>
-                {user == null ? (
-                  navigate("/")
-                ) : (
-                  <>
-                    <Link
-                      className="active:scale-[.98] hover:scale-[1.1] hover:text-[#ff9a36] mr-5"
-                      to="/user"
-                    >
-                      Perfil
-                    </Link>
-                    <Link className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23] mr-5">
-                      <button onClick={(e) => cerrarSesion(e)}>
-                        Cerrar Sesión
-                      </button>
-                    </Link>
-                  </>
-                )}
+                <li className="lg:mr-5 mb-2">
+                  <Link
+                    className="text-white active:scale-[.98] hover:scale-[1.1] hover:text-[#ff9a36]"
+                    to="/user"
+                  >
+                    Perfil
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    onClick={(e) => cerrarSesion(e)}
+                    className="active:scale-[.98] hover:scale-[1.1] hover:text-[#a1bb23]"
+                  >
+                    Cerrar Sesión
+                  </button>
+                </li>
               </>
             )}
           </ul>
