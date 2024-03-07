@@ -25,7 +25,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = "SELECT COUNT(f.product_id) FROM favorite f WHERE f.product_id = :productId", nativeQuery = true)
     Integer favoriteCount(Long productId);
 
-    @Query(value = "SELECT IFNULL(ROUND(AVG(c.calification), 1), 0) FROM calification c WHERE c.product_id = :productId", nativeQuery = true)
+    @Query(value = "SELECT COALESCE(ROUND(AVG(c.calification), 1), 0) FROM calification c WHERE c.product_id = :productId", nativeQuery = true)
     Double calificationAverage(Long productId);
 
 }
