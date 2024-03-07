@@ -71,7 +71,7 @@ function Login() {
       <div className="container iniciar bg-[#181818]" id="container">
         <div className="form-container sign-up-container">
           <div className="bg-[#323232] px-10 pb-10 rounded-3xl border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36] border-form">
-            <p className="font-medium text-lg text-gray-500 mt-10 mb-6">
+            <p className="font-medium text-lg text-gray-300 mt-10 mb-6">
               Crear cuenta
             </p>
             <form onSubmit={(e) => registrar(e)}>
@@ -82,7 +82,7 @@ function Login() {
                 name="username"
                 placeholder="Nombre de usuario"
                 required
-                className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
+                className="text-gray-200 w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
               />
               <input
                 value={email}
@@ -91,7 +91,7 @@ function Login() {
                 name="email"
                 placeholder="Correo electrónico"
                 required
-                className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
+                className="text-gray-200 w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
               />
               <input
                 value={password}
@@ -100,7 +100,7 @@ function Login() {
                 name="password"
                 placeholder="Contraseña"
                 required
-                className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
+                className="text-gray-200 w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
               />
               <input
                 value={password2}
@@ -109,7 +109,7 @@ function Login() {
                 name="password2"
                 placeholder="Repetir cotraseña"
                 required
-                className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
+                className="text-gray-200 w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
               />
               <div className="mt-8 flex flex-col gap-y-4">
                 <button
@@ -120,7 +120,9 @@ function Login() {
                 </button>
               </div>
             </form>
-            <p className="font-medium text-base">Ya tienes una cuenta?</p>
+            <p className="text-gray-400 font-medium text-base">
+              Ya tienes una cuenta?
+            </p>
             <button
               id="signIn"
               className="text-[#A1BB23] text-base font-medium ml-2"
@@ -137,24 +139,28 @@ function Login() {
             <form onSubmit={(e) => ingresar(e)}>
               <div className="mt-5">
                 <div>
-                  <label className="text-lg font-medium">Usuario</label>
+                  <label className="text-gray-200 text-lg font-medium">
+                    Usuario
+                  </label>
                   <input
                     name="username"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     type="text"
-                    className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
+                    className="text-gray-200 w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
                     placeholder="Ingresar su nombre de usuario"
                   />
                 </div>
                 <div>
-                  <label className="text-lg font-medium">Contraseña</label>
+                  <label className="text-gray-200 text-lg font-medium">
+                    Contraseña
+                  </label>
                   <input
                     name="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     type="password"
-                    className="w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
+                    className="text-gray-200 w-full border-2 border-gray-100 rounded-xl p-2 my-1 bg-transparent"
                     placeholder="Ingresar su contraseña"
                   />
                 </div>
@@ -168,7 +174,9 @@ function Login() {
                 </button>
               </div>
             </form>
-            <p className="font-medium text-base">No tiene una cuenta?</p>
+            <p className="text-gray-400 font-medium text-base">
+              No tiene una cuenta?
+            </p>
             <button
               id="signUp"
               className="text-[#A1BB23] text-base font-medium ml-2"
