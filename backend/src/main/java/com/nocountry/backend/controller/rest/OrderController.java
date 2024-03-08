@@ -23,7 +23,9 @@ public class OrderController {
     //guardar orden
     @PostMapping(value = "/save")
     public ResponseEntity<?> save(@RequestBody OrderRequest request) {
+        System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
         System.out.println(request);
+        System.out.println("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-");
         orderService.save(request);
         return ResponseEntity.ok().body(null);
     }

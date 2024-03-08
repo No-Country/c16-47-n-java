@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OrderRequest {
     private Long id;
-    private LocalDate orderDate;
-    private String total;
+    private Double total;
     private List<OrderResponse> products;
 }

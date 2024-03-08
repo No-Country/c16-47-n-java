@@ -26,9 +26,8 @@ function Cartel({ productsCart, setProductsCart }) {
     });
     const userRequest = {
       idUser: user.id,
-      orderDate: null,
+      total: total,
       products: productsCart,
-      total: total.toString(),
     };
     console.log("*************************************************");
     console.log(`El total del useRequest es: ${userRequest.total}`);
