@@ -12,18 +12,6 @@
 ████████╗╚██████╗╚██████╔╝██████╔╝██║   ██║   ████████╗
 ╚═══════╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚═╝   ╚═╝   ╚═══════╝ 
 
-Team Leader:
-    - https://www.linkedin.com/in/jose-alejandro-dominguez/
 
-Developer Team:
-    - Product Manager / Full Stack:
-        - https://www.linkedin.com/in/saulociddev/
-
-    - Frontend Developers:
-        - https://www.linkedin.com/in/micaela-murrie-a977b9284/
-
-    - Backend Developers:
-        - https://www.linkedin.com/in/joelfiare/
-        - https://www.linkedin.com/in/daniel-flores-developer/
 
 SPRING BOOT :: ${spring-boot.formatted-version}

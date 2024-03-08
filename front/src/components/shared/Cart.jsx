@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cartel from "./Cartel";
 
-const Cart = ({ productsCart, setPoductsCart }) => {
+function Cart({productsCart, setProductsCart}) {
   const [cartOpen, setCartOpen] = useState(false);
+
+  useEffect(()=>{
+    setProductsCart(productsCart)
+  },[])
 
   const toggleCart = () => {
     setCartOpen(!cartOpen);
@@ -55,7 +59,7 @@ const Cart = ({ productsCart, setPoductsCart }) => {
         <span className="sr-only">Carrito de compras</span>
       </div>
       {cartOpen && (
-        <Cartel productsCart={productsCart} setPoductsCart={setPoductsCart} />
+        <Cartel productsCart={productsCart} setProductsCart={setProductsCart} />
       )}
     </div>
   );

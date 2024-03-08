@@ -11,12 +11,13 @@ function Productos() {
   const [orden, setOrden] = useState("");
   const [busqueda, setBusqueda] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [idCart, setIdCart] = useState(0);
+  const [idCart, setIdCart] = useState(1);
 
   useEffect(() => {
     traerProductos().then((data) => {
       setProducts(data);
       setFilteredProducts(data);
+      localStorage.setItem("productos", JSON.stringify(products));
     });
   }, []);
 
@@ -31,8 +32,13 @@ function Productos() {
       cant: cant,
       imageUrl: prod.imageUrl,
     };
+    console.log("////////////////////////////////////")
+    console.log("Nuevo Producto para agregar al carrito")
+    console.log(newProduct)
+    console.log("////////////////////////////////////")
     try {
       setProductsCart([...productsCart, newProduct]);
+      localStorage.setItem("productsCart", productsCart);
     } catch (error) {
       console.log("No se puede agregar el producto. Error: " + error);
     }
