@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface OrderService {
     List<OrderDTO> findAll();
+    List<OrderDTO> findById(Long userId);
     void save(OrderRequest request);
 }

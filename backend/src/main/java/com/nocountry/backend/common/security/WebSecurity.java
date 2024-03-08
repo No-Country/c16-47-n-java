@@ -34,7 +34,7 @@ public class WebSecurity {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/product/**").permitAll()
-                        .requestMatchers("/order/**").permitAll()
+                        // .requestMatchers("/order/**").permitAll()
                         .requestMatchers("/v1/authenticate", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         .requestMatchers("/admin/**").hasRole(ERole.ADMIN.toString())
                         .anyRequest().authenticated())

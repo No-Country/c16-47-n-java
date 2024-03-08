@@ -19,6 +19,17 @@ public class OrderController {
         return ResponseEntity.ok().body(orderService.findAll());
     }
 
+    // @GetMapping(value = "/findorders/{userId}")
+    // public ResponseEntity<List<OrderDTO>> findAllOfUser(@PathVariable Long userId){
+    //     return ResponseEntity.ok().body(orderService.findAllOfUser(userId));
+    // }
+
+    //obtener por id
+    @GetMapping(value = "/findbyid/{id}")
+    public ResponseEntity<List<OrderDTO>> findById(@PathVariable Long id) {
+        return ResponseEntity.ok().body(orderService.findById(id));
+    }
+
     //guardar orden
     @PostMapping(value = "/save")
     public ResponseEntity<?> save(@RequestBody OrderRequest request) {

@@ -1,9 +1,7 @@
 export async function traerProductos() {
   try {
     // "https://c16-47-n-java-proyect-test.koyeb.app/product/findall"
-    const res = await fetch(
-      "http://localhost:8080/product/findall"
-    );
+    const res = await fetch("http://localhost:8080/product/findall");
     if (!res.ok) {
       throw new Error("Error al traer productos");
     }
@@ -18,16 +16,13 @@ export async function traerProductos() {
 export async function login(request) {
   try {
     // "https://c16-47-n-java-proyect-test.koyeb.app/auth/login"
-    const res = await fetch(
-      "http://localhost:8080/auth/login",
-      {
-        body: JSON.stringify(request),
-        headers: {
-          "Content-type": "application/json",
-        },
-        method: "POST",
-      }
-    );
+    const res = await fetch("http://localhost:8080/auth/login", {
+      body: JSON.stringify(request),
+      headers: {
+        "Content-type": "application/json",
+      },
+      method: "POST",
+    });
     if (!res.ok) {
       throw new Error("Error al iniciar sesión");
     }
@@ -42,16 +37,13 @@ export async function login(request) {
 export async function register(request) {
   try {
     // "https://c16-47-n-java-proyect-test.koyeb.app/auth/register"
-    const res = await fetch(
-      "http://localhost:8080/auth/register",
-      {
-        body: JSON.stringify(request),
-        headers: {
-          "Content-type": "application/json",
-        },
-        method: "POST",
-      }
-    );
+    const res = await fetch("http://localhost:8080/auth/register", {
+      body: JSON.stringify(request),
+      headers: {
+        "Content-type": "application/json",
+      },
+      method: "POST",
+    });
     if (!res.ok) {
       throw new Error("Error al registrar usuario");
     }
@@ -66,14 +58,11 @@ export async function register(request) {
 export async function traerUsuario(token) {
   try {
     // "https://c16-47-n-java-proyect-test.koyeb.app/user/user"
-    const res = await fetch(
-      "http://localhost:8080/user/user",
-      {
-        headers: {
-          Authorization: token,
-        },
-      }
-    );
+    const res = await fetch("http://localhost:8080/user/user", {
+      headers: {
+        Authorization: token,
+      },
+    });
     if (!res.ok) {
       throw new Error("Error al obtener el usuario");
     }
@@ -88,17 +77,14 @@ export async function traerUsuario(token) {
 export async function guardarCambios(request, token) {
   try {
     // "https://c16-47-n-java-proyect-test.koyeb.app/user/profileUpdate"
-    const res = await fetch(
-      "http://localhost:8080/user/profileUpdate",
-      {
-        body: JSON.stringify(request),
-        headers: {
-          Authorization: token,
-          "Content-type": "application/json",
-        },
-        method: "PUT",
-      }
-    );
+    const res = await fetch("http://localhost:8080/user/profileUpdate", {
+      body: JSON.stringify(request),
+      headers: {
+        Authorization: token,
+        "Content-type": "application/json",
+      },
+      method: "PUT",
+    });
     if (!res.ok) {
       throw new Error("Error al actualizar el usuario");
     }
@@ -145,5 +131,22 @@ export async function generarOrden(request, token) {
     }
   } catch (error) {
     console.log("No se pudo generar la orden. " + error);
+  }
+}
+
+export async function traerOrdenes(id, token) {
+  try {
+    const res = await fetch(`http://localhost:8080/order/findbyid/${id}`, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    if (!res.ok) {
+      throw new Error("No se pudo realizar la petición a órdenes");
+    }
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
   }
 }

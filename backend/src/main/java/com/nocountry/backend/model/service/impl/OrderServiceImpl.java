@@ -10,13 +10,12 @@ import com.nocountry.backend.model.repository.OrderRepository;
 import com.nocountry.backend.model.repository.UserRepository;
 import com.nocountry.backend.model.service.OrderService;
 import com.nocountry.backend.model.service.ProductService;
-
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +31,21 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderDTO> findAll() {
         List<Order> orderDB = orderRepository.findAll();
         return orderDB.stream().map(order -> modelMapper.map(order, OrderDTO.class)).toList();
+    }
+
+    // @Override
+    // public List<Order> findAllOfUser(Long userId) {
+    //     return orderRepository.findById(userId);
+    // }
+
+    @Override
+    public List<OrderDTO> findById(Long id) {
+        UserEntity userDB = userRepository.findById(id).orElseThrow();
+        List<OrderDTO> ordersDTO = new ArrayList<>();
+        for (Order order : userDB.getOrders()) {
+            ordersDTO.add(modelMapper.map(order, OrderDTO.class));
+        }
+        return ordersDTO;
     }
 
     @Override

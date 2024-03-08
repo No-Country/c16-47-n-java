@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { guardarCambios, guardarImagen } from "./AppServicio";
+import { guardarCambios, guardarImagen, traerOrdenes } from "./AppServicio";
 import { FaCamera } from "react-icons/fa";
 
 const CameraIcon = ({ onClick }) => {
@@ -23,6 +23,9 @@ const CameraIcon = ({ onClick }) => {
 
 const UserProfile = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  const [orders, setOrders] = useState([]);
+
+  console.log(orders);
 
   const [avatar, setAvatar] = useState(
     localStorage.getItem("avatar") || user.imageUrl
@@ -37,6 +40,11 @@ const UserProfile = () => {
   useEffect(() => {
     localStorage.setItem("avatar", avatar);
   }, [avatar]);
+
+  useEffect(() => {
+    traerOrdenes(user.id, localStorage.getItem("token")).then((data) => setOrders(data))
+    console.log(orders)
+  }, []);
 
   async function cambiarDatos(e) {
     e.preventDefault();
@@ -205,6 +213,36 @@ const UserProfile = () => {
           </div>
         )}
       </div>
+
+      {/* Sección de órdenes de usuario */}
+
+      <section className="ordenes">
+        <h2 className="text-white">Órdenes de compras realizadas</h2>
+        {orders.length > 0 ? (
+          <>
+            <table >
+              <thead>
+                <th className="text-white">Nº de Orden</th>
+                <th className="text-white">Fecha</th>
+                <th className="text-white">Total $</th>
+              </thead>
+              {orders.map((order) => (
+                <tbody>
+                  <section key={order.id}>
+                    <td className="text-white">{order.id}</td>
+                    <td className="text-white">{order.orderDate}</td>
+                    <td className="text-white">${order.total}</td>
+                  </section>
+                </tbody>
+              ))}
+            </table>
+          </>
+        ) : (
+          <>
+            <p>No hay órdenes de compra</p>
+          </>
+        )}
+      </section>
     </section>
   );
 };
