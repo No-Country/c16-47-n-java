@@ -37,11 +37,7 @@ function Cartel({ productsCart, setProductsCart }) {
       total: total,
       products: updatedProductRequest,
     };
-    console.log("*************************************************");
-    console.log(`El total del useRequest es: ${userRequest.total}`);
-    console.log("*************************************************");
     localStorage.setItem("orden", JSON.stringify(userRequest));
-    console.log(localStorage.getItem("orden"));
     try {
       localStorage.setItem("productsCart", null);
       setProductsCart([]);
