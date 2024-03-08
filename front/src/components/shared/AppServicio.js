@@ -1,7 +1,8 @@
 export async function traerProductos() {
   try {
+    // "https://c16-47-n-java-proyect-test.koyeb.app/product/findall"
     const res = await fetch(
-      "https://c16-47-n-java-proyect-test.koyeb.app/product/findall"
+      "http://localhost:8080/product/findall"
     );
     if (!res.ok) {
       throw new Error("Error al traer productos");
@@ -16,8 +17,9 @@ export async function traerProductos() {
 
 export async function login(request) {
   try {
+    // "https://c16-47-n-java-proyect-test.koyeb.app/auth/login"
     const res = await fetch(
-      "https://c16-47-n-java-proyect-test.koyeb.app/auth/login",
+      "http://localhost:8080/auth/login",
       {
         body: JSON.stringify(request),
         headers: {
@@ -39,8 +41,9 @@ export async function login(request) {
 
 export async function register(request) {
   try {
+    // "https://c16-47-n-java-proyect-test.koyeb.app/auth/register"
     const res = await fetch(
-      "https://c16-47-n-java-proyect-test.koyeb.app/auth/register",
+      "http://localhost:8080/auth/register",
       {
         body: JSON.stringify(request),
         headers: {
@@ -62,8 +65,9 @@ export async function register(request) {
 
 export async function traerUsuario(token) {
   try {
+    // "https://c16-47-n-java-proyect-test.koyeb.app/user/user"
     const res = await fetch(
-      "https://c16-47-n-java-proyect-test.koyeb.app/user/user",
+      "http://localhost:8080/user/user",
       {
         headers: {
           Authorization: token,
@@ -83,8 +87,9 @@ export async function traerUsuario(token) {
 
 export async function guardarCambios(request, token) {
   try {
+    // "https://c16-47-n-java-proyect-test.koyeb.app/user/profileUpdate"
     const res = await fetch(
-      "https://c16-47-n-java-proyect-test.koyeb.app/user/profileUpdate",
+      "http://localhost:8080/user/profileUpdate",
       {
         body: JSON.stringify(request),
         headers: {
@@ -104,16 +109,14 @@ export async function guardarCambios(request, token) {
 
 export async function guardarImagen(id, formData, token) {
   try {
-    const res = await fetch(
-      `https://c16-47-n-java-proyect-test.koyeb.app/user/updateImage/${id}`,
-      {
-        body: formData,
-        headers: {
-          Authorization: token,
-        },
-        method: "POST",
-      }
-    );
+    // `https://c16-47-n-java-proyect-test.koyeb.app/user/updateImage/${id}`
+    const res = await fetch(`http://localhost:8080/user/updateImage/${id}`, {
+      body: formData,
+      headers: {
+        Authorization: token,
+      },
+      method: "POST",
+    });
     if (!res.ok) {
       throw new Error("Error al actualizar la imagen");
     }
@@ -124,22 +127,19 @@ export async function guardarImagen(id, formData, token) {
 
 export async function generarOrden(request, token) {
   try {
-    // "http://localhost:8080/order/save"
-    const res = await fetch(
-      "https://c16-47-n-java-proyect-test.koyeb.app/order/save",
-      {
-        body: JSON.stringify(request),
-        headers: {
-          Authorization: token,
-          "Content-type": "application/json",
-        },
-        method: "POST",
-      }
-    );
-    console.log("---------------------------------------------------")
-    console.log("Request desde AppService.js")
+    // "https://c16-47-n-java-proyect-test.koyeb.app/order/save"
+    const res = await fetch("http://localhost:8080/order/save", {
+      body: JSON.stringify(request),
+      headers: {
+        Authorization: token,
+        "Content-type": "application/json",
+      },
+      method: "POST",
+    });
+    console.log("---------------------------------------------------");
+    console.log("Request desde AppService.js");
     console.log(request);
-    console.log("---------------------------------------------------")
+    console.log("---------------------------------------------------");
     if (!res.ok) {
       throw new Error("No se pudo realizar la consulta");
     }
