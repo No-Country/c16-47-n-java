@@ -3,7 +3,7 @@ export async function traerProductos() {
   try {
     //const res = await fetch("https://c16-47-n-java-proyect-test.koyeb.app/product/findall");
     //localhost
-    const res = await fetch("http://localhost:8080/product/findall");
+    const res = await fetch("http://204.216.217.12:8080/product/findall");
     if (!res.ok) {
       throw new Error("Error al traer productos");
     }
@@ -17,7 +17,7 @@ export async function traerProductos() {
 
 export async function login(request) {
   try {
-    const res = await fetch("http://localhost:8080/auth/login", {
+    const res = await fetch("http://204.216.217.12:8080/auth/login", {
       body: JSON.stringify(request),
       headers: {
         "Content-type": "application/json",
@@ -37,7 +37,7 @@ export async function login(request) {
 
 export async function register(request) {
   try {
-    const res = await fetch("http://localhost:8080/auth/register", {
+    const res = await fetch("http://204.216.217.12:8080/auth/register", {
       body: JSON.stringify(request),
       headers: {
         "Content-type": "application/json",
@@ -57,7 +57,7 @@ export async function register(request) {
 
 export async function traerUsuario(token) {
   try {
-    const res = await fetch("http://localhost:8080/user/user", {
+    const res = await fetch("http://204.216.217.12:8080/user/user", {
       headers: {
         Authorization: token,
       },
@@ -75,7 +75,7 @@ export async function traerUsuario(token) {
 
 export async function guardarCambios(request, token) {
   try {
-    const res = await fetch("http://localhost:8080/user/profileUpdate", {
+    const res = await fetch("http://204.216.217.12:8080/user/profileUpdate", {
       body: JSON.stringify(request),
       headers: {
         Authorization: token,
@@ -93,7 +93,7 @@ export async function guardarCambios(request, token) {
 
 export async function guardarImagen(id, formData, token) {
   try {
-    const res = await fetch(`http://localhost:8080/user/updateImage/${id}`, {
+    const res = await fetch(`http://204.216.217.12:8080/user/updateImage/${id}`, {
       body: formData,
       headers: {
         Authorization: token,
@@ -110,7 +110,7 @@ export async function guardarImagen(id, formData, token) {
 
 export async function generarOrden(request, token) {
   try {
-    const res = await fetch(`http://localhost:8080/order/save`, {
+    const res = await fetch(`http://204.216.217.12:8080/order/save`, {
       body: JSON.stringify(request),
       headers: {
         Authorization: token,
