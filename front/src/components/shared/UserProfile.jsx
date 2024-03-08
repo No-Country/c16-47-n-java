@@ -24,12 +24,7 @@ const CameraIcon = ({ onClick }) => {
 const UserProfile = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const [orders, setOrders] = useState([]);
-
-  console.log(orders);
-
-  const [avatar, setAvatar] = useState(
-    localStorage.getItem("avatar") || user.imageUrl
-  );
+  const [avatar, setAvatar] = useState(user.imageUrl);
   const [name, setName] = useState(user.name);
   const [address, setAddress] = useState(user.address);
   const [cellphone, setCellphone] = useState(user.cellphone);
@@ -42,8 +37,9 @@ const UserProfile = () => {
   }, [avatar]);
 
   useEffect(() => {
-    traerOrdenes(user.id, localStorage.getItem("token")).then((data) => setOrders(data))
-    console.log(orders)
+    traerOrdenes(user.id, localStorage.getItem("token")).then((data) =>
+      setOrders(data)
+    );
   }, []);
 
   async function cambiarDatos(e) {
@@ -217,29 +213,35 @@ const UserProfile = () => {
       {/* Sección de órdenes de usuario */}
 
       <section className="ordenes">
-        <h2 className="text-white">Órdenes de compras realizadas</h2>
+        <h2 className="text-white mt-5 mb-10 max-w-md mx-auto bg-[#323232]  p-6 font-roboto relative border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36]">
+          Órdenes de compras realizadas
+        </h2>
         {orders.length > 0 ? (
           <>
-            <table >
-              <thead>
-                <th className="text-white">Nº de Orden</th>
-                <th className="text-white">Fecha</th>
-                <th className="text-white">Total $</th>
+            <table className="text-left mx-auto bg-[#323232] p-6 font-roboto relative border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36]">
+              <thead className="text-left align-middle">
+                <tr>
+                  <th className="text-white">Nº de Orden</th>
+                  <th className="text-white">Fecha</th>
+                  <th className="text-white">Total $</th>
+                </tr>
               </thead>
-              {orders.map((order) => (
-                <tbody>
-                  <section key={order.id}>
+              <tbody className="text-left">
+                {orders.map((order, i) => (
+                  <tr key={i}>
                     <td className="text-white">{order.id}</td>
                     <td className="text-white">{order.orderDate}</td>
                     <td className="text-white">${order.total}</td>
-                  </section>
-                </tbody>
-              ))}
+                  </tr>
+                ))}
+              </tbody>
             </table>
           </>
         ) : (
           <>
-            <p>No hay órdenes de compra</p>
+            <p className="text-white mt-5 mb-10 max-w-md mx-auto bg-[#323232] p-6 font-roboto relative border-t-2 border-r-2 border-b-2 border-l-2 border-[#ff9a36] border-t-[#a1bb23] border-r-[#a1bb23] border-b-[#ff9a36]">
+              No hay órdenes de compra
+            </p>
           </>
         )}
       </section>

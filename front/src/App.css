@@ -49,3 +49,13 @@
     padding: 50px 70px 20px;
   }
 }
+
+table {
+  display: block;
+  width: 100%;
+  max-width: 435px;
+}
+
+th, td {
+  width: 150px;
+}
