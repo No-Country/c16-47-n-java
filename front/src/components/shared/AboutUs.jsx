@@ -13,7 +13,7 @@ const AboutUs = () => {
           description="Leader de quipos en No Country realizando reuniones motivacionales y de Sprint. Gestión en control de tareas de equipo y actividades en habilidades blandas."
           rol="Team Leader"
           imageSrc={alejandro}
-          githubURL="https://github.com"
+          githubURL="https://github.com/AlejoDx"
           linkedinURL="https://www.linkedin.com/in/jose-alejandro-dominguez/"
           isLeftAligned={true}
         />
