@@ -33,7 +33,7 @@ function Cartel({ productsCart, setProductsCart }) {
     });
     console.log(updatedProductRequest);
     const userRequest = {
-      idUser: user.id,
+      userId: user.id,
       total: total,
       products: updatedProductRequest,
     };

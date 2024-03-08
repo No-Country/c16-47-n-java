@@ -37,27 +37,32 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void save(OrderRequest request) {
 
-        Optional<UserEntity> res = userRepository.findById(request.getId());
-        if (res.isPresent()) {
-            OrderDTO orderDTO = new OrderDTO();
-            orderDTO.setUserId(res.get().getId());
-            orderDTO.setOrderDate(LocalDate.now());
-            orderDTO.setProducts(request.getProducts());
-            orderDTO.setTotal(request.getTotal());
+        // creamos la segunda capa con la orderDTO para setear los datos de la request
+        OrderDTO orderDTO = new OrderDTO();
+        orderDTO.setUserId(request.getUserId());
+        orderDTO.setOrderDate(LocalDate.now());
+        orderDTO.setProducts(request.getProducts());
+        orderDTO.setTotal(request.getTotal());
 
-            Order order = new Order();
-            order = modelMapper.map(orderDTO, Order.class);
-            // Recuperar los productos asociados a la orden y asegurarse de que estén
-            // administrados
-            List<ProductOrderResponse> orderResponses = orderDTO.getProducts();
-            List<Product> products = new ArrayList<>();
-            for (ProductOrderResponse orderResponse : orderResponses) {
-                Product product = productService.findById(orderResponse.getId());
-                products.add(product);
-            }
-            order.setProducts(products);
+        Order order = modelMapper.map(orderDTO, Order.class);
 
-            orderRepository.save(order);
+        Optional<UserEntity> resUser = userRepository.findById(orderDTO.getUserId());
+        if (resUser.isPresent()) {
+            order.setUser(resUser.get());
         }
+
+        // Recuperar los productos asociados a la orden y asegurarse de que estén
+        // administrados
+
+        List<ProductOrderResponse> orderResponses = orderDTO.getProducts();
+        List<Product> products = new ArrayList<>();
+        for (ProductOrderResponse orderResponse : orderResponses) {
+            Product product = productService.findById(orderResponse.getId());
+            products.add(product);
+        }
+        order.setProducts(products);
+
+        orderRepository.save(order);
+
     }
 }

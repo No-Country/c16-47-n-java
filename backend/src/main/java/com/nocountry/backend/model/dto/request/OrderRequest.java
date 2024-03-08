@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderRequest {
-    private Long id;
+    private Long userId;
     private Double total;
     private List<ProductOrderResponse> products;
 }
