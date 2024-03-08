@@ -2,7 +2,7 @@ package com.nocountry.backend.model.service.impl;
 
 import com.nocountry.backend.model.dto.OrderDTO;
 import com.nocountry.backend.model.dto.request.OrderRequest;
-import com.nocountry.backend.model.dto.response.OrderResponse;
+import com.nocountry.backend.model.dto.response.ProductOrderResponse;
 import com.nocountry.backend.model.entity.Order;
 import com.nocountry.backend.model.entity.Product;
 import com.nocountry.backend.model.entity.UserEntity;
@@ -49,9 +49,9 @@ public class OrderServiceImpl implements OrderService {
             order = modelMapper.map(orderDTO, Order.class);
             // Recuperar los productos asociados a la orden y asegurarse de que estén
             // administrados
-            List<OrderResponse> orderResponses = orderDTO.getProducts();
+            List<ProductOrderResponse> orderResponses = orderDTO.getProducts();
             List<Product> products = new ArrayList<>();
-            for (OrderResponse orderResponse : orderResponses) {
+            for (ProductOrderResponse orderResponse : orderResponses) {
                 Product product = productService.findById(orderResponse.getId());
                 products.add(product);
             }

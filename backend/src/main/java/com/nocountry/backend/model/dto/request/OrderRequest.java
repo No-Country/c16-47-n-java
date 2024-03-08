@@ -1,8 +1,7 @@
 package com.nocountry.backend.model.dto.request;
 
-import java.time.LocalDate;
 import java.util.List;
-import com.nocountry.backend.model.dto.response.OrderResponse;
+import com.nocountry.backend.model.dto.response.ProductOrderResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,5 +14,5 @@ import lombok.NoArgsConstructor;
 public class OrderRequest {
     private Long id;
     private Double total;
-    private List<OrderResponse> products;
+    private List<ProductOrderResponse> products;
 }

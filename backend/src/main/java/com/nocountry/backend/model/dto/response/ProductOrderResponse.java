@@ -17,7 +17,7 @@ import org.hibernate.validator.constraints.URL;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class OrderResponse {
+public class ProductOrderResponse {
     private Long id;
 
     @NotNull(message = "El nombre del producto no puede ser nulo")
