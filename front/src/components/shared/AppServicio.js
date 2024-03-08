@@ -131,18 +131,19 @@ export async function generarOrden(request, token) {
         body: JSON.stringify(request),
         headers: {
           Authorization: token,
+          "Content-type": "application/json",
         },
         method: "POST",
       }
     );
     console.log("---------------------------------------------------")
-    console.log(typeof request)
+    console.log("Request desde AppService.js")
     console.log(request);
     console.log("---------------------------------------------------")
     if (!res.ok) {
-      throw new Error("Error al realizar consulta");
+      throw new Error("No se pudo realizar la consulta");
     }
   } catch (error) {
-    console.log("No se pudo generar la orden. Error: " + error);
+    console.log("No se pudo generar la orden. " + error);
   }
 }

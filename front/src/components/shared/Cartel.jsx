@@ -36,9 +36,9 @@ function Cartel({ productsCart, setProductsCart }) {
     localStorage.setItem("orden", JSON.stringify(userRequest));
     console.log(localStorage.getItem("orden"));
     try {
-      await generarOrden(userRequest, localStorage.getItem("token"));
       localStorage.setItem("productsCart", null);
-      setProductsCart(null);
+      setProductsCart([]);
+      await generarOrden(userRequest, localStorage.getItem("token"));
     } catch (error) {
       console.log(error);
     }
