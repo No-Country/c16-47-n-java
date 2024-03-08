@@ -20,14 +20,22 @@ function Cartel({ productsCart, setProductsCart }) {
   async function guardarOrden(e) {
     e.preventDefault();
     let total = 0;
+    let updatedProductRequest = [];
     productsCart.forEach((p, i) => {
       total += parseFloat(p.price) * parseFloat(p.cant);
-      console.log(`El total hasta el momento en ${i} iteración es: ${total}`)
+      console.log(`El total hasta el momento en ${i} iteración es: ${total}`);
+      updatedProductRequest.push({
+        id: p.id,
+        name: p.name,
+        price: p.price,
+        imageUrl: p.imageUrl,
+      });
     });
+    console.log(updatedProductRequest);
     const userRequest = {
       idUser: user.id,
       total: total,
-      products: productsCart,
+      products: updatedProductRequest,
     };
     console.log("*************************************************");
     console.log(`El total del useRequest es: ${userRequest.total}`);

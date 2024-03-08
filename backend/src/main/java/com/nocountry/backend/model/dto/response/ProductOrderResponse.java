@@ -27,7 +27,7 @@ public class ProductOrderResponse {
     @NotNull(message = "El precio del producto no puede ser nulo")
     @NotBlank(message = "El precio del producto no puede estar en blanco")
     @Positive(message = "El precio del producto debe ser positivo")
-    private double price;
+    private double total;
 
     @URL(message = "La url de la imagen no es valida")
     private String imageUrl;
